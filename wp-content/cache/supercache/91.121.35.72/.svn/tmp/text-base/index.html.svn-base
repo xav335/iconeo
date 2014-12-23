@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="fr-FR" prefix="og: http://ogp.me/ns#">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="fr-FR" prefix="og: http://ogp.me/ns#">
+<![endif]-->
+<!--[if !(IE 7) & !(IE 8)]><!-->
+<html lang="fr-FR" prefix="og: http://ogp.me/ns#">
+<head>
+	<title>Iconéo - Services Informatiques Bordeaux Rive droite</title>
+	
+	
+	<meta name="keywords" content="iconeo, web, plv, formation, service, tpe, pme">
+	<!-- Open Graph -->
+	<meta property="og:title" content="Iconeo - Révélateur d'attraction" />
+	<meta property="og:description" content="Iconeo - Révélateur d'attraction" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="http://www.iconeo.fr/" />
+	<meta property="og:image" content="http://www.iconeo.fr/img/iconeo.gif" />
+	<meta property="og:image:type" content="image/gif" />
+	<meta property="og:image:width" content="300" />
+	<meta property="og:image:height" content="300" />
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content="Iconeo - Révélateur d'attraction" />
+	<meta name="twitter:description" content="Iconeo - Révélateur d'attraction" />
+	<meta name="twitter:creator" content="@iconeo" />
+	<meta name="twitter:image:src" content="http://www.iconeo.fr/img/iconeo.gif" />
+	<meta name="twitter:domain" content="http://www.iconeo.fr/" />
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="http://www.iconeo.fr/xmlrpc.php">
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!-- <meta name="viewport" content="width=device-width,initial-scale=1" /> -->
+	<meta id="viewport" name='viewport' />
+	<script>
+	    (function(doc) {
+	        var viewport = document.getElementById('viewport');
+	        if ( navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i)) {
+	            doc.getElementById("viewport").setAttribute("content", "width=device-width;initial-scale=1;");
+	        } else if ( navigator.userAgent.match(/iPad/i) ) {
+	            doc.getElementById("viewport").setAttribute("content", "width=device-width;initial-scale=0.85;");
+	        }
+	    }(document));
+	</script>
+	
+	<meta name="apple-mobile-web-app-title" content="Iconeo" />
+	<meta name="application-name" content="Iconeo" />
+	
+	<link rel="icon" href="http://www.iconeo.fr/wp-content/themes/iconeo/img/favicon.ico" type="image/x-icon" />
+	<link rel="apple-touch-icon" href="http://www.iconeo.fr/wp-content/themes/iconeo/img/iconeo-icon.png" />
+	
+	<link rel="stylesheet" type="text/css" href="http://www.iconeo.fr/wp-content/themes/iconeo/js/slick/slick.css"/>
+	<!--[if lt IE 9]>
+	<script src="http://www.iconeo.fr/wp-content/themes/iconeo/js/html5.js"></script>
+	<![endif]-->
+	
+<!-- This site is optimized with the Yoast WordPress SEO plugin v1.6.3 - https://yoast.com/wordpress/plugins/seo/ -->
+<link rel="canonical" href="http://www.iconeo.fr" />
+<link rel="next" href="http://www.iconeo.fr/page/2/" />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Iconéo - Services Informatiques Bordeaux Rive droite" />
+<meta property="og:url" content="http://www.iconeo.fr" />
+<meta property="og:site_name" content="Iconéo" />
+<script type="application/ld+json">{ "@context": "http://schema.org", "@type": "WebSite", "url": "http://www.iconeo.fr/", "potentialAction": { "@type": "SearchAction", "target": "http://www.iconeo.fr/?s={search_term}", "query-input": "required name=search_term" } }</script>
+<!-- / Yoast WordPress SEO plugin. -->
+
+<link rel="alternate" type="application/rss+xml" title="Iconéo &raquo; Flux" href="http://www.iconeo.fr/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Iconéo &raquo; Flux des commentaires" href="http://www.iconeo.fr/comments/feed/" />
+<link rel='stylesheet' id='contact-form-7-css'  href='http://www.iconeo.fr/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=4.0.1' type='text/css' media='all' />
+<link rel='stylesheet' id='iconeo-lato-css'  href='//fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700%2C900%2C300italic%2C400italic%2C700italic' type='text/css' media='all' />
+<link rel='stylesheet' id='genericons-css'  href='http://www.iconeo.fr/wp-content/themes/iconeo/genericons/genericons.css?ver=3.0.3' type='text/css' media='all' />
+<link rel='stylesheet' id='iconeo-style-css'  href='http://www.iconeo.fr/wp-content/themes/iconeo/style.css?ver=4.0' type='text/css' media='all' />
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='iconeo-ie-css'  href='http://www.iconeo.fr/wp-content/themes/iconeo/css/ie.css?ver=20131205' type='text/css' media='all' />
+<![endif]-->
+<script type='text/javascript' src='http://www.iconeo.fr/wp-includes/js/jquery/jquery.js?ver=1.11.1'></script>
+<script type='text/javascript' src='http://www.iconeo.fr/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.iconeo.fr/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.iconeo.fr/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 4.0" />
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+	
+	<!--[if lt IE 9]>;
+	  <script>
+	    document.createElement("header");
+	    document.createElement("footer");
+	    document.createElement("section");
+	    document.createElement("aside");
+	    document.createElement("nav");
+	    document.createElement("article");
+	    document.createElement("hgroup");
+	    document.createElement("time");
+	  </script>
+	  <noscript>
+	    <strong>Attention !</strong>
+	    Comme votre navigateur ne prend pas en charge HTML5, certains éléments sont simulés à l'aide de JScript.
+	    Malheureusement votre navigateur a désactivé les scripts. Veuillez l'activer pour afficher cette page.
+	  </noscript>
+	<![endif]-->
+</head>
+
+<body class="home blog custom-background group-blog masthead-fixed list-view full-width grid">
+
+	<section class="petales">
+		<div class="menu-menu-top-container"><ul id="menu-menu-top" class="menu-top"><li id="menu-item-27" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href="http://www.iconeo.fr/references/">Références</a></li>
+<li id="menu-item-26" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-26"><a href="http://www.iconeo.fr/contact/">Contact</a></li>
+</ul></div>		<img src="http://www.iconeo.fr/wp-content/themes/iconeo/img/logo-iconeo.png" alt="Iconeo - Révélateur d'attraction" title="Iconeo - Révélateur d'attraction" class="logo" />
+		
+		<!-- PROMO -->
+		<div class="petale promo">
+			<h3 class="vert">Offre Spéciale Artisans :</h3>
+			<h3 class="vert">ERP/CRM Dolibarr</h3>
+			<p style="font-size: 15px;">Un logiciel de gestion simple "online"</p>
+			<a href="/?p=156" class="button" title="En savoir plus sur notre offre ERP - CRM">En savoir +</a>
+		</div>
+		<!-- /PROMO -->
+		
+		<!-- WEB & PLV -->
+		<div class="petale web-plv">
+			<h2 class="bleu">web &amp; plv</h2>
+			<p>Destiné à toutes les entreprises</p>
+			<p class="bleu">
+				Nous vous aidons<br/>
+				<strong>à augmenter votre Chiffre d’Affaire.</strong>
+			</p>
+			<p class="bleu">site et boutique en ligne - référencement Adwords - plv dynamique</p>
+			<a href="/?p=371" class="button" title="En savoir plus sur notre offre Web &amp; PLV">En savoir +</a>
+		</div>
+		<!-- /WEB & PLV -->
+		
+		<!-- CONSULTING -->
+		<div class="petale consulting">
+			<h2 class="jaune">Consulting</h2>
+			<p>Destiné à toutes les entreprises</p>
+			<p class="jaune">
+				Nous vous aidons<br/>
+				<strong>à être plus performant.</strong>
+			</p>
+			<p class="jaune">Maitrise d’ouvrage - développement applicatif - formation de masse</p>
+			<a href="/?p=12" class="button" title="En savoir plus sur notre offre Consulting">En savoir +</a>
+		</div>
+		<!-- /CONSULTING -->
+		
+		<!-- FORMATION -->
+		<div class="petale formation">
+			<h2 class="fuschia">Formation</h2>
+			<p>Destiné à toutes les entreprises</p>
+			<p class="fuschia">
+				Nous vous aidons<br/>
+				<strong>à être plus performant.</strong>
+			</p>
+			<p class="fuschia">Inter ou intra entreprise - université et écoles</p>
+			<a href="/?p=2" class="button" title="En savoir plus sur notre offre Formation">En savoir +</a>
+		</div>
+		<!-- /FORMATION -->
+		
+		<!-- SERVICES -->
+		<div class="petale services">
+			<h2 class="vert">Services</h2>
+			<h2 class="vert" style="font-size: 30px;">Informatiques</h2>
+			<p>Destiné aux PRO</p>
+			<p class="vert">
+				Nous vous aidons<br/>
+				<strong>à gagner du temps.</strong>
+			</p>
+			<p class="vert">Conseil - installation - dépannage - vente - formation</p>
+			<a href="/?p=468" class="button" title="En savoir plus sur notre offre Services">En savoir +</a>
+		</div>
+		<!-- /SERVICES -->
+		
+	</section>
+	<section>
+		<div class="row">
+			<h1>
+				<span>L'ambition d'Iconeo est de permettre aux <strong>petites entreprises</strong> :</span>
+				<span>De mieux communiquer, de vendre plus, de gagner du temps et d'être plus performant grâce aux <strong>outils numériques</strong>(NTIC)</span>
+			</h1>
+		</div>
+		<div class="separateur">
+			<img src="http://www.iconeo.fr/wp-content/themes/iconeo/img/puce-bleue.png" alt="" />
+			<img src="http://www.iconeo.fr/wp-content/themes/iconeo/img/puce-fuschia.png" alt="" />
+			<img src="http://www.iconeo.fr/wp-content/themes/iconeo/img/puce-jaune.png" alt="" />
+			<img src="http://www.iconeo.fr/wp-content/themes/iconeo/img/puce-verte.png" alt="" />
+		</div>
+	</section>
+
+
+
+	<link rel='stylesheet' id='nimblebox-style-css'  href='http://www.iconeo.fr/wp-content/plugins/nimble-portfolio/includes/prettyphoto/prettyphoto.css?ver=4.0' type='text/css' media='all' />
+<script type='text/javascript' src='http://www.iconeo.fr/wp-content/plugins/contact-form-7/includes/js/jquery.form.min.js?ver=3.51.0-2014.06.20'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var _wpcf7 = {"loaderUrl":"http:\/\/www.iconeo.fr\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","sending":"Envoi en cours ...","cached":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://www.iconeo.fr/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=4.0.1'></script>
+<script type='text/javascript' src='http://www.iconeo.fr/wp-content/themes/iconeo/js/functions.js?ver=20140616'></script>
+<script type='text/javascript' src='http://www.iconeo.fr/wp-content/plugins/nimble-portfolio/includes/prettyphoto/prettyphoto.js?ver=2.0.9'></script>
+<script type='text/javascript' src='http://www.iconeo.fr/wp-content/plugins/nimble-portfolio/includes/sort.js?ver=2.0.9'></script>
+	<footer>
+		<div class="row">
+			<section class="actualites large-6 medium-6 small-12">
+				<h1>Actualités</h1>
+				<p>
+Offre spéciale aux entreprises<br />
+<span>DOLIBARR : UN ERP/CRM SIMPLE ET OUVERT POUR LES PROFESSIONNELS</span>
+</p>
+<p class="contenufooter">
+Dolibarr ERP &#038; CRM est un logiciel moderne de gestion de votre activité professionnelle ou associative (contacts, factures, commandes, stocks, agenda, etc…).&hellip;</p><div><a href="http://www.iconeo.fr/offre-spe-erp/" class="button">À découvrir</a></div>			</section>
+			<section class="confiance medium-5 small-12">
+				<h1>Ils nous ont fait confiance.</h1>
+				<div class="slider autoplay">
+					<div><a href="http://www.micheltattoo.com" target="_blank"><img src="http://www.iconeo.fr/wp-content/themes/iconeo/img/ref-michel-tattoo.png" alt="Michel Tattoo" title="Michel Tattoo" /></a></div>
+					<div><a href="http://www.speakerscornerlanguage.com" target="_blank"><img src="http://www.iconeo.fr/wp-content/themes/iconeo/img/ref-speaker-corner.png" alt="Michel Tattoo" title="speakerscorner" /></a></div>
+					<div><a href="http://www.elevagelama.com" target="_blank"><img src="http://www.iconeo.fr/wp-content/themes/iconeo/img/lama.png" alt="Michel Tattoo" title="élevage lama" /></a></div>
+					<div><a href="http://www.bsport.fr" target="_blank"><img src="http://www.iconeo.fr/wp-content/themes/iconeo/img/bsport.png" alt="bsport" title="bsport" /></a></div>
+					<div><a href="http://www.efs-tahiti.com" target="_blank"><img src="http://www.iconeo.fr/wp-content/themes/iconeo/img/efs.png" alt="efs" title="efs" /></a></div>
+				</div>
+			</section>
+			<hr />
+			<section class="large-4 medium-4 small-12">
+				<p class="menu-footer">
+					<a href="/iconeo/index.php?p=8" title="Iconeo">Iconeo</a><br/>
+					<a href="/iconeo/index.php?p=10" title="Services">services</a> - <a href="/iconeo/index.php?p=2" title="Formation">formation</a> - <a href="/iconeo/index.php?p=12" title="Web &amp; PLv">web &amp; plv</a> - <a href="/iconeo/index.php?p=14" title="Consulting">consulting</a><br/>
+					<a href="/iconeo/index.php?p=16" title="Références">références</a><br/>
+					<a href="/iconeo/index.php?p=18" title="Contact">contact</a>
+				</p>
+			</section>
+			<section class="large-4 medium-4 small-12">
+				<img src="http://www.iconeo.fr/wp-content/themes/iconeo/img/logo-footer.png" alt="Iconeo" title="Iconeo" />
+			</section>
+			<section class="large-4 medium-4 small-12">
+				<p class="coordonnees">
+					<span class="bleu">06 95 93 48 00 - contact@iconeo.fr</span><br/>
+					36 route de Bordeaux - 33360 Latresne
+				</p>
+			</section>
+			<span class="cleaner"></span>
+		</div>
+	</footer>
+	
+	<!-- Scripts -->
+	<script type="text/javascript" src="http://www.iconeo.fr/wp-content/themes/iconeo/js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="http://www.iconeo.fr/wp-content/themes/iconeo/js/slick/slick.js"></script>
+	<script>
+		$(document).ready(function(){
+			/* Animation ouverture */
+			$('.logo').fadeIn(1000).animate({'margin-top':'55px'},1000);
+			$('.web-plv').delay(2000).fadeIn(1000);
+			$('.formation').delay(3000).fadeIn(1000);
+			$('.consulting').delay(4000).fadeIn(1000);
+			$('.services').delay(5000).fadeIn(1000);
+			$('.promo').delay(6000).fadeIn(1000);
+			$('.menu-top').delay(6500).animate({'opacity':'1'},1000);
+
+		/*	$('.logo').fadeIn(10).animate({'margin-top':'55px'},1000);
+			$('.web-plv').delay(20).fadeIn(1000);
+			$('.formation').delay(30).fadeIn(1000);
+			$('.consulting').delay(40).fadeIn(1000);
+			$('.services').delay(50).fadeIn(1000);
+			$('.promo').delay(60).fadeIn(1000);
+			$('.menu-top').delay(70).animate({'opacity':'1'},1000); */
+			
+			/* Slider références */
+			$('.autoplay').slick({
+				slidesToShow: 1,
+				slidesToScroll: 1,
+				autoplay: true,
+				autoplaySpeed: 5000,
+				pauseOnHover: true,
+				speed:1000
+			});
+			
+		});
+	</script>
+	<!-- /Scripts -->
+	<!-- Scripts spécifiques -->
+	<script>
+		$(document).ready(function(){
+				});
+	</script>
+	<!-- /Scripts spécifiques -->
+	
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	
+	  ga('create', 'UA-11864990-4', 'auto');
+	  ga('send', 'pageview');
+	
+	</script>
+</body>
+</html>
+<!-- Dynamic page generated in 2.064 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2014-10-27 09:30:03 -->
+
+<!-- super cache -->
