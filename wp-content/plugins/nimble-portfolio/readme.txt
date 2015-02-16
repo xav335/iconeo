@@ -3,14 +3,16 @@ Contributors: nimble3,mamirulamin
 Donate link: http://www.nimble3.com
 Tags: picture, portfolio, gallery, picture gallery, media gallery, filterable portfolio, filterable gallery, jquery portfolio, sortable portfolio, skin based portfolio, prettyphoto, lightbox, prettyphoto lightbox, media gallery, prettyphoto gallery, lightbox gallery, responsive portfolio, responsive picture gallery, responsive media gallery, responsive design, isotope, fancybox, magnific popup, swipebox, ihover, best portfolio plugin, best gallery plugin, best grid gallery, best portfolio grid
 Requires at least: 3.5.1
-Tested up to: 4.0
-Stable tag: 2.1.0
+Tested up to: 4.1
+Stable tag: 2.1.2
 License: GPLv2 or later
 
 A powerful portfolio/gallery plugin, highly suitable to showcase your portfolio/pictures/videos/media and sort them nicely under filterable tabs.
 == Description ==
 
 <h3>Nimble Portfolio</h3>
+
+**As the festive season is in full swing we are delighted to let Santa bring you a massive package to add more joy to your celebrations. This special package includes all of our premium portfolio addons in one big great value bundle. This package includes all of our premium addons for Nimble3 Portfolio for half the price. [Click here to get the bundle.](http://bit.ly/wp-gallery-portfolio-xmas-bundle)**
 
 This free plugin can transform a humble wordpress website into a feature rich media gallery where you can proudly showcase your projects, client logos, photography, or any other pictures or videos of your choice. You can group the contents of your media gallery using the built-in jQuery sort filters and display them on any theme of your choice. It comes with built-in PrettyPhoto lighbox but can also be customized easily by using other add-ons. This plugin is also responsive which means it would work perfectly on desktop, tablet and mobile screen sizes.  If you read through our documentation we have provided step by step instructions to use the various features and functionality of this plugin.
 
@@ -90,6 +92,21 @@ Please use Support tab OR use this link http://demo.nimble3.com/nimble-portfolio
 8. Nimble Portfolio - Default Skin options
 
 == Changelog ==
+
+= 29 Dec 2014 =
+
+FIXED: Notice: Undefined index: global-settings in "wp-content/plugins/nimble-portfolio/nimble-portfolio.php" on line 490
+
+2.1.2
+
+= 24 Dec 2014 =
+
+2.1.1
+
+* Loading animation added.
+* Global Settings added.
+* Thumb cache and size settings moved to global settings from skin settings.
+* LESS Compiler integrated for flexible CSS changes via admin
 
 = 9 Nov 2014 =
 

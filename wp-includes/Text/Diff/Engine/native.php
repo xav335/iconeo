@@ -1,5 +1,5 @@
 <?php
- /**
+/**
  * Class used internally by Text_Diff to actually compute the diffs.
  *
  * This class is implemented using native PHP code.

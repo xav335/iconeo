@@ -1,5 +1,5 @@
 <?php
- /**
+/**
  * Defines constants and global variables that can be overridden, generally in wp-config.php.
  *
  * @package WordPress
@@ -318,6 +318,6 @@ function wp_templating_constants() {
 	 * @since 3.0.0
 	 */
 	if ( !defined('WP_DEFAULT_THEME') )
-		define( 'WP_DEFAULT_THEME', 'twentyfourteen' );
+		define( 'WP_DEFAULT_THEME', 'twentyfifteen' );
 
 }
