@@ -16,7 +16,7 @@
 			<h3 class="vert">Offre Spéciale Artisans :</h3>
 			<h3 class="vert">ERP/CRM Dolibarr</h3>
 			<p style="font-size: 15px;">Un logiciel de gestion simple "online"</p>
-			<a href="<?php site_url(); ?>/?p=485" class="button" title="En savoir plus sur notre offre ERP - CRM">En savoir +</a>
+			<a href="<?php site_url(); ?>/crm-gestion-commerciale/" class="button" title="En savoir plus sur notre offre ERP - CRM">En savoir +</a>
 		</div>
 		<!-- /PROMO -->
 		
@@ -29,7 +29,7 @@
 				<strong>à augmenter votre Chiffre d’Affaire.</strong>
 			</p>
 			<p class="bleu">site et boutique en ligne - référencement Adwords - plv dynamique</p>
-			<a href="<?php site_url(); ?>/?p=371" class="button" title="En savoir plus sur notre offre Web &amp; PLV">En savoir +</a>
+			<a href="<?php site_url(); ?>/sites-internet/" class="button" title="En savoir plus sur notre offre Web &amp; PLV">En savoir +</a>
 		</div>
 		<!-- /WEB & PLV -->
 		
@@ -42,7 +42,7 @@
 				<strong>à être plus performant</strong>
 			</p>
 			<p class="jaune">Maitrise d’ouvrage - développement applicatif - formation de masse</p>
-			<a href="<?php site_url(); ?>/?p=12" class="button" title="En savoir plus sur notre offre Consulting">En savoir +</a>
+			<a href="<?php site_url(); ?>/consulting/" class="button" title="En savoir plus sur notre offre Consulting">En savoir +</a>
 		</div>
 		<!-- /CONSULTING -->
 		
@@ -55,7 +55,7 @@
 				<strong>à être plus performant.</strong>
 			</p>
 			<p class="fuschia">Inter ou intra entreprise - université et écoles</p>
-			<a href="<?php site_url(); ?>/?p=2" class="button" title="En savoir plus sur notre offre Formation">En savoir +</a>
+			<a href="<?php site_url(); ?>/formation/" class="button" title="En savoir plus sur notre offre Formation">En savoir +</a>
 		</div>
 		<!-- /FORMATION -->
 		
@@ -69,7 +69,7 @@
 				<strong>à gagner du temps.</strong>
 			</p>
 			<p class="vert">Conseil - installation - dépannage - vente - formation</p>
-			<a href="<?php site_url(); ?>/?p=468" class="button" title="En savoir plus sur notre offre Services">En savoir +</a>
+			<a href="<?php site_url(); ?>/services-informatiques-bordeaux/" class="button" title="En savoir plus sur notre offre Services">En savoir +</a>
 		</div>
 		<!-- /SERVICES -->
 		
