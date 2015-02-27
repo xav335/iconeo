@@ -1,0 +1,186 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300); * {margin:0;padding:0;border:0;}
+html {width:100%;height:100%;}
+body {width:100%;height:100%;background:#fff;font-family:'Open Sans Condensed', sans-serif;font-size:14px;color:#515050;
+-webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+-moz-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+-webkit-perspective: 1400px;
+-moz-perspective: 1400px;
+perspective: 1400px;
+-webkit-transform-style: preserve-3d;
+-moz-transform-style: preserve-3d;
+transform-style: preserve-3d;
+}
+h1, h2, h3, h4, h5, h6 {font-weight:normal;}
+h1 {font-size:28px;}
+h4 {font-size:18px;}
+h1 span {display:block;font-size:24px;}
+hr {height:1px;margin:75px 0 38px 0;color:#969696;background-color:#969696;clear:both;}
+button, .button {font-family:'Open Sans', sans-serif;font-size:10px;cursor:pointer;padding:5px 25px;text-align:center;color:#fff;text-transform:uppercase;-webkit-transition: all 500ms ease;-moz-transition: all 500ms ease;-o-transition: all 500ms ease;transition: all 500ms ease;}
+button:hover, .button:hover {background:#515050;}
+p {margin-bottom:10px;}
+a {text-decoration:none;color:#969696;}
+a:hover {color:#39bcd6;}
+section {clear:both;}
+.alignleft {
+float: left;
+}
+.alignright {
+float: right;
+}
+.aligncenter {
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+.cleaner {clear:both;}
+.separateur {text-align:center;position:relative;bottom:-20px;}
+.entete {font-size:18px;padding:20px 0;} .bleu {color:#39bcd6;}
+.vert {color:#7aac11;}
+.jaune {color:#e3a91f;}
+.fuschia {color:#ed4a8c;} .fondbleu {background-color:#39bcd6;}
+.fondvert {background-color:#7aac11;}
+.fondjaune {background-color:#e3a91f;}
+.fondfuschia {background-color:#ed4a8c;} .menu-top {background:#aeaeae;text-align:center;padding:5px 60px;width:150px;margin:0 auto;opacity:0;}
+.menu-top li {display:inline-block;color:#fff;font-size:18px;line-height:18px;text-transform:uppercase;}
+.menu-top li:first-child:after {content:' | ';}
+.menu-top a {color:#fff;}
+.menu-top a:hover {color:#515050;} .logo {margin-top:300px;display:none;} .petale {position:absolute;left:50%;text-align:left;display:none;}
+.petale h2 {font-family: 'Open Sans', sans-serif;font-size:35px;text-transform:uppercase;}
+.petale .button {padding:5px 10px;width:142px;display:block;text-align:left;font-family:'Open Sans', sans-serif;font-size:10px;}
+.petale .button:hover {background:#515050;}
+.petale p:first-of-type {font-family:'Open Sans Condensed', sans-serif;font-size:12px;text-transform:uppercase;color:#515050!important;}
+.petale p {font-family:'Open Sans', sans-serif;font-size:18px;}
+.petale p:last-of-type {font-size:10px;text-transform:uppercase;}
+.petale h3 {font-size:28px;} .accroche .button {padding:5px 10px;width:202px;display:block;text-align:left;font-family:'Open Sans', sans-serif;font-size:15px;}
+.accroche .bleu {color:#FFF; background:#39bcd6;}
+.accroche .vert {color:#FFF; background:#7aac11;}
+.accroche .button:hover {color:#515050;} .promo {background:url(//www.iconeo.fr/wp-content/themes/iconeo/img/bg-web-plv2.png) no-repeat;margin-left:-562px;margin-top: -290px;width:359px;height:341px;padding:40px 45px 0 60px;border: 0px solid red;}
+.promo .button {background:#7aac11;}
+.promo .button:hover {color:#7aac11;} .web-plv {background:url(//www.iconeo.fr/wp-content/themes/iconeo/img/bg-web-plv.png) no-repeat;margin-left:-562px;margin-top:-60px;width:259px;height:341px;padding:40px 245px 0 60px;}
+.web-plv .button {background:#39bcd6;}
+.web-plv .button:hover {color:#39bcd6;} .formation {background:url(//www.iconeo.fr/wp-content/themes/iconeo/img/bg-formation.png) no-repeat;margin-left:-249px;width:204px;height:263px;padding:240px 80px 0 60px;}
+.formation .button {background:#ed4a8c;}
+.formation .button:hover {color:#ed4a8c;} .consulting {background:url(//www.iconeo.fr/wp-content/themes/iconeo/img/bg-consulting.png) no-repeat;margin-left:5px;width:226px;height:334px;padding:140px 75px 0 173px;}
+.consulting .button {background:#e3a91f;}
+.consulting .button:hover {color:#e3a91f;} .services {background:url(//www.iconeo.fr/wp-content/themes/iconeo/img/bg-services.png) no-repeat;margin-left:75px;margin-top:-252px;width:228px;height:348px;padding:70px 45px 0 230px;}
+.services .button {background:#7aac11;}
+.services .button:hover {color:#7aac11;} .petales {background:url(//www.iconeo.fr/wp-content/themes/iconeo/img/background.png) bottom repeat-x;min-height:770px;height:100%;display:block;text-align:center;}
+.home h1 {padding:65px 0;} footer {background:#e7e7e7;text-transform:uppercase;padding-bottom:10px;}
+footer section {display:inline-block!important;width:33%;vertical-align:top;text-align:center;background:none!important;} .actualites {text-transform:none;text-align:left;width:50%;padding-right:55px;border-right:1px solid #969696;margin-top:55px;}
+.home .actualites h1 {padding:0 0 40px 0;text-align:left;}
+.actualites p {font-size:24px;text-align:left;line-height:20px;}
+.actualites span {color:#39bcd6;font-size:14px;text-transform:uppercase;}
+.actualites p.contenufooter {font-size:18px;}
+.actualites .button {float:right;} .confiance {text-transform:none;padding-left:55px;margin-top:55px;}
+.home .confiance h1 {padding:0 0 20px 0;text-align:left;}
+.menu-footer {line-height:24px;padding-top:45px;}
+.coordonnees {font-size:18px;padding-top:60px;}
+.coordonnees span {font-size:20px;} .nav-menu {background:#515050;height:40px;margin-top:115px;margin-bottom:70px;}
+.nav-menu li {float:left;list-style-type:none;font-size:16px;text-transform:uppercase;margin:0 14px;padding:9px 0;border-bottom:9px solid transparent;}
+.nav-menu li a {color:#fff;}
+.nav-menu li:hover, .nav-menu li.active {border-bottom-color:#39bcd6;}
+.nav-menu li:hover > a, .nav-menu li.active > a {color:#39bcd6;}
+.nav-menu li:first-child {margin-left:40px;}
+.nav-menu li:nth-child(3):hover, .nav-menu li:nth-child(3).active {border-bottom-color:#ed4a8c;}
+.nav-menu li:nth-child(3):hover > a, .nav-menu li:nth-child(3).active > a {color:#ed4a8c;}
+.nav-menu li:nth-child(4):hover, .nav-menu li:nth-child(4).active {border-bottom-color:#e3a91f;}
+.nav-menu li:nth-child(4):hover > a, .nav-menu li:nth-child(4).active > a {color:#e3a91f;}
+.nav-menu li:nth-child(5):hover, .nav-menu li:nth-child(5).active {border-bottom-color:#7aac11;}
+.nav-menu li:nth-child(5):hover > a, .nav-menu li:nth-child(5).active > a {color:#7aac11;} .page .contenu, .single .contenu, .error404 .contenu, .search .contenu, .tag .contenu, .taxonomy .contenu, .archive .contenu {background:url(//www.iconeo.fr/wp-content/themes/iconeo/img/background.png) bottom repeat-x;padding-bottom:20px;border-bottom:10px solid #fff;}
+.logo-left {background:url(//www.iconeo.fr/wp-content/themes/iconeo/img/bg-logo.png) no-repeat;width:280px;height:208px;padding:100px 70px;position:relative;top:-60px;left:-70px;z-index:10;}
+.details-left {background:url(//www.iconeo.fr/wp-content/themes/iconeo/img/bg-left-column.png) no-repeat;position:relative;z-index:15;width:230px;height:286px;padding:45px 100px 0 70px;margin-top:-170px;left:-40px;}
+.details-left h2 {font-family: 'Open Sans', sans-serif;font-size:40px;text-transform:uppercase;}
+.details-left p:first-of-type {font-family:'Open Sans Condensed', sans-serif;font-size:12px;text-transform:uppercase;color:#515050!important;}
+.details-left p {font-family:'Open Sans', sans-serif;font-size:20px;}
+.details-left p:last-of-type {font-size:14px;text-transform:uppercase;}
+.accroche {position:relative;font-family: 'Open Sans', sans-serif;font-size:23px;padding:0 30px;}
+.col-droite h1, .col-droite p, .col-droite h2,.col-droite h3 {padding-left:50px;}
+.col-droite ul {padding-left:100px;}
+.col-droite p, .col-droite .puces {font-family: 'Open Sans', sans-serif; text-align: justify;}
+.col-droite .puces {margin: 20px 9px 18px 40px; } .single .contenu p span {color:#39bcd6;font-size:14px;text-transform:uppercase;} .nimble-portfolio {margin-left:50px;} input, textarea {display:block;padding:5px;border:1px solid #515050;width:98%;resize:none;font-family:inherit;-webkit-transition: all 500ms ease;-moz-transition: all 500ms ease;-o-transition: all 500ms ease;transition: all 500ms ease;}
+input[type='submit'] {width:100%;background:#36bcd6;border:none;color:#fff;text-transform:uppercase;cursor:pointer;-webkit-transition: all 500ms ease;-moz-transition: all 500ms ease;-o-transition: all 500ms ease;transition: all 500ms ease;}
+input[type='submit']:hover {background:#515050;color:#36bcd6;}
+input:hover, textarea:hover {border-color:#36bcd6;}
+span.wpcf7-not-valid-tip {background:#f00;color:#fff;padding:5px;}
+div.wpcf7-response-output {margin:0;text-align:center;}
+div.wpcf7-validation-errors {margin-left:50px;border-color:#f00;} .columns {float:left;position:relative;}
+.large-1 {width:8.33333%;}
+.large-2 {width:16.66667%;}
+.large-3 {width:25%;}
+.large-4 {width:33.33333%;}
+.large-5 {width:41.66667%;}
+.large-6 {width:50%;}
+.large-7 {width:58.33333%;}
+.large-8 {width:66.66667%;}
+.large-9 {width:75%;}
+.large-10 {width:83.33333%;}
+.large-11 {width:91.66667%;}
+.large-12 {width:100%;}
+.row {width:100%; max-width:1000px;margin:0 auto;}
+footer .row {max-width:880px;}
+footer .large-4 {width:33.1%;}
+.row::before, .row::after {content:" ";display:table;}
+.row::after {clear:both;} @media only screen and (max-width:1000px) {
+.medium-1 {width:8.33333%;}
+.medium-2 {width:16.66667%;}
+.medium-3 {width:25%;}
+.medium-4 {width:33.33333%;}
+.medium-5 {width:41.66667%;}
+.medium-6 {width:50%;}
+.medium-7 {width:58.33333%;}
+.medium-8 {width:66.66667%;}
+.medium-9 {width:75%;}
+.medium-10 {width:83.33333%;}
+.medium-11 {width:91.66667%;}
+.medium-12 {width:100%;}
+footer .medium-4 {width:33.1%;}
+.actualites {padding-right:25px;}
+.confiance {padding-left:25px;}
+.nav-menu {height: 89px;}
+}
+@media only screen and (max-width:768px) { .petales {background:none;min-height:1060px;}
+.petale {position:relative;left:0;text-align:center;margin-bottom:20px;}
+.web-plv, .consulting, .formation, .services {background:none;margin-left:0;margin-top:0;width:auto;height:auto;padding:0;}
+.petale .button {margin:0 auto;text-align: center;}
+h1 span {display:initial;}
+.actualites .button {width:50%;display:block;margin: 0 auto;float:none;}
+.logo {width:75%;margin:0 auto;}
+.gwd-div-4waa {display:none;}
+.row {width:100%; max-width:880px;margin: 100px 10px 10px; }
+.sous-accroche {display:none;}
+}
+@media only screen and (max-width:640px) { .small-0 {display:none;}
+.small-1 {width:8.33333%;}
+.small-2 {width:16.66667%;}
+.small-3 {width:25%;}
+.small-4 {width:33.33333%;}
+.small-5 {width:41.66667%;}
+.small-6 {width:50%;}
+.small-7 {width:58.33333%;}
+.small-8 {width:66.66667%;}
+.small-9 {width:75%;}
+.small-10 {width:83.33333%;}
+.small-11 {width:91.66667%;}
+.small-12 {width:100%;}
+footer .small-12 {width:100%;}
+.confiance {padding-left:0;}
+.actualites {padding-right:0;border-right:none;}
+.actualites h1 {text-align:center;}
+.col-droite h1, .col-droite p {padding:0 10px;}
+hr {margin: 30px 0 10px 0;}
+.logo-left {background:none;width:100%;height:auto;padding:0;position:relative;top:0;left:0;z-index:10;text-align:center;}
+.logo-left img {width:75%;}
+.details-left {display:none;}
+.accroche {display:none;}
+.nav-menu {background:none;margin-top:0;}
+.nav-menu li a {color:#515050;}
+.nav-menu li:first-child {margin-left:14px;}
+.nimble-portfolio {margin-left:0;}
+.gwd-div-4waa {display:none;}
+.row {width:90%; max-width:630px;margin: 140px 10px 10px; }
+.sous-accroche {display:none;}
+}
+@media only screen and (max-width:320px) {
+}

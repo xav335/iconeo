@@ -1,0 +1,112 @@
+.gwd-div-aoh4 {
+position: relative;
+left: 0px;
+top: 50px;
+width: 200px;
+height: 75px;
+}
+.gwd-img-p0fd {
+position: absolute;
+width: 40px;
+left: 0px;
+top: 0px;
+height: 40px;
+}
+.gwd-img-lvno {
+position: absolute;
+height: 40px;
+top: 0px;
+width: 40px;
+left: 80px;
+}
+.gwd-img-lfu2 {
+position: absolute;
+height: 40px;
+top: 0px;
+width: 40px;
+left: 40px;
+}
+.gwd-img-dhsh {
+position: absolute;
+width: 40px;
+height: 40px;
+left: 120px;
+top: 0px;
+}
+.gwd-img-446i {
+position: absolute;
+top: 0px;
+left: 160px;
+width: 40px;
+height: 40px;
+}
+@-webkit-keyframes gwd-empty-animation {
+0% { opacity: 0.001; }
+100% { opacity: 0; }
+}
+@-moz-keyframes gwd-empty-animation {
+0% { opacity: 0.001; }
+100% { opacity: 0; }
+}
+@keyframes gwd-empty-animation {
+0% { opacity: 0.001; }
+100% { opacity: 0; }
+}
+#contsocnet.facebookDef .event-1-animation {
+-webkit-animation: gwd-empty-animation-facebookDef 0.7s linear -0.7s 1 normal forwards;
+-moz-animation: gwd-empty-animation-facebookDef 0.7s linear -0.7s 1 normal forwards;
+animation: gwd-empty-animation-facebookDef 0.7s linear -0.7s 1 normal forwards;
+}
+@-webkit-keyframes gwd-empty-animation-facebookDef {
+0% { opacity: 0.001; }
+100% { opacity: 0; }
+}
+@-moz-keyframes gwd-empty-animation-facebookDef {
+0% { opacity: 0.001; }
+100% { opacity: 0; }
+}
+@keyframes gwd-empty-animation-facebookDef {
+0% { opacity: 0.001; }
+100% { opacity: 0; }
+}
+#contsocnet.facebookDef .stopGen-animation {
+-webkit-animation: gwd-empty-animation-facebookDef 0.7s linear -0.7s 1 normal forwards;
+-moz-animation: gwd-empty-animation-facebookDef 0.7s linear -0.7s 1 normal forwards;
+animation: gwd-empty-animation-facebookDef 0.7s linear -0.7s 1 normal forwards;
+}
+#contsocnet.facebook1 .stopGen-animation {
+-webkit-animation: none;
+-moz-animation: none;
+animation: none;
+}
+#contsocnet.facebookDef .event-1-animation {
+-webkit-animation: gwd-empty-animation-facebookDef 0.3s linear -0.3s 1 normal forwards;
+-moz-animation: gwd-empty-animation-facebookDef 0.3s linear -0.3s 1 normal forwards;
+animation: gwd-empty-animation-facebookDef 0.3s linear -0.3s 1 normal forwards;
+}
+#contsocnet.facebookDef .event-2-animation {
+-webkit-animation: gwd-empty-animation-facebookDef 0.6s linear -0.3s 1 normal forwards;
+-moz-animation: gwd-empty-animation-facebookDef 0.6s linear -0.3s 1 normal forwards;
+animation: gwd-empty-animation-facebookDef 0.6s linear -0.3s 1 normal forwards;
+}
+#contsocnet.facebookDef .event-2-animation {
+-webkit-animation: gwd-empty-animation-facebookDef 2.3s linear -2s 1 normal forwards;
+-moz-animation: gwd-empty-animation-facebookDef 2.3s linear -2s 1 normal forwards;
+animation: gwd-empty-animation-facebookDef 2.3s linear -2s 1 normal forwards;
+}
+#contsocnet.facebookDef .event-1-animation {
+-webkit-animation: gwd-empty-animation-facebookDef 2s linear -2s 1 normal forwards;
+-moz-animation: gwd-empty-animation-facebookDef 2s linear -2s 1 normal forwards;
+animation: gwd-empty-animation-facebookDef 2s linear -2s 1 normal forwards;
+}
+.gwd-div-gqzm {
+position: absolute;
+width: 200px;
+height: 25px;
+text-align: left;
+left: 0px;
+top: 50px;
+font-family: 'Open Sans';
+color: rgb(0, 0, 0);
+font-size: 12px;
+}
