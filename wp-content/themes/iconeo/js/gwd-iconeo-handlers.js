@@ -93,10 +93,10 @@
           gwd.actions.events.setInlineStyle('BoutiqueMov', 'transition: all 0.5s linear; width: 250px; height: 250px; top: 50px; left: 350px; background-color: #FFF; ');
         };
         gwd.SiteWeb = function(event) {
-          document.location.href = "http://www.iconeo.fr/webplv-resume/"
+          document.location.href = "http://www.iconeo.fr/sites-internet/"
         };
         gwd.boutiqueweb = function(event) {
-          document.location.href = "http://www.iconeo.fr/web-plv-pack-boutique-en-ligne-resume/"
+          document.location.href = "http://www.iconeo.fr/site-internet-boutique-en-ligne/"
         };
         gwd.auto_AdwordsMouseover = function(event) {
           // GWD Predefined Function
@@ -108,7 +108,7 @@
           gwd.actions.events.setInlineStyle('AdwordsMov', 'transition: all 0.5s linear; width: 250px; height: 250px; top: 50px; left: 650px; background-color: #FFF; ');
         };
         gwd.adwords = function(event) {
-          document.location.href = "http://www.iconeo.fr/web-plv-4/"
+          document.location.href = "http://www.iconeo.fr/adwords-publicite/"
         };
         gwd.auto_PlvMouseover = function(event) {
           // GWD Predefined Function
@@ -120,7 +120,7 @@
           gwd.actions.events.setInlineStyle('plvMov', 'transition: all 0.5s linear; width: 250px; height: 250px; top: 350px; left: 50px; background-color: #FFF; ');
         };
         gwd.plv = function(event) {
-          document.location.href = "http://www.iconeo.fr/web-plv-3/"
+          document.location.href = "http://www.iconeo.fr/plv-dynamique/"
         };
         gwd.auto_LogoPrintMouseover = function(event) {
           // GWD Predefined Function
@@ -156,7 +156,7 @@
           gwd.actions.events.setInlineStyle('AssistanceMov', 'transition: all 0.5s linear; width: 250px; height: 250px; top: 650px; left: 50px; background-color: #FFF; ');
         };
         gwd.assistance = function(event) {
-          document.location.href = "http://www.iconeo.fr/services-info-resume/"
+          document.location.href = "http://www.iconeo.fr/services-informatiques-bordeaux/"
         };
         gwd.auto_DolibarrMouseover = function(event) {
           // GWD Predefined Function
@@ -168,7 +168,7 @@
           gwd.actions.events.setInlineStyle('DolibarrMov', 'transition: all 0.5s linear; width: 250px; height: 250px; top: 650px; left: 350px; background-color: #FFF; ');
         };
         gwd.dolibarr = function(event) {
-          document.location.href = "http://www.iconeo.fr/services-informatiques-erp-crm-resume/"
+          document.location.href = "http://www.iconeo.fr/crm-gestion-commerciale/"
         };
         gwd.auto_FormationMouseover = function(event) {
           // GWD Predefined Function
