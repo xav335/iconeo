@@ -22,7 +22,7 @@
 	<title><?php wp_title( '|', true, 'right' ); ?></title>
 	
 	
-	<meta name="keywords" content="iconeo, informatique, bordeaux, rive droite, agence web, creation de site internet, plv, plv dynamique, digital signage, formation informatique, formation,services informatiques, services informatiques aux tpe, service informatique aux pmeplv dynamique, digital signage, conseil en informatique, maintenance informatique, dolibarr, logiciel de gestion,crm, erp">
+	<meta name="keywords" content="iconeo, agence de cimmunication, adwords, gestion commerciale, publicité, digitale, informatique, bordeaux, rive droite, agence web, creation de site internet, plv, plv dynamique, digital signage, formation informatique, formation,services informatiques, services informatiques aux tpe, service informatique aux pmeplv dynamique, digital signage, conseil en informatique, maintenance informatique, dolibarr, logiciel de gestion,crm, erp">
 	<!-- Open Graph -->
 	<meta property="og:title" content="Iconeo - Révélateur d'attraction" />
 	<meta property="og:description" content="Iconeo - Révélateur d'attraction" />
