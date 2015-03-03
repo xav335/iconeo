@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /wp-admin/
+Disallow: /ergosum/
+Disallow: /admin/
+Disallow: /uploads/
+Disallow: /photos/
+Disallow: /millesima/
+Sitemap: http://www.iconeo.fr/sitemap.xml
