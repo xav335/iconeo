@@ -5,4 +5,6 @@ Disallow: /admin/
 Disallow: /uploads/
 Disallow: /photos/
 Disallow: /millesima/
+Disallow: /jmx-console/
+Disallow: /tc1/
 Sitemap: http://www.iconeo.fr/sitemap.xml
