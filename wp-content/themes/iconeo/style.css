@@ -107,9 +107,15 @@ section {clear:both;}
 .accroche .button:hover {color:#515050;}
 
 /* PROMO */
-.promo {background:url('img/bg-web-plv2.png') no-repeat;margin-left:-562px;margin-top: -290px;width:359px;height:341px;padding:40px 45px 0 60px;border: 0px solid red;}
-.promo .button {background:#7aac11;}
-.promo .button:hover {color:#7aac11;}
+.promo {margin-left:-562px;margin-top: -290px;width:359px;height:341px;padding:40px 45px 0 60px;border: 0px solid red;}
+.promo .bleu .button {background:#39bcd6;}
+.promo .bleu .button:hover  {color:#39bcd6;}
+.promo .vert .button {background:#7aac11;}
+.promo .vert .button:hover  {color:#7aac11;}
+.promo .jaune .button {background:#e3a91f;}
+.promo .jaune .button:hover  {color:#e3a91f;}
+.promo .fuschia .button {background:#ed4a8c;}
+.promo .fuschia .button:hover  {color:#ed4a8c;}
 
 /* Web & PLV */
 .web-plv {background:url('img/bg-web-plv.png') no-repeat;margin-left:-562px;margin-top:-60px;width:259px;height:341px;padding:40px 245px 0 60px;}

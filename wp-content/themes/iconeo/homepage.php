@@ -1,3 +1,27 @@
+<?php 
+require 'admin/classes/News.php';
+require 'admin/classes/utils.php';
+$news = new News();
+if (!empty($_GET)){
+	$result = $news->newsGet($_GET['id']);
+} else {
+	$result = $news->newsGet(null);
+}	
+
+$nbEnr = count($result);
+	
+	if (empty($result)) {
+		$titre=  		'';
+		$date_news= 	'';
+		$accroche= 		'Pas de news pour le moment.';
+		$contenu= 		'';
+	} else {
+		$titre=  		$result[0]['titre'];
+		$date_news= 	traitement_datetime_affiche($result[0]['date_news']);
+		$accroche= 		$result[0]['accroche'];
+		$contenu= 		$result[0]['contenu'];
+	}
+?>
 <?php
 /**
  * The template for displaying featured content
@@ -12,11 +36,27 @@
 		<img src="<?php bloginfo('template_directory'); ?>/img/logo-iconeo.png" alt="Iconeo - Révélateur d'attraction" title="Iconeo - Révélateur d'attraction" class="logo" />
 		
 		<!-- PROMO -->
-		<div class="petale promo">
-			<h3 class="vert">Offre Spéciale Artisans :</h3>
-			<h3 class="vert">ERP/CRM Dolibarr</h3>
-			<p style="font-size: 15px;">Un logiciel de gestion simple "online"</p>
-			<a href="<?php site_url(); ?>/crm-gestion-commerciale/" class="button" title="En savoir plus sur notre offre ERP - CRM">En savoir +</a>
+		<div class="petale promo slider autoplay" >
+		<?php if ($nbEnr==1) echo '<div></div>' ;?>
+		<?php 
+			if (!empty($result)) {
+				$i=0;
+				foreach ($result as $value) { 
+				$i++;
+				?>
+				<?php if (!empty($value['image1'])) {?>
+				<div>
+					<a href="<?php echo $value['accroche']?>" class="bt-plus"><img alt="" src="/photos/news<?php echo $value['image1']?>" style="max-width: 249px" ></a>
+				</div>	
+				<?php } else { ?>	
+				<div class="<?php echo $value['online']?>" >
+					<h3 class="<?php echo $value['online']?>"><?php echo $value['titre']?></h3>
+					<p style="font-size: 15px;"><?php echo nl2br($value['contenu'])?></p>
+					<a href="<?php echo $value['accroche']?>" class="button">En savoir +</a>
+				</div>
+				<?php } ?>
+			<?php } ?>
+		<?php } ?>	
 		</div>
 		<!-- /PROMO -->
 		
@@ -76,7 +116,7 @@
 	</section>
 	<section>
 		<div class="gwd-div-4waa editable gwd-div-x7qv gwd-gen-tg04gwdanimation" id="ContEncard">
-			<div class="gwd-div-42ug" id="titre">Les offres ICONEO</div>
+			
 			<div class="gwd-div-nkf1 gwd-div-dajo gwd-div-mu7i gwd-div-dzfj" id="MotionMov"></div>
 			<div class="gwd-div-n7wk gwd-div-slld gwd-div-5twe gwd-div-hdkj" id="Motion">
 				<div class="gwd-div-nvoe gwd-div-rysc gwd-div-7oof gwd-div-9hr8" id="MotionText"><font color="#39bcd6" face="Open Sans"><span class="gwd-span-x3n2">Motion Design</span></font>

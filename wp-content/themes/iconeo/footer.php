@@ -95,7 +95,7 @@
 			$('.consulting').delay(4000).fadeIn(1000);
 			$('.services').delay(5000).fadeIn(1000);
 			$('.promo').delay(6000).fadeIn(1000);
-			$('.menu-top').delay(6500).animate({'opacity':'1'},1000);
+			$('.menu-top').delay(500).animate({'opacity':'1'},1000);
 
 		/*	$('.logo').fadeIn(10).animate({'margin-top':'55px'},1000);
 			$('.web-plv').delay(20).fadeIn(1000);
