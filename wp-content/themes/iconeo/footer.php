@@ -94,7 +94,7 @@
 			$('.formation').delay(3000).fadeIn(1000);
 			$('.consulting').delay(4000).fadeIn(1000);
 			$('.services').delay(5000).fadeIn(1000);
-			$('.promo').delay(6000).fadeIn(1000);
+			$('.promo').delay(4000).fadeIn(1000);
 			$('.menu-top').delay(500).animate({'opacity':'1'},1000);
 
 		/*	$('.logo').fadeIn(10).animate({'margin-top':'55px'},1000);
@@ -110,7 +110,7 @@
 				slidesToShow: 1,
 				slidesToScroll: 1,
 				autoplay: true,
-				autoplaySpeed: 5000,
+				autoplaySpeed: 3000,
 				pauseOnHover: true,
 				speed:1000
 			});
