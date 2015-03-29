@@ -22,7 +22,7 @@ if (!empty($_GET)){
 				<iframe id="laframe" src="/admin/mailnewslettercore.php?id=<?php  echo $id ?>" style="width:720px;height:500px;" frameborder="1" ></iframe>
 			</div>
 			<div class="col-md-2">
-				<h4>Tester la news <br>(envoi limité à contact@bsport.fr)</h4>
+				<h4>Tester la news <br>(envoi limité à contact@iconeo.fr)</h4>
 				<form name="formulaire" class="form-horizontal" method="POST"  action="formprocess.php">
 					<input type="hidden" name="reference" value="newsletter">
 					<input type="hidden" name="action" id="action" value="envoi">

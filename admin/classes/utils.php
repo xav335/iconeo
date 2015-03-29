@@ -1,4 +1,17 @@
 <?
+	
+	function randomChar($val=12) {
+		$characts = 'abcdefghijklmnopqrstuvwxyz';
+		$characts .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$characts .= '1234567890';
+		$code_aleatoire = '';
+	
+		for($i=0;$i < $val;$i++)
+		{
+		$code_aleatoire .= $characts[ rand() % strlen($characts) ];
+		}
+		return $code_aleatoire;
+	}
 	// Génération d'un nom de fichier temporaire aléatoire
 	function aleatoire($val=64) {
 		$rep_temp = "";

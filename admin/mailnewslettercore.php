@@ -159,7 +159,7 @@ $corps .= <<<EOD
 				
 					Si vous souhaitez vous désinscrire de cette newsletter suivez le lien suivant : <a href="http://$urlSite/newsletter/desinscription.php?id=" >désinscription</a>
 				</p>
-				
+				<img src="http://$urlSite/newsletter/track.php?id=XwXwXwXw" alt="">
 			</div>
 		</td>
 	</tr>	
@@ -190,10 +190,10 @@ if (!empty($_GET['postaction']) && $_GET['postaction']=='preview') {
 	$entete .= "Bcc: xav335@hotmail.com,xavier.gonzalez@laposte.net,jav_gonz@yahoo.com\n";
 	
 	//echo "Envoi du message à " . $_to . "<br>";
-	//$corps = str_replace('XwXwXwXw', randomChar(), $corps);
-	//echo $corps;
+	$corpsCode = str_replace('XwXwXwXw', randomChar(), $corps);
+	//echo $corpsCode;
 	////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////
-	mail($_to, $sujet, stripslashes($corps), $entete);
+	mail($_to, $sujet, stripslashes($corpsCode), $entete);
 	///////////////////////////////////////////////////////////
 	
 } elseif (!empty($_GET['postaction']) && $_GET['postaction']=='envoi') { 
