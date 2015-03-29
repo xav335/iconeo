@@ -105,7 +105,7 @@ if(isset($detail)) {
 			    				<h3 style="color:#$color;font-family:'Open Sans',sans-serif;font-size:16px;text-transform: uppercase;padding-left: 10px;padding-right: 10px;text-align: left;">$rubrique</h3>
 			    			</td>
 			    			<td align="right">
-			    				<a href=""><img width="104" src="http://$urlSite/newsletter/go$couleur.png"></a>
+			    				<a href="$link"><img width="104" src="http://$urlSite/newsletter/go$couleur.png" alt=""></a>
 			    			</td>
 			    		</tr>
 			    		</table>	
@@ -133,7 +133,7 @@ EOD;
 			    				<h3 style="color:#$color;font-family:'Open Sans',sans-serif;font-size:16px;text-transform: uppercase;padding-left: 10px;padding-right: 10px;text-align: left;">$rubrique</h3>
 			    			</td>
 			    			<td align="right">
-			    				<a href=""><img width="104" src="http://$urlSite/newsletter/go$couleur.png"></a>
+			    				<a href="$link"><img width="104" src="http://$urlSite/newsletter/go$couleur.png" alt=""></a>
 			    			</td>
 			    		</tr>
 			    		</table>
@@ -148,11 +148,11 @@ $corps .= <<<EOD
 				
 				<img width="554" src="http://$urlSite/newsletter/pano.png"><br>
 				<div >
-			      	<a href="https://www.facebook.com/pages/iconeofr/1497532703849844"><img width="50" src="http://$urlSite/newsletter/facebook.png" ></a>
-			      	<a href="https://twitter.com/iconeo33"><img width="50" src="http://$urlSite/newsletter/google.png" ></a>
-			      	<a href="https://plus.google.com/+IconeoFr/about"><img width="50" src="http://$urlSite/newsletter/twiter.png" ></a>
-			      	<a href="http://fr.viadeo.com/fr/company/iconeo"><img width="50" src="http://$urlSite/newsletter/viadeo.png" ></a>
-			      	<a href="https://www.linkedin.com/pub/contact-iconeo/a8/66a/883"><img width="50" src="http://$urlSite/newsletter/linkedin.png" ></a>
+			      	<a href="https://www.facebook.com/pages/iconeofr/1497532703849844"><img width="50" src="http://$urlSite/newsletter/facebook.png" alt="" ></a>
+			      	<a href="https://twitter.com/iconeo33"><img width="50" src="http://$urlSite/newsletter/google.png" alt=""></a>
+			      	<a href="https://plus.google.com/+IconeoFr/about"><img width="50" src="http://$urlSite/newsletter/twiter.png" alt=""></a>
+			      	<a href="http://fr.viadeo.com/fr/company/iconeo"><img width="50" src="http://$urlSite/newsletter/viadeo.png" alt=""></a>
+			      	<a href="https://www.linkedin.com/pub/contact-iconeo/a8/66a/883"><img width="50" src="http://$urlSite/newsletter/linkedin.png" alt=""></a>
 			  	</div>
 				<br>
 				<p style="font-size:9px;font-family:'Open Sans',sans-serif;">

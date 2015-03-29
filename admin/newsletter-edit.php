@@ -100,6 +100,13 @@ if (!empty($_GET)){ //Modif
 					} else {
 						$i=1; ?>
 							<div class="form-group" style=" border:6px ridge white; padding: 30px 10px 30px 10px; ">
+								<label for="titre">Choisis la  couleur :</label>
+									
+									Bleu:<input type="radio" name="online<?php echo $i ?>" value="bleu" checked' >&nbsp;
+								    Vert:<input type="radio" name="online<?php echo $i ?>" value="vert" >&nbsp;
+								    Jaune:<input type="radio" name="online<?php echo $i ?>" value="jaune" >&nbsp;
+								    Rose:<input type="radio" name="online<?php echo $i ?>" value="fuschia" >&nbsp;
+								<br><br>
 								<label class="col-sm-2" for="titre">Sous-titre <?php echo $i ?> :</label>
 							  	
 								<input type="text" class="col-sm-10" name="sstitre<?php echo $i ?>"  id="sstitre<?php echo $i ?>" value=""><br>
@@ -108,7 +115,7 @@ if (!empty($_GET)){ //Modif
 								<img src="img/del.png" width="20" alt="Supprimer" onclick="clearImage(<?php echo $i ?>)"/>
 								<br>
 		 						<label for="link<?php echo $i ?>">Url image <?php echo $i ?>:</label><br>
-		 						<input type="text" class="col-sm-11" name="link<?php echo $i ?>"  id="link<?php echo $i ?>" value="http://dev.bsport.fr/" ><br>
+		 						<input type="text" class="col-sm-11" name="link<?php echo $i ?>"  id="link<?php echo $i ?>" value="http://www.iconeo.fr/" ><br>
 		 						<br>
 		 						<label for="text<?php echo $i ?>">Texte <?php echo $i ?>:</label><br>
 				           		<textarea class="col-sm-11"  name="texte<?php echo $i ?>"  id="texte<?php echo $i ?>" rows="2" ></textarea>
