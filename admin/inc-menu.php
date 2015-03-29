@@ -32,6 +32,8 @@
 					          	<ul class="dropdown-menu" role="menu">
 					            	<li><a href="newsletter-edit.php">Ajout Newsletter</a></li>
 					            	<li><a href="newsletter-list.php">Modif / Suppr / Envoi</a></li>
+					            	<li class="divider"></li>
+					            	<li><a href="journalnewsletter-list.php">Journal des envoi</a></li>
 					          	</ul>
 					        </li>
 	                    </ul>

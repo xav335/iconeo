@@ -64,7 +64,7 @@ class Newsletter extends StorageManager {
 			$result = mysqli_query($this->mysqli,$sql);
 				
 			if (!$result) {
-				throw new Exception("Erreur Mysql newsletterAdd". $sql);
+				throw new Exception($sql);
 			}
 			$id_record = mysqli_insert_id($this->mysqli);
 			
@@ -202,5 +202,156 @@ class Newsletter extends StorageManager {
 	
 		$this->dbDisConnect();
 	}
+	
+	public function journalNewsletterAdd($value){
+		//print_r($value); exit();
+		$this->dbConnect();
+		$this->begin();
+		try {
+			$sql = "INSERT INTO  newsletter_journal
+						(id_newsletter)
+						VALUES (
+						'". addslashes($value) ."'
+					);";
+			$result = mysqli_query($this->mysqli,$sql);
+	
+			if (!$result) {
+				throw new Exception($sql);
+			}
+			$id_record = mysqli_insert_id($this->mysqli);
+				
+			$this->commit();
+	
+		} catch (Exception $e) {
+			$this->rollback();
+			throw new Exception("Erreur Mysql journalNewsletterAdd". $e->getMessage());
+			return "errrrrrrooooOOor";
+		}
+		$this->dbDisConnect();
+		return $id_record;
+	}
+	
+	public function journalNewsletterDetailAdd($id_newsletter_journal,$email,$coderandom,$error){
+		//print_r($value); exit();
+		$this->dbConnect();
+		$this->begin();
+		try {
+			$sql = "INSERT INTO  newsletter_journal_detail
+						(id_newsletter_journal,email,coderandom,error)
+						VALUES (
+						". $id_newsletter_journal .",
+						'". addslashes($email) ."',
+						'". addslashes($coderandom) ."',
+						'". addslashes($error) ."'
+					);";
+			$result = mysqli_query($this->mysqli,$sql);
+	
+			if (!$result) {
+				throw new Exception($sql);
+			}
+			$id_record = mysqli_insert_id($this->mysqli);
+	
+			$this->commit();
+	
+		} catch (Exception $e) {
+			$this->rollback();
+			throw new Exception("Erreur Mysql journalNewsletterDetailAdd". $e->getMessage());
+			return "errrrrrrooooOOor";
+		}
+		$this->dbDisConnect();
+		return $id_record;
+	}
+	
+	public function journalNewsletterTrack($value){
+		//print_r($value); exit();
+		$this->dbConnect();
+		$this->begin();
+		try {
+			$sql = "UPDATE  newsletter_journal_detail SET
+					`read`=1 WHERE `coderandom`='". $value ."';";
+			$result = mysqli_query($this->mysqli,$sql);
+			if (!$result) {
+				throw new Exception($sql);
+			}
+				
+			$this->commit();
+	
+		} catch (Exception $e) {
+			$this->rollback();
+			throw new Exception("Erreur Mysql newsletterModify ". $e->getMessage());
+			return "errrrrrrooooOOor";
+		}
+	
+		$this->dbDisConnect();
+	}
+	
+	public function journalNewsletterGet(){
+		$this->dbConnect();
+		try {
+			$sql = "SELECT nsj.date_envoi, newsletter.titre,newsletter.id,nsj.id as id_newsletter
+					FROM newsletter_journal as nsj 
+					INNER JOIN newsletter ON newsletter.id = nsj.id_newsletter 
+					ORDER BY date_envoi;" ;
+			//print_r($requete);
+			$new_array = null;
+			$result = mysqli_query($this->mysqli,$sql);
+			while( $row = mysqli_fetch_assoc( $result)){
+				$new_array[] = $row;
+			}
+			$this->dbDisConnect();
+			return $new_array;
+		} catch (Exception $e) {
+			throw new Exception("Erreur Mysql contactGet ". $e->getMessage());
+			return "errrrrrrooooOOor";
+		}
+	}
+	
+	public function journalNewsletterDetailNumberGet($id, $read){
+
+		$this->dbConnect();
+		try {
+			if(!empty($read)){
+				$sql = "SELECT count(*) as nb FROM `newsletter_journal_detail` 
+					WHERE id_newsletter_journal=".$id ." AND `read`=". $read .";" ;
+			} else {
+				$sql = "SELECT count(*) as nb FROM `newsletter_journal_detail`
+					WHERE id_newsletter_journal=".$id .";" ;
+			}
+			//print_r($sql);
+			$new_array = null;
+			$result = mysqli_query($this->mysqli,$sql);
+			while( $row = mysqli_fetch_assoc( $result)){
+				$new_array[] = $row;
+			}
+			$this->dbDisConnect();
+			return $new_array[0]['nb'];
+		} catch (Exception $e) {
+			throw new Exception("Erreur Mysql contactGet ". $e->getMessage());
+			return "errrrrrrooooOOor";
+		}
+	}
+	
+	public function journalNewsletterDetailGet($id, $offset, $count){
+		$this->dbConnect();
+		try {
+				if (isset($offset) && isset($count)) {
+					$sql = "SELECT * FROM `newsletter_journal_detail` WHERE `id_newsletter_journal`=".$id ." ORDER BY `email` ASC LIMIT ". $offset .",". $count .";" ;
+				} else {
+					$sql = "SELECT * FROM `newsletter_journal_detail` WHERE `id_newsletter_journal`=".$id ." ORDER BY `email`;" ;
+				}
+			//print_r($sql);
+			$new_array = null;
+			$result = mysqli_query($this->mysqli,$sql);
+			while( $row = mysqli_fetch_assoc( $result)){
+				$new_array[] = $row;
+			}
+			$this->dbDisConnect();
+			return $new_array;
+		} catch (Exception $e) {
+			throw new Exception("Erreur Mysql contactGet ". $e->getMessage());
+			return "errrrrrrooooOOor";
+		}
+	}
+	
 	
 }
