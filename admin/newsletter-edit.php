@@ -63,12 +63,19 @@ if (!empty($_GET)){ //Modif
 					$i = 1;
 					if (isset($result[0]['newsletter_detail'])) {
 						foreach ($result[0]['newsletter_detail'] as $value) { 
+							$online =  $value['online'];
 							$url = $value['url'];
 							if ($value['url']=='') 
 								$url='/img/ajoutImage.jpg';  ?>
 								
 							<div class="form-group" style=" border:6px ridge white; padding: 30px 10px 30px 10px; ">
-							
+									<label for="titre">Choisis la  couleur :</label>
+									
+									Bleu:<input type="radio" name="online<?php echo $i ?>" value="bleu" <?php if ($online=='bleu') echo 'checked' ;?>>&nbsp;
+								    Vert:<input type="radio" name="online<?php echo $i ?>" value="vert" <?php if ($online=='vert') echo 'checked' ;?>>&nbsp;
+								    Jaune:<input type="radio" name="online<?php echo $i ?>" value="jaune" <?php if ($online=='jaune') echo 'checked' ;?>>&nbsp;
+								    Rose:<input type="radio" name="online<?php echo $i ?>" value="fuschia" <?php if ($online=='fuschia') echo 'checked' ;?>>&nbsp;
+								<br><br>
 								<label class="col-sm-2" for="titre">Sous-titre <?php echo $i ?> :</label>
 							  	
 								<input type="text" class="col-sm-10" name="sstitre<?php echo $i ?>"  id="sstitre<?php echo $i ?>" value="<?php echo $value['titre'] ?>"><br>

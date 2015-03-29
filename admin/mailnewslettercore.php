@@ -36,23 +36,6 @@ $corps = <<<EOD
 <head>
 <meta charset="utf-8" />
 <title>Newsletter ICONEO</title>
-<style type="text/css">
-	@import url(http://fonts.googleapis.com/css?family=Open+Sans);
-	@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
-	
-	body {width:100%;height:100%;background:#fff;font-family:'Open Sans Condensed', sans-serif;font-size:23px;color:#515050;}
-	p {margin-bottom:10px;font-size:18px; padding: 10px 10px 10px 10px; }
-	h1, h2, h3, h4, h5, h6 {font-weight:normal;}
-	h1 {font-size:37px; font-weight: bold;text-transform: uppercase;}
-	h2 {font-size:24px;font-weight: bold;text-transform: uppercase;padding-left: 10px;padding-right: 10px;}
-	h3 {font-size:16px;text-transform: uppercase;padding-left: 10px;padding-right: 10px;}
-	hr {height:2px;color:#969696;background-color:#969696;clear:both;}
-	.bleu {color:#39bcd6;}
-	.vert {color:#7aac11;}
-	.jaune {color:#e3a91f;}
-	.fuschia {color:#ed4a8c;}
-
-</style>
 </head>
 <body>
 	<table width="640" border="0"  cellpadding="0" cellspacing="0" >
@@ -60,98 +43,121 @@ $corps = <<<EOD
 	    <td align="center">
 			<div style="text-align:center;  margin-left:auto;margin-right:auto; width: 554px; border: 4px ridge white; padding:20px 20px 20px 20px; ">
 				
-				<a href="http://www.iconeo.fr"><img  src="http://www.iconeo.fr/newsletter/logo.png"></a>
+				<a href="http://$urlSite"><img  src="http://$urlSite/newsletter/logo.png"></a>
 			
-				<h1>Les news Iconeo</h1>
+				<h1 style="font-family:'Open Sans',sans-serif;font-size:32px;text-transform: uppercase;font-style: italic;">$titre</h1>
 				<hr>
+EOD;
+if(isset($detail)) {
+	$i=0;
+	foreach ($detail as $value) {
+		$i++;
+		$couleur = $value['online'];
+		switch ($couleur) {
+			case 'bleu':
+				$color = '39bcd6';
+				$rubrique = 'WEB DESIGN - DEVELOPPEMENT RESPONSIVE - PLV';
+			break;
+			case 'vert':
+				$color = '7aac11';
+				$rubrique = 'CRM - SERVICES INFORMATIQUES';
+			break;
+			case 'jaune':
+				$color = 'e3a91f';
+				$rubrique = 'CONSEIL';
+			break;
+			case 'fuschia':
+				$color = 'ed4a8c';
+				$rubrique = 'FORMATION';
+			break;
+			default:
+				$color = '39bcd6';
+			break;
+		}
+		$titre = $value['titre'];
+		$link = $value['link'];
+		$url = $value['url'];
+		if ($url!='' & $url != '/img/ajoutImage.jpg') {
+			$url = "<a href=\"". $link ."\"><img width=\"254\" src=\"http://$urlSite". $url ."\" alt=\"\"></a><br>";
+		} else {
+			$url= '';
+		}
+		$texte = nl2br($value['texte']);
+		if ($titre != '' || $url != '' || $texte != '') {
+			if($i%2==0){
+				$corps .= <<<EOD
+						<table width="554" border="0"  cellpadding="0" cellspacing="0" >
+						<tr>
+			    			<td valign="top" width="300">
+			    				<h2 style="color:#$color;font-family:'Open Sans',sans-serif;font-size:24px;font-weight: bold;text-transform: uppercase;padding-left: 10px;padding-right: 10px;text-align: left;">
+			    					$titre
+			    				</h2>
+			    				<p style="font-family:'Open Sans',sans-serif;margin-bottom:10px;font-size:14px; padding: 10px 10px 10px 10px;text-align: justify;">
+			    					$texte
+			    				</p>
+			    			</td>
+			    			<td valign="top">
+			    				$url
+			    			</td>
+			    		</tr>
+			    		<tr>
+			    			<td align="left">
+			    				<h3 style="color:#$color;font-family:'Open Sans',sans-serif;font-size:16px;text-transform: uppercase;padding-left: 10px;padding-right: 10px;text-align: left;">$rubrique</h3>
+			    			</td>
+			    			<td align="right">
+			    				<a href=""><img width="104" src="http://$urlSite/newsletter/go$couleur.png"></a>
+			    			</td>
+			    		</tr>
+			    		</table>	
+						<hr style="height:2px;color:#969696;background-color:#969696;clear:both;">
+						<br>
+EOD;
+			} else {
+				$corps .= <<<EOD
+						<table width="554" border="0"  cellpadding="0" cellspacing="0" >
+						<tr>
+			    			<td valign="top">
+			    				$url
+			    			</td>
+			    			<td valign="top"  width="300">
+			    				<h2 style="color:#$color;font-family:'Open Sans',sans-serif;font-size:24px;font-weight: bold;text-transform: uppercase;padding-left: 10px;padding-right: 10px;text-align: left;">
+			    					$titre
+			    				</h2>
+			    				<p style="font-family:'Open Sans',sans-serif;margin-bottom:10px;font-size:14px; padding: 10px 10px 10px 10px;text-align: justify;">
+			    					$texte
+			    				</p>
+			    			</td>
+			    		</tr>
+			    		<tr>
+			    			<td align="left">
+			    				<h3 style="color:#$color;font-family:'Open Sans',sans-serif;font-size:16px;text-transform: uppercase;padding-left: 10px;padding-right: 10px;text-align: left;">$rubrique</h3>
+			    			</td>
+			    			<td align="right">
+			    				<a href=""><img width="104" src="http://$urlSite/newsletter/go$couleur.png"></a>
+			    			</td>
+			    		</tr>
+			    		</table>
+						<hr style="height:2px;color:#969696;background-color:#969696;clear:both;">
+						<br>
+EOD;
+			}	
+		}
+	}
+}
+$corps .= <<<EOD
 				
-				<table width="554" border="0"  cellpadding="0" cellspacing="0" >
-				<tr>
-	    			<td valign="top">
-	    				<h2 class="bleu">La piscine est réparée et à 32° </h2>
-	    				<p >Notre piscine est enfin réparé, nous avons mis tous les moyens afin que vosu puissiez retrouvé le fleuron de notre club dans un état impeccable.
-						Encore toute nos excuses pour ce désagrément et à très bientôt. B'Sportez vous bien !!</p>
-	    			</td>
-	    			<td valign="top">
-	    				<a href=""><img width="254" src="http://www.iconeo.fr/uploads/bsport3.jpg"></a>
-	    			</td>
-	    		</tr>
-	    		<tr>
-	    			<td>
-	    				<h3 class="bleu">WEB DESIGN - DEVELOPPEMENT RESPONSIVE - PLV</h3>
-	    			</td>
-	    			<td align="right">
-	    				<a href=""><img width="104" src="http://www.iconeo.fr/newsletter/gobleu.png"></a>
-	    			</td>
-	    		</tr>
-	    		</table>	
-				<hr>
-				<br>
-				
-				<table width="554" border="0"  cellpadding="0" cellspacing="0" >
-				<tr>
-					<td valign="top">
-	    				<a href=""><img width="254" src="http://www.iconeo.fr/newsletter/facebook.png"></a>
-	    			</td>
-	    			<td valign="top">
-	    				<h2 class="fuschia">La piscine est réparée et à 32° </h2>
-	    				<p >Notre piscine est enfin réparé, nous avons mis tous les moyens afin que vosu puissiez retrouvé le fleuron de notre club dans un état impeccable.
-						Encore toute nos excuses pour ce désagrément et à très bientôt. B'Sportez Notre piscine est enfin réparé, nous avons mis tous les moyens afin que vosu puissiez retrouvé le fleuron de notre club dans un état impeccable.
-						Encore toute nos excuses pour ce désagrément et à très bientôt. B'Sportez vous bien !!</p>
-						
-	    			</td>
-	    		</tr>
-	    		<tr>
-	    			<td>
-	    				<a href=""><img width="104" src="http://www.iconeo.fr/newsletter/gofuschia.png"></a>
-	    			</td>
-	    			<td align="right">
-	    				<h3 class="fuschia">FORMATION</h3>
-	    			</td>
-	    		</tr>
-	    		</table>	
-				<hr>
-				<br>
-				
-				
-				
-				<table width="554" border="0"  cellpadding="0" cellspacing="0" >
-				<tr>
-	    			<td valign="top">
-	    				<h2 class="vert">La piscine est réparée et à 32° </h2>
-	    				<p >Notre piscine est enfin réparé, nous avons mis tous les moyens afin que vosu puissiez retrouvé le fleuron de notre club dans un état impeccable.
-						Encore toute nos excuses pour ce désagrément et à très bientôt. B'Sportez vous bien !!</p>
-						
-	    			</td>
-	    			<td valign="top">
-	    				<a href=""><img width="254" src="http://www.iconeo.fr/newsletter/twiter.png"></a>
-	    			</td>
-	    		</tr>
-	    		<tr>
-	    			<td>
-	    				<h3 class="vert">SERVICES INFORMATIQUES</h3>
-	    			</td>
-	    			<td align="right">
-	    				<a href=""><img width="104" src="http://www.iconeo.fr/newsletter/govert.png"></a>
-	    			</td>
-	    		</tr>
-	    		</table>	
-				<hr>
-				<br>
-				
-				
-				
-				<img width="554" src="http://www.iconeo.fr/newsletter/pano.png"><br>
+				<img width="554" src="http://$urlSite/newsletter/pano.png"><br>
 				<div >
-			      	<a href="https://www.facebook.com/pages/iconeofr/1497532703849844"><img width="50" src="http://www.iconeo.fr/newsletter/facebook.png" ></a>
-			      	<a href="https://twitter.com/iconeo33"><img width="50" src="http://www.iconeo.fr/newsletter/google.png" ></a>
-			      	<a href="https://plus.google.com/+IconeoFr/about"><img width="50" src="http://www.iconeo.fr/newsletter/twiter.png" ></a>
-			      	<a href="http://fr.viadeo.com/fr/company/iconeo"><img width="50" src="http://www.iconeo.fr/newsletter/viadeo.png" ></a>
-			      	<a href="https://www.linkedin.com/pub/contact-iconeo/a8/66a/883"><img width="50" src="http://www.iconeo.fr/newsletter/linkedin.png" ></a>
+			      	<a href="https://www.facebook.com/pages/iconeofr/1497532703849844"><img width="50" src="http://$urlSite/newsletter/facebook.png" ></a>
+			      	<a href="https://twitter.com/iconeo33"><img width="50" src="http://$urlSite/newsletter/google.png" ></a>
+			      	<a href="https://plus.google.com/+IconeoFr/about"><img width="50" src="http://$urlSite/newsletter/twiter.png" ></a>
+			      	<a href="http://fr.viadeo.com/fr/company/iconeo"><img width="50" src="http://$urlSite/newsletter/viadeo.png" ></a>
+			      	<a href="https://www.linkedin.com/pub/contact-iconeo/a8/66a/883"><img width="50" src="http://$urlSite/newsletter/linkedin.png" ></a>
 			  	</div>
-				<p class="bas">
+				<br>
+				<p style="font-size:9px;font-family:'Open Sans',sans-serif;">
 				
-					Si vous souhaitez vous désinscrire de cette newsletter suivez le lien suivant : <a href="http://www.iconeo.fr/newsletter/desinscription.php?id=" >désinscription</a>
+					Si vous souhaitez vous désinscrire de cette newsletter suivez le lien suivant : <a href="http://$urlSite/newsletter/desinscription.php?id=" >désinscription</a>
 				</p>
 				
 			</div>
@@ -169,22 +175,22 @@ if (empty($_GET['action']) && empty($_GET['postaction']) ) {
 
 $corps = utf8_decode( $corps );
 
-$sujet = "Bsport - Newsletter ";
-$entete = "From:Bsport <contact@iconeo.fr>\n";
+$sujet = "Iconeo - Newsletter ";
+$entete = "From:Iconeo <contact@iconeo.fr>\n";
 $entete .= "MIME-version: 1.0\n";
 $entete .= "Content-type: text/html; charset= iso-8859-1\n";
 
 // TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST 
 if (!empty($_GET['postaction']) && $_GET['postaction']=='preview') {
-	echo "<br><br><h3>Newsletter de Test envoyee a contact@bsport.fr !!!! </h3><br><br>
+	echo "<br><br><h3>Newsletter de Test envoyee a contact@iconeo.fr !!!! </h3><br><br>
 		<a href='javascript:history.back()'>retour</a>";
 	
-	//$_to = "contact@bsport.fr";
+	//$_to = "contact@iconeo.fr";
 	$_to = "fjavi.gonzalez@gmail.com";
-	//$entete .= "Bcc: xav335@hotmail.com,xavier.gonzalez@laposte.net,jav_gonz@yahoo.com\n";
+	$entete .= "Bcc: xav335@hotmail.com,xavier.gonzalez@laposte.net,jav_gonz@yahoo.com\n";
 	
 	//echo "Envoi du message à " . $_to . "<br>";
-	$corps = str_replace('XwXwXwXw', randomChar(), $corps);
+	//$corps = str_replace('XwXwXwXw', randomChar(), $corps);
 	//echo $corps;
 	////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////
 	mail($_to, $sujet, stripslashes($corps), $entete);

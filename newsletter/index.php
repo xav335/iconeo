@@ -7,9 +7,9 @@
 	@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
 	
 	body {width:100%;height:100%;background:#fff;font-family:'Open Sans Condensed', sans-serif;font-size:23px;color:#515050;}
-	p {margin-bottom:10px;font-size:18px; padding: 10px 10px 10px 10px; }
+	p {margin-bottom:10px;font-size:18px; padding: 10px 10px 10px 10px;text-align: justify;}
 	h1, h2, h3, h4, h5, h6 {font-weight:normal;}
-	h1 {font-size:37px; font-weight: bold;text-transform: uppercase;}
+	h1 {font-size:37px; font-weight: bold;text-transform: uppercase; font-style: italic;}
 	h2 {font-size:24px;font-weight: bold;text-transform: uppercase;padding-left: 10px;padding-right: 10px;}
 	h3 {font-size:16px;text-transform: uppercase;padding-left: 10px;padding-right: 10px;}
 	hr {height:2px;color:#969696;background-color:#969696;clear:both;}
@@ -28,14 +28,14 @@
 				
 				<a href="http://www.iconeo.fr"><img  src="http://www.iconeo.fr/newsletter/logo.png"></a>
 			
-				<h1>Les news Iconeo</h1>
+				<h1 style="font-family:'Open Sans Condensed';">Les news Iconeo</h1>
 				<hr>
 				
 				<table width="554" border="0"  cellpadding="0" cellspacing="0" >
 				<tr>
 	    			<td valign="top">
 	    				<h2 class="bleu">La piscine est réparée et à 32° </h2>
-	    				<p >Notre piscine est enfin réparé, nous avons mis tous les moyens afin que vosu puissiez retrouvé le fleuron de notre club dans un état impeccable.
+	    				<p>Notre piscine est enfin réparé, nous avons mis tous les moyens afin que vosu puissiez retrouvé le fleuron de notre club dans un état impeccable.
 						Encore toute nos excuses pour ce désagrément et à très bientôt. B'Sportez vous bien !!</p>
 	    			</td>
 	    			<td valign="top">

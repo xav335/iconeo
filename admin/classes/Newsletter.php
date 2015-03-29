@@ -117,13 +117,14 @@ class Newsletter extends StorageManager {
 		for ($i = 1; $i <  $value['ndencards']+1; $i++) {
 		
 			$sql = "INSERT INTO  .`newsletter_detail`
-						(`id_newsletter`,`titre`, `url`, `link`,`texte`)
+						(`id_newsletter`,`titre`, `url`, `link`,`texte`,`online`)
 						VALUES (
 						". $id .",
 						'". addslashes($value['sstitre'.$i]) ."',
 						'". addslashes($value['url'.$i]) ."',
 						'". addslashes($value['link'.$i]) ."',
-						'". addslashes($value['texte'.$i]) ."'
+						'". addslashes($value['texte'.$i]) ."',
+						'". addslashes($value['online'.$i]) ."'
 					);";
 			$result = mysqli_query($this->mysqli,$sql);
 		
