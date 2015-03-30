@@ -292,7 +292,7 @@ class Newsletter extends StorageManager {
 			$sql = "SELECT nsj.date_envoi, newsletter.titre,newsletter.id,nsj.id as id_newsletter
 					FROM newsletter_journal as nsj 
 					INNER JOIN newsletter ON newsletter.id = nsj.id_newsletter 
-					ORDER BY date_envoi;" ;
+					ORDER BY date_envoi DESC;" ;
 			//print_r($requete);
 			$new_array = null;
 			$result = mysqli_query($this->mysqli,$sql);

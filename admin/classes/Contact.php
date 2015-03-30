@@ -31,6 +31,24 @@ class Contact extends StorageManager {
 			return "errrrrrrooooOOor";
 		}	
 	}
+	
+	public function contactGetForNewsletter(){
+		$this->dbConnect();
+		try {
+			$sql = "SELECT DISTINCT email FROM contact WHERE newsletter=1;" ;
+			//print_r($sql);exit();
+			$new_array = null;
+			$result = mysqli_query($this->mysqli,$sql);
+			while( $row = mysqli_fetch_assoc( $result)){
+				$new_array[] = $row;
+			}
+			$this->dbDisConnect();
+			return $new_array;
+		} catch (Exception $e) {
+			throw new Exception("Erreur Mysql contactGet ". $e->getMessage());
+			return "errrrrrrooooOOor";
+		}
+	}
 
 	public function contactNumberGet(){
 		 $this->dbConnect();
@@ -61,12 +79,11 @@ class Contact extends StorageManager {
 			($value['fromcontact']=='on') ? $fromcontact = 1 : $fromcontact = 0;
 
 			$sql = "INSERT INTO  .`contact`
-						(`name`, `email`, `firstname`, `message`,`newsletter`,`fromgoldbook`,`fromcontact`)
+						(`name`, `email`, `firstname`,`newsletter`,`fromgoldbook`,`fromcontact`)
 						VALUES (
 						'". addslashes($value['name']) ."',
 						'". addslashes($value['email']) ."',
 						'". addslashes($value['firstname']) ."',
-						'". addslashes($value['message']) ."',
 						". $newsletter .",
 						". $fromgoldbook .",
 						". $fromcontact ."
@@ -127,8 +144,38 @@ class Contact extends StorageManager {
 	}	
 	
 	
+	public function contactUnsubscribeNewsletter($email, $message){
+		//print_r($value);
+		//exit();
+	
+		$this->dbConnect();
+		$this->begin();
+		try {
+			$sql = "UPDATE  contact SET
+					`newsletter`= 0,
+					`message`='". addslashes($message) ."'
+					WHERE `email`='". $email ."';";
+			$result = mysqli_query($this->mysqli,$sql);
+	
+			if (!$result) {
+				throw new Exception($sql);
+			}
+	
+			$this->commit();
+	
+		} catch (Exception $e) {
+			$this->rollback();
+			throw new Exception("Erreur Mysql ". $e->getMessage());
+			return "errrrrrrooooOOor";
+		}
+	
+	
+		$this->dbDisConnect();
+	}
+	
 	public function contactDelete($value){
-		//print_r($value);exit();
+		//print_r($value);
+		//exit();
 	
 		 $this->dbConnect();
 		$this->begin();
@@ -153,11 +200,11 @@ class Contact extends StorageManager {
 	}
 	
 	public function contactExportCSV(){
-		
+		//print_r($value);
+		//exit();
 		$date = date("Ymd-H:i:s");      
 		$value = $_SERVER["DOCUMENT_ROOT"] ."/admin/FileUpload/server/php/files/export-". $date .".csv";
-		//print_r($value);exit();
-		$this->dbConnect();
+		 $this->dbConnect();
 		$this->begin();
 		try {
 			// Ne pas oublier d'ajouter les prilèges FILE sur le users de la DB
@@ -170,18 +217,18 @@ class Contact extends StorageManager {
 					STARTING BY ''
 					TERMINATED BY '\\r'
 				FROM contact;";
-			//echo $sql;
+			echo $sql;
 				
-			$result = mysqli_query($this->mysqli,$sql);
+			$result = mysqli_query($this->mysqli,$sql) or die(mysql_error());
 			if (!$result) {
-				throw new Exception("Erreur Mysql contactExportCSV : ". $sql);
+				throw new Exception($sql);
 			}
 			$this->commit();
 			return $result;
 	
 		} catch (Exception $e) {
 			$this->rollback();
-			throw new Exception("Erreur Mysql contactExportCSV". $e->getMessage());
+			throw new Exception("Erreur Mysql contactImportCSV". $e->getMessage());
 			return "errrrrrrooooOOor";
 		}
 	
