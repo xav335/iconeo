@@ -155,8 +155,11 @@ $corps .= <<<EOD
 			      	<a href="https://www.linkedin.com/pub/contact-iconeo/a8/66a/883"><img width="50" src="http://$urlSite/newsletter/linkedin.png" alt=""></a>
 			  	</div>
 				<br>
+				<p style="font-size:14px;font-family:'Open Sans',sans-serif;">
+					$bas_page
+				</p>
+				<br>
 				<p style="font-size:9px;font-family:'Open Sans',sans-serif;">
-				
 					Si vous souhaitez vous désinscrire de cette newsletter suivez le lien suivant : <a href="http://$urlSite/newsletter/desinscription.php?id=" >désinscription</a>
 				</p>
 				<img src="http://$urlSite/newsletter/track.php?id=XwXwXwXw" alt="">
@@ -186,8 +189,8 @@ if (!empty($_GET['postaction']) && $_GET['postaction']=='preview') {
 		<a href='javascript:history.back()'>retour</a>";
 	
 	//$_to = "contact@iconeo.fr";
-	$_to = "fjavi.gonzalez@gmail.com";
-	$entete .= "Bcc: xav335@hotmail.com,xavier.gonzalez@laposte.net,jav_gonz@yahoo.com\n";
+	$_to = "fredericlesca@iconeo.fr";
+	$entete .= "Bcc: fjavi.gonzalez@gmail.com, xav335@hotmail.com,xavier.gonzalez@laposte.net,jav_gonz@yahoo.com\n";
 	
 	//echo "Envoi du message à " . $_to . "<br>";
 	$corpsCode = str_replace('XwXwXwXw', randomChar(), $corps);

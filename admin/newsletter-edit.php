@@ -156,7 +156,7 @@ if (!empty($_GET)){ //Modif
 					<input type="hidden" name="ndencards" id="ndencards" value="<?php echo $i-1 ?>">
 					<div class="form-group" >
 						<label class="col-sm-1" for="titre">Bas de page :</label>
-					    <textarea class="col-sm-11"  name="bas_page"  id="bas_page" rows="3" required ><?php echo $bas_page ?></textarea>
+					    <textarea class="col-sm-11"  name="bas_page"  id="bas_page" rows="3"  ><?php echo $bas_page ?></textarea>
 					</div>	
 					<div class="form-group" >
 		            	<button class="btn btn-success col-sm-12" type="submit" onclick="$('#postaction').val('modif')"> Valider </button>
