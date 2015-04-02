@@ -149,8 +149,8 @@ $corps .= <<<EOD
 				<img width="554" src="http://$urlSite/newsletter/pano.png" alt=""><br>
 				<div >
 			      	<a href="https://www.facebook.com/pages/iconeofr/1497532703849844"><img width="50" src="http://$urlSite/newsletter/facebook.png" alt="" ></a>
-			      	<a href="https://twitter.com/iconeo33"><img width="50" src="http://$urlSite/newsletter/google.png" alt=""></a>
-			      	<a href="https://plus.google.com/+IconeoFr/about"><img width="50" src="http://$urlSite/newsletter/twiter.png" alt=""></a>
+			      	<a href="https://plus.google.com/+IconeoFr/about"><img width="50" src="http://$urlSite/newsletter/google.png" alt=""></a>
+			      	<a href="https://twitter.com/iconeo33"><img width="50" src="http://$urlSite/newsletter/twiter.png" alt=""></a>
 			      	<a href="http://fr.viadeo.com/fr/company/iconeo"><img width="50" src="http://$urlSite/newsletter/viadeo.png" alt=""></a>
 			      	<a href="https://www.linkedin.com/pub/contact-iconeo/a8/66a/883"><img width="50" src="http://$urlSite/newsletter/linkedin.png" alt=""></a>
 			  	</div>
