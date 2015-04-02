@@ -55,7 +55,7 @@ class Goldbook extends StorageManager {
 		 $this->dbConnect();
 		$this->begin();
 		try {
-			($value['$online']=='on') ? $online = 1 : $online = 0;
+			($value['online']=='on') ? $online = 1 : $online = 0;
 			
 			$sql = "INSERT INTO  .`goldbook`
 						(`date`, `nom`, `email`, `message`,`online`)

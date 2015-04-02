@@ -37,13 +37,13 @@ $corps = <<<EOD
 <meta charset="utf-8" />
 <title>Newsletter ICONEO</title>
 </head>
-<body>
+<body style="background: #fff;font-family:'Open Sans',sans-serif;">
 	<table width="640" border="0"  cellpadding="0" cellspacing="0" >
 	<tr>
 	    <td align="center">
 			<div style="text-align:center;  margin-left:auto;margin-right:auto; width: 554px; border: 4px ridge white; padding:20px 20px 20px 20px; ">
 				
-				<a href="http://$urlSite"><img  src="http://$urlSite/newsletter/logo.png"></a>
+				<a href="http://$urlSite"><img  src="http://$urlSite/newsletter/logo.png" alt=""></a>
 			
 				<h1 style="font-family:'Open Sans',sans-serif;font-size:32px;text-transform: uppercase;font-style: italic;">$titre</h1>
 				<hr>
@@ -146,7 +146,7 @@ EOD;
 }
 $corps .= <<<EOD
 				
-				<img width="554" src="http://$urlSite/newsletter/pano.png"><br>
+				<img width="554" src="http://$urlSite/newsletter/pano.png" alt=""><br>
 				<div >
 			      	<a href="https://www.facebook.com/pages/iconeofr/1497532703849844"><img width="50" src="http://$urlSite/newsletter/facebook.png" alt="" ></a>
 			      	<a href="https://twitter.com/iconeo33"><img width="50" src="http://$urlSite/newsletter/google.png" alt=""></a>
