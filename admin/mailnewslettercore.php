@@ -45,7 +45,7 @@ $corps = <<<EOD
 				
 				<a href="http://$urlSite"><img  src="http://$urlSite/newsletter/logo.png" alt=""></a>
 			
-				<h1 style="font-family:'Open Sans',sans-serif;font-size:32px;text-transform: uppercase;font-style: italic;">$titre</h1>
+				<h1 style="font-family:'Open Sans',sans-serif;color:#515050;font-size:32px;text-transform: uppercase;font-style: italic;">$titre</h1>
 				<hr>
 EOD;
 if(isset($detail)) {
