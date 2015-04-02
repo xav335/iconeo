@@ -45,7 +45,7 @@ $corps = <<<EOD
 				
 				<a href="http://$urlSite"><img  src="http://$urlSite/newsletter/logo.png" alt=""></a>
 			
-				<h1 style="font-family:'Open Sans',sans-serif;color:#515050;font-size:32px;text-transform: uppercase;font-style: italic;">$titre</h1>
+				<h1 style="font-family:'Open Sans',sans-serif;color:#515050;font-size:25px;text-transform: uppercase;font-style: italic;">$titre</h1>
 				<hr>
 EOD;
 if(isset($detail)) {
@@ -56,7 +56,7 @@ if(isset($detail)) {
 		switch ($couleur) {
 			case 'bleu':
 				$color = '39bcd6';
-				$rubrique = 'WEB DESIGN - DEVELOPPEMENT RESPONSIVE - PLV';
+				$rubrique = 'OUTILS WEB - ECOMMERCE - PLV';
 			break;
 			case 'vert':
 				$color = '7aac11';
@@ -89,10 +89,10 @@ if(isset($detail)) {
 						<table width="554" border="0"  cellpadding="0" cellspacing="0" >
 						<tr>
 			    			<td valign="top" width="300">
-			    				<h2 style="color:#$color;font-family:'Open Sans',sans-serif;font-size:24px;font-weight: bold;text-transform: uppercase;padding-left: 10px;padding-right: 10px;text-align: left;">
+			    				<h2 style="color:#$color;font-family:'Open Sans',sans-serif;font-size:18px;font-weight: bold;text-transform: uppercase;padding-left: 10px;padding-right: 10px;text-align: left;">
 			    					$titre
 			    				</h2>
-			    				<p style="font-family:'Open Sans',sans-serif;margin-bottom:10px;font-size:14px; padding: 10px 10px 10px 10px;text-align: justify;">
+			    				<p style="font-family:'Open Sans',sans-serif;margin-bottom:10px;font-size:13px; padding: 10px 10px 10px 10px;text-align: justify;">
 			    					$texte
 			    				</p>
 			    			</td>
@@ -102,10 +102,10 @@ if(isset($detail)) {
 			    		</tr>
 			    		<tr>
 			    			<td align="left">
-			    				<h3 style="color:#$color;font-family:'Open Sans',sans-serif;font-size:16px;text-transform: uppercase;padding-left: 10px;padding-right: 10px;text-align: left;">$rubrique</h3>
+			    				<h3 style="color:#$color;font-family:'Open Sans',sans-serif;font-size:14px;text-transform: uppercase;padding-left: 10px;padding-right: 10px;text-align: left;">$rubrique</h3>
 			    			</td>
 			    			<td align="right">
-			    				<a href="$link"><img width="104" src="http://$urlSite/newsletter/go$couleur.png" alt=""></a>
+			    				<a href="$link"><img width="80" src="http://$urlSite/newsletter/go$couleur.png" alt=""></a>
 			    			</td>
 			    		</tr>
 			    		</table>	
@@ -120,20 +120,20 @@ EOD;
 			    				$url
 			    			</td>
 			    			<td valign="top"  width="300">
-			    				<h2 style="color:#$color;font-family:'Open Sans',sans-serif;font-size:24px;font-weight: bold;text-transform: uppercase;padding-left: 10px;padding-right: 10px;text-align: left;">
+			    				<h2 style="color:#$color;font-family:'Open Sans',sans-serif;font-size:18px;font-weight: bold;text-transform: uppercase;padding-left: 10px;padding-right: 10px;text-align: left;">
 			    					$titre
 			    				</h2>
-			    				<p style="font-family:'Open Sans',sans-serif;margin-bottom:10px;font-size:14px; padding: 10px 10px 10px 10px;text-align: justify;">
+			    				<p style="font-family:'Open Sans',sans-serif;margin-bottom:10px;font-size:13px; padding: 10px 10px 10px 10px;text-align: justify;">
 			    					$texte
 			    				</p>
 			    			</td>
 			    		</tr>
 			    		<tr>
 			    			<td align="left">
-			    				<h3 style="color:#$color;font-family:'Open Sans',sans-serif;font-size:16px;text-transform: uppercase;padding-left: 10px;padding-right: 10px;text-align: left;">$rubrique</h3>
+			    				<h3 style="color:#$color;font-family:'Open Sans',sans-serif;font-size:14px;text-transform: uppercase;padding-left: 10px;padding-right: 10px;text-align: left;">$rubrique</h3>
 			    			</td>
 			    			<td align="right">
-			    				<a href="$link"><img width="104" src="http://$urlSite/newsletter/go$couleur.png" alt=""></a>
+			    				<a href="$link"><img width="80" src="http://$urlSite/newsletter/go$couleur.png" alt=""></a>
 			    			</td>
 			    		</tr>
 			    		</table>
@@ -148,11 +148,11 @@ $corps .= <<<EOD
 				
 				<img width="554" src="http://$urlSite/newsletter/pano.png" alt=""><br>
 				<div >
-			      	<a href="https://www.facebook.com/pages/iconeofr/1497532703849844"><img width="50" src="http://$urlSite/newsletter/facebook.png" alt="" ></a>
-			      	<a href="https://plus.google.com/+IconeoFr/about"><img width="50" src="http://$urlSite/newsletter/google.png" alt=""></a>
-			      	<a href="https://twitter.com/iconeo33"><img width="50" src="http://$urlSite/newsletter/twiter.png" alt=""></a>
-			      	<a href="http://fr.viadeo.com/fr/company/iconeo"><img width="50" src="http://$urlSite/newsletter/viadeo.png" alt=""></a>
-			      	<a href="https://www.linkedin.com/pub/contact-iconeo/a8/66a/883"><img width="50" src="http://$urlSite/newsletter/linkedin.png" alt=""></a>
+			      	<a href="https://www.facebook.com/pages/iconeofr/1497532703849844"><img width="30" src="http://$urlSite/newsletter/facebook.png" alt="" ></a>
+			      	<a href="https://plus.google.com/+IconeoFr/about"><img width="30" src="http://$urlSite/newsletter/google.png" alt=""></a>
+			      	<a href="https://twitter.com/iconeo33"><img width="30" src="http://$urlSite/newsletter/twiter.png" alt=""></a>
+			      	<a href="http://fr.viadeo.com/fr/company/iconeo"><img width="30" src="http://$urlSite/newsletter/viadeo.png" alt=""></a>
+			      	<a href="https://www.linkedin.com/pub/contact-iconeo/a8/66a/883"><img width="30" src="http://$urlSite/newsletter/linkedin.png" alt=""></a>
 			  	</div>
 				<br>
 				<p style="font-size:14px;font-family:'Open Sans',sans-serif;">
