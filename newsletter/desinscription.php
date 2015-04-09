@@ -5,6 +5,23 @@ if (!empty($_POST)){
 	$contact = new Contact();
 	$contact->contactUnsubscribeNewsletter($_POST['email'], $_POST['message']);
 	$contact = null;
+	
+	$_to = "admin@iconeo.fr";
+	$sujet = "Iconeo - Desinscription Newsletter";
+	
+	$entete = "From:Iconeo <contact@iconeo.fr>\n";
+	$entete .= "MIME-version: 1.0\n";
+	$entete .= "Content-type: text/html; charset= iso-8859-1\n";
+	$entete .= "Bcc: fjavi.gonzalez@gmail.com,xav335@hotmail.com\n";
+	
+	$corps = "";
+	$corps .= "Email à désinscrire :" . $_POST['email']  ."<br>";
+	$corps .= "Message : ". $_POST["message"] ."<br>";
+	$corps = utf8_decode( $corps );
+	//echo $corps . "<br>";
+	
+	// Envoi des identifiants par mail
+	mail($_to, $sujet, stripslashes($corps), $entete);
 }
 ?>
 <!doctype html>
