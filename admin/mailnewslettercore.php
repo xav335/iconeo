@@ -217,10 +217,12 @@ if (!empty($_GET['postaction']) && $_GET['postaction']=='preview') {
 				////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////
 				mail($_to, $sujet, stripslashes($corpsCode), $entete);
 				///////////////////////////////////////////////////////////
-				echo "envoi OK : ". $value['email'] ."<br>";
+				//echo "envoi OK : ". $value['email'] ."<br>";
+				error_log(date("Y-m-d H:i:s") ." envoi : OK : ". $value['email'] ."\n", 3, "spy.log");
 			} else {
 				$newsletter->journalNewsletterDetailAdd($id_journal,$_to,null,'bad email');
-				echo "XXXX envoi KO : ". $value['email'] ."<br>";
+				//echo "XXXX envoi KO : ". $value['email'] ."<br>";
+				error_log(date("Y-m-d H:i:s") ." envoi : KO : ". $value['email'] ."\n", 3, "spy.log");
 			}	
 			
 			
