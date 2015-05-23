@@ -24,7 +24,41 @@ if (!empty($_GET)){ //Modif
 	exit();
 }
 ?>
+<?php 
+	function sendElasticEmail($to, $subject, $body_text, $body_html, $from, $fromName)
+	{
+		$res = "";
+	
+		$data = "username=".urlencode("691f06a3-f0d1-41b6-87c1-b8a769c5c1f1");
+		$data .= "&api_key=".urlencode("691f06a3-f0d1-41b6-87c1-b8a769c5c1f1");
+		$data .= "&from=".urlencode($from);
+		$data .= "&from_name=".urlencode($fromName);
+		$data .= "&to=".urlencode($to);
+		$data .= "&subject=".urlencode($subject);
+		if($body_html)
+			$data .= "&body_html=".urlencode($body_html);
+		if($body_text)
+			$data .= "&body_text=".urlencode($body_text);
+	
+		$header = "POST /mailer/send HTTP/1.0\r\n";
+		$header .= "Content-Type: application/x-www-form-urlencoded\r\n";
+		$header .= "Content-Length: " . strlen($data) . "\r\n\r\n";
+		$fp = fsockopen('ssl://api.elasticemail.com', 443, $errno, $errstr, 30);
+	
+		if(!$fp)
+			return "ERROR. Could not open connection";
+		else {
+			fputs ($fp, $header.$data);
+			while (!feof($fp)) {
+				$res .= fread ($fp, 1024);
+			}
+			fclose($fp);
+		}
+		return $res;
+	}
+//echo sendElasticEmail("test@test.com", "My Subject", "My Text", "My HTML", "youremail@yourdomain.com", "Your Name");
 
+?>
 <?php
 $urlSite = $_SERVER['HTTP_HOST'];
 
@@ -176,7 +210,7 @@ if (empty($_GET['action']) && empty($_GET['postaction']) ) {
 	echo $corps;
 }	
 
-$corps = utf8_decode( $corps );
+//$corps = utf8_decode( $corps );
 
 $sujet = "Iconeo - Newsletter ";
 $entete = "From:Iconeo <contact@iconeo.fr>\n";
@@ -189,15 +223,18 @@ if (!empty($_GET['postaction']) && $_GET['postaction']=='preview') {
 		<a href='javascript:history.back()'>retour</a>";
 	
 	//$_to = "contact@iconeo.fr";
-	$_to = "fredericlesca@iconeo.fr";
+	$_to = "web-7dEviO@mail-tester.com";
 	$entete .= "Bcc: fjavi.gonzalez@gmail.com, xav335@hotmail.com,xavier.gonzalez@laposte.net,jav_gonz@yahoo.com\n";
 	
 	//echo "Envoi du message à " . $_to . "<br>";
 	$corpsCode = str_replace('XwXwXwXw', randomChar(), $corps);
 	//echo $corpsCode;
-	////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////
-	mail($_to, $sujet, stripslashes($corpsCode), $entete);
+	////////////////!ICONEO ICONEO!!!!!!!!!!////////////
+	//mail($_to, $sujet, stripslashes($corpsCode), $entete);
+	////////////////ELASTIC MAIL ICONEO!!!!!!!!!!////////////
+	sendElasticEmail($_to, $sujet, "", stripslashes($corpsCode), "contact@iconeo.fr", "Iconeo");
 	///////////////////////////////////////////////////////////
+	error_log(date("Y-m-d H:i:s") ." envoi : OK : fjavi.gonzalez@gmail.com \n", 3, "spy.log");
 	
 } elseif (!empty($_GET['postaction']) && $_GET['postaction']=='envoi') { 
 // ENVOI EN MASSE ENVOI EN MASSEENVOI EN MASSEENVOI EN MASSEENVOI EN MASSEENVOI EN MASSE
@@ -217,10 +254,12 @@ if (!empty($_GET['postaction']) && $_GET['postaction']=='preview') {
 				////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////
 				//mail($_to, $sujet, stripslashes($corpsCode), $entete);
 				///////////////////////////////////////////////////////////
-				echo "envoi OK : ". $value['email'] ."<br>";
+				//echo "envoi OK : ". $value['email'] ."<br>";
+				error_log(date("Y-m-d H:i:s") ." envoi : OK : ". $value['email'] ."\n", 3, "spy.log");
 			} else {
 				$newsletter->journalNewsletterDetailAdd($id_journal,$_to,null,'bad email');
-				echo "XXXX envoi KO : ". $value['email'] ."<br>";
+				//echo "XXXX envoi KO : ". $value['email'] ."<br>";
+				error_log(date("Y-m-d H:i:s") ." envoi : KO : ". $value['email'] ."\n", 3, "spy.log");
 			}	
 			
 			
