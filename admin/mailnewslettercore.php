@@ -222,19 +222,25 @@ if (!empty($_GET['postaction']) && $_GET['postaction']=='preview') {
 	echo "<br><br><h3>Newsletter de Test envoyee a contact@iconeo.fr !!!! </h3><br><br>
 		<a href='javascript:history.back()'>retour</a>";
 	
-	//$_to = "contact@iconeo.fr";
-	$_to = "web-7dEviO@mail-tester.com";
+	$_to = "fredericlesca@iconeo.fr";
+	//$_to = "web-7dEviO@mail-tester.com";
 	$entete .= "Bcc: fjavi.gonzalez@gmail.com, xav335@hotmail.com,xavier.gonzalez@laposte.net,jav_gonz@yahoo.com\n";
 	
 	//echo "Envoi du message à " . $_to . "<br>";
 	$corpsCode = str_replace('XwXwXwXw', randomChar(), $corps);
 	//echo $corpsCode;
-	////////////////!ICONEO ICONEO!!!!!!!!!!////////////
-	//mail($_to, $sujet, stripslashes($corpsCode), $entete);
+	////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////
+	//mail($_to, $sujet, stripslashes($corps), $entete);
+	///////////////////////////////////////////////////////////
 	////////////////ELASTIC MAIL ICONEO!!!!!!!!!!////////////
-	sendElasticEmail($_to, $sujet, "", stripslashes($corpsCode), "contact@iconeo.fr", "Iconeo");
+	sendElasticEmail($_to, $sujet, "", stripslashes($corpsCode), "contact@iconeo.fr", "iconeo");
+	sendElasticEmail("fjavi.gonzalez@gmail.com", $sujet, "", stripslashes($corpsCode), "contact@iconeo.fr", "iconeo");
+	sendElasticEmail("xav335@hotmail.com", $sujet, "", stripslashes($corpsCode), "contact@iconeo.fr", "iconeo");
+	sendElasticEmail("jav_gonz@yahoo.com", $sujet, "", stripslashes($corpsCode), "contact@iconeo.fr", "iconeo");
 	///////////////////////////////////////////////////////////
 	error_log(date("Y-m-d H:i:s") ." envoi : OK : fjavi.gonzalez@gmail.com \n", 3, "spy.log");
+	error_log(date("Y-m-d H:i:s") ." envoi : OK : xav335@hotmail.com \n", 3, "spy.log");
+	error_log(date("Y-m-d H:i:s") ." envoi : OK : jav_gonz@yahoo.com \n", 3, "spy.log");
 	
 } elseif (!empty($_GET['postaction']) && $_GET['postaction']=='envoi') { 
 // ENVOI EN MASSE ENVOI EN MASSEENVOI EN MASSEENVOI EN MASSEENVOI EN MASSEENVOI EN MASSE
@@ -254,6 +260,9 @@ if (!empty($_GET['postaction']) && $_GET['postaction']=='preview') {
 				////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////
 				//mail($_to, $sujet, stripslashes($corpsCode), $entete);
 				///////////////////////////////////////////////////////////
+				////////////////ELASTIC MAIL ICONEO!!!!!!!!!!////////////
+        		sendElasticEmail($_to, $sujet, "", stripslashes($corpsCode), "contact@iconeo.fr", "iconeo");
+        		///////////////////////////////////////////////////////////
 				//echo "envoi OK : ". $value['email'] ."<br>";
 				error_log(date("Y-m-d H:i:s") ." envoi : OK : ". $value['email'] ."\n", 3, "spy.log");
 			} else {
