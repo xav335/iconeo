@@ -124,7 +124,7 @@
 		$(document).ready(function(){
 		<?php if ( is_page( '8' ) ): ?>
 			$('.nav-menu li:nth-child(1)').addClass('active');
-		<?php elseif ( is_page( '10' )  || is_page( '685' )  || is_page( '687' ) || is_page( '371' ) || is_page( '415' ) || is_page( '166' ) || is_page( '169' ) || is_page( '171' )): //webplv?>
+		<?php elseif ( is_page( '10' )  || is_page( '685' )  || is_page( '687' ) || is_page( '371' ) || is_page( '415' )  || is_page( '1076' )   || is_page( '166' ) || is_page( '169' ) || is_page( '171' )): //webplv?>
 			$('.nav-menu li:nth-child(2)').addClass('active');
 		<?php elseif ( is_page( '2' )  || is_page( '737' ) ): ?>
 			$('.nav-menu li:nth-child(3)').addClass('active');
