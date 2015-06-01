@@ -1,6 +1,7 @@
 <?php
 	class WpFastestCacheCreateCache extends WpFastestCache{
 		public $options = array();
+		public $cdn;
 		private $startTime;
 		private $blockCache = false;
 		private $err = "";
@@ -9,6 +10,22 @@
 			$this->options = $this->getOptions();
 
 			$this->checkActivePlugins();
+
+			$this->set_cdn();
+		}
+
+		public function set_cdn(){
+			$cdn_values = get_option("WpFastestCacheCDN");
+			if($cdn_values){
+				$std = json_decode($cdn_values);
+
+				$std->originurl = trim($std->originurl, "/");
+				$std->originurl = preg_replace("/http(s?)\:\/\/(www\.)?/i", "", $std->originurl);
+
+				$std->cdnurl = trim($std->cdnurl, "/");
+				$std->cdnurl = preg_replace("/http(s?)\:\/\/(www\.)?/i", "", $std->cdnurl);
+				$this->cdn = $std;
+			}
 		}
 
 		public function checkActivePlugins(){
@@ -49,7 +66,8 @@
 						"\/wp\-includes",
 						"\/index\.php",
 						"\/xmlrpc\.php",
-						"\/wp\-api\/"
+						"\/wp\-api\/",
+						"leaflet\-geojson\.php"
 					);
 			if($this->isPluginActive('woocommerce/woocommerce.php')){
 				array_push($list, "\/cart", "\/checkout", "\/receipt", "\/confirmation", "\/product");
@@ -71,6 +89,7 @@
 
 				foreach($std as $key => $value){
 					if(isset($value->prefix) && $value->prefix){
+						$value->content = trim($value->content);
 						$value->content = trim($value->content, "/");
 
 						if($value->prefix == "exact"){
@@ -105,7 +124,9 @@
 		public function callback($buffer){
 			$buffer = $this->checkShortCode($buffer);
 
-			if(preg_match("/Mediapartners-Google/i", $_SERVER['HTTP_USER_AGENT'])){
+			if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST"){
+				return $buffer;
+			}else if(preg_match("/Mediapartners-Google/i", $_SERVER['HTTP_USER_AGENT'])){
 				return $buffer;
 			}else if($this->exclude_page()){
 				return $buffer."<!-- Wp Fastest Cache: Exclude Page -->";
@@ -132,18 +153,27 @@
 			}else if(is_404()){
 				return $buffer;
 			}else if($this->ignored()){
-				return $buffer."<!-- ignored -->";
+				return $buffer;
 			}else if($this->blockCache === true){
 				return $buffer."<!-- wpfcNOT has been detected -->";
 			}else if(isset($_GET["preview"])){
 				return $buffer."<!-- not cached -->";
-			}else if(preg_match("/\?/", $_SERVER["REQUEST_URI"])){
+			}else if(preg_match("/\?/", $_SERVER["REQUEST_URI"]) && !preg_match("/\/\?fdx\_switcher\=true/", $_SERVER["REQUEST_URI"])){ // for WP Mobile Edition
 				return $buffer;
 			}else if($this->checkHtml($buffer)){
 				return $buffer."<!-- html is corrupted -->";
 			}else{				
 				if($this->isMobile()){
 					if(class_exists("WpFcMobileCache") && isset($this->options->wpFastestCacheMobileTheme)){
+						
+						// wptouch: ipad is accepted as a desktop so no need to create cache if user agent is ipad 
+						// https://wordpress.org/support/topic/plugin-wptouch-wptouch-wont-display-mobile-version-on-ipad?replies=12
+						if($this->isPluginActive('wptouch/wptouch.php')){
+							if(preg_match("/ipad/i", $_SERVER['HTTP_USER_AGENT'])){
+								return $buffer."<!-- ipad user -->";
+							}
+						}
+
 						$wpfc_mobile = new WpFcMobileCache();
 						$cachFilePath = $this->getWpContentDir()."/cache/".$wpfc_mobile->get_folder_name()."".$_SERVER["REQUEST_URI"];
 					}else{
@@ -162,7 +192,7 @@
 					}
 				}
 
-				$content = $this->cacheDate($buffer);
+				$content = $buffer;
 
 				if(isset($this->options->wpFastestCacheCombineCss) && isset($this->options->wpFastestCacheMinifyCss)){
 					require_once "css-utilities.php";
@@ -197,16 +227,45 @@
 					if(isset($this->options->wpFastestCacheMinifyHtmlPowerFul)){
 						$content = $powerful_html->minify_html();
 					}
+
+					if(isset($this->options->wpFastestCacheMinifyJs) && method_exists("WpFastestCachePowerfulHtml", "minify_js_in_body")){
+						$content = $powerful_html->minify_js_in_body($this);
+					}
 				}
 
 				if($this->err){
 					return $buffer."<!-- ".$this->err." -->";
 				}else{
+					$content = $this->cacheDate($content);
 					$content = $this->minify($content);
+					if($this->cdn){
+						$content = preg_replace_callback("/[\'\"][^\'\"]+".preg_quote($this->cdn->originurl, "/")."[^\'\"]+[\'\"]/i", array($this, 'cdn_replace_urls'), $content);
+
+						// url()
+						$content = preg_replace_callback("/url\([^\)]+\)/i", array($this, 'cdn_replace_urls'), $content);
+					}
 					$this->createFolder($cachFilePath, $content);
 					return $buffer."<!-- need to refresh to see cached version -->";
 				}
 			}
+		}
+
+		public function cdn_replace_urls($matches){
+			if(preg_match("/".preg_quote($this->cdn->originurl, "/")."/", $matches[0])){
+				$extension = $this->get_extension($matches[0]);
+				if($extension){
+					if(preg_match("/".$extension."/i", $this->cdn->file_types)){
+						$matches[0] = preg_replace("/(http(s?)\:)?\/\/(www\.)?".preg_quote($this->cdn->originurl, "/")."/i", "//".$this->cdn->cdnurl, $matches[0]);
+					}
+				}
+			}
+			return $matches[0];
+		}
+
+		public function get_extension($url){
+			$url = str_replace(array("'",'"',")"), "", $url);
+			$file_name = preg_replace("/\?.*/", "", basename($url));
+			return $file_name ? substr(strrchr($file_name,'.'),1) : "";
 		}
 
 		public function minify($content){

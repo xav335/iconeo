@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SERVERNAME=/home/web/iconeo.fr
+SERVERNAME=/var/www/iconeo.fr
 
 chown -R www-data.ftpgroup $SERVERNAME
 chmod -R 555 $SERVERNAME

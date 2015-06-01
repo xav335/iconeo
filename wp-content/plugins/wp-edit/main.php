@@ -3,7 +3,7 @@
  * Plugin Name: WP Edit
  * Plugin URI: https://wpeditpro.com
  * Description: Ultimate WordPress Content Editing.
- * Version: 3.0.1
+ * Version: 3.1
  * Author: Josh Lobe
  * Author URI: https://wpeditpro.com
  * License: GPL2
@@ -35,7 +35,7 @@ class wp_edit_class {
 		'toolbar2' => 'formatselect underline alignjustify forecolor pastetext removeformat charmap outdent indent undo redo wp_help', 
 		'toolbar3' => '', 
 		'toolbar4' => '',
-		'tmce_container' => 'fontselect fontsizeselect styleselect backcolor media rtl ltr table anchor code emoticons inserttime wp_page preview print searchreplace visualblocks subscript superscript image_orig advlink acheck abbr columnShortcodes'
+		'tmce_container' => 'fontselect fontsizeselect styleselect backcolor media rtl ltr table anchor code emoticons inserttime wp_page preview print searchreplace visualblocks subscript superscript image_orig advlink acheck abbr columnShortcodes nonbreaking eqneditor'
 	);
 	public $global_options_global = array(
 		'jquery_theme' => 'smoothness',
@@ -63,7 +63,8 @@ class wp_edit_class {
 	);
 	public $global_options_editor = array(
 		'editor_add_pre_styles' => '0',
-		'editor_tinymce_px' => '0'
+		'default_editor_fontsize_type' => 'pt',
+		'default_editor_fontsize_values' => ''
 	);
 	public $global_options_extras = array(
 		'signoff_text' => 'Please enter text here...'
@@ -812,17 +813,23 @@ class wp_edit_class {
 															$tooltip['title'] = 'Image Map'; 
 															$tooltip['content'] = '<p>Create an image map from an image.</p><p>Allows multiple "hot spots" on a single image.  Each "hot spot" can link to a different url.</p>';
 														}
+														if($icon === 'columnShortcodes') { 
+															$class = 'dashicons dashicons-schedule';
+															$title = 'Column Shortcodes';
+															$tooltip['title'] = 'Column Shortcodes'; 
+															$tooltip['content'] = '<p>A tool for easily inserting column shortcode templates.</p>';
+														}
 														if($icon === 'nonbreaking') { 
 															$title = 'Nonbreaking Space';
 															$style='background-image:url('.WPEDIT_PLUGIN_URL.'plugins/nonbreaking/nonbreaking.png);width:20px;height:20px;'; 
 															$tooltip['title'] = 'Nonbreaking Space'; 
 															$tooltip['content'] = '<p>Insert a nonbreaking space; which will not be removed from the editor.</p>';
 														}
-														if($icon === 'columnShortcodes') { 
-															$class = 'dashicons dashicons-schedule';
-															$title = 'Column Shortcodes';
-															$tooltip['title'] = 'Column Shortcodes'; 
-															$tooltip['content'] = '<p>A tool for easily inserting column shortcode templates.</p>';
+														if($icon === 'eqneditor') { 
+															$title = 'CodeCogs Equation Editor';
+															$style='background-image:url('.WPEDIT_PLUGIN_URL.'plugins/eqneditor/img/eqneditor.png);width:20px;height:20px;'; 
+															$tooltip['title'] = 'CodeCogs Equation Editor'; 
+															$tooltip['content'] = '<p>Create complex math equations from a simple interface.</p>';
 														}
 														
 														// Process tooltips
@@ -1194,7 +1201,8 @@ class wp_edit_class {
                                 <?php
                                 $options_editor = get_option('wp_edit_editor');
                                 $editor_add_pre_styles = isset($options_editor['editor_add_pre_styles']) && $options_editor['editor_add_pre_styles'] === '1' ? 'checked="checked"' : '';
-                                $editor_tinymce_px = isset($options_editor['editor_tinymce_px']) && $options_editor['editor_tinymce_px'] === '1' ? 'checked="checked"' : '';
+                                $default_editor_fontsize_type = isset($options_editor['default_editor_fontsize_type']) ? $options_editor['default_editor_fontsize_type'] : 'pt';
+								$default_editor_fontsize_values = isset($options_editor['default_editor_fontsize_values']) ? $options_editor['default_editor_fontsize_values'] : '';
                                 ?>
                                 
                                 <table cellpadding="8">
@@ -1219,10 +1227,22 @@ class wp_edit_class {
                                 
                                 <table cellpadding="8">
                                 <tbody>
-                                <tr><td><?php _e('Change Font to "px"', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('Dropdown Editor Font-Size Type', 'wp_edit_langs'); ?></td>
                                     <td>
-                                    <input id="editor_tinymce_px" type="checkbox" value="1" name="editor_tinymce_px" <?php echo $editor_tinymce_px; ?> />
-                                    <label for="editor_tinymce_px"><?php _e('Switches the default font size in the dropdown list from "pt" to "px".', 'wp_edit_langs'); ?></label>
+                                    <input type="radio" name="default_editor_fontsize_type" value="px" <?php if($default_editor_fontsize_type === 'px') echo 'checked="checked"'; ?> /> <?php _e('px', 'wp_edit_langs'); ?><span style="margin-left:10px;"></span>
+                                    <input type="radio" name="default_editor_fontsize_type" value="pt" <?php if($default_editor_fontsize_type === 'pt') echo 'checked="checked"'; ?> /> <?php _e('pt', 'wp_edit_langs'); ?><span style="margin-left:10px;"></span>
+                                    <input type="radio" name="default_editor_fontsize_type" value="em" <?php if($default_editor_fontsize_type === 'em') echo 'checked="checked"'; ?> /> <?php _e('em', 'wp_edit_langs'); ?><span style="margin-left:10px;"></span>
+                                    <input type="radio" name="default_editor_fontsize_type" value="percent" <?php if($default_editor_fontsize_type === 'percent') echo 'checked="checked"'; ?> /> <?php _e('%', 'wp_edit_langs'); ?><br />
+                                    	
+                                    <?php _e('Select the editor font size type displayed in the "Font Size" button dropdown menu.', 'wp_edit_langs'); ?>
+                                    </td>
+                                </tr>
+                                <tr><td style="vertical-align:top;"><?php _e('Dropdown Editor Font-Size Type Values', 'wp_edit_langs'); ?></td>
+                                    <td>
+                                    <input type="text" name="default_editor_fontsize_values" value="<?php echo $default_editor_fontsize_values; ?>" /><br />
+                                    <?php _e('Define available font-size values for Font Size dropdown box.', 'wp_edit_langs'); ?><br />
+                                    <?php _e('Values should be space separated; and end with the chosen font size type (selected above).', 'wp_edit_langs'); ?><br />
+                                    <?php _e('For Example: If <strong>em</strong> is selected; possible values could be <strong>1em 1.1em 1.2em</strong> etc.', 'wp_edit_langs'); ?>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -1309,7 +1329,7 @@ class wp_edit_class {
                         <div class="postbox">
                             <div class="inside">
                                 
-                                <p style="margin-left:10px;"><?php _e('These options are stored in individual user meta; meaning each user can set these options independlently from one another.', 'wp_edit_langs'); ?></p>
+                                <p style="margin-left:10px;"><?php _e('These options are stored in individual user meta; meaning each user can set these options independently from one another.', 'wp_edit_langs'); ?></p>
                                 
                                 <table cellpadding="8">
                                 <tbody>
@@ -2003,7 +2023,8 @@ class wp_edit_class {
 			$options_editor = get_option('wp_edit_editor');
 			
 			$options_editor['editor_add_pre_styles'] = isset($_POST['editor_add_pre_styles']) ? '1' : '0';
-			$options_editor['editor_tinymce_px'] = isset($_POST['editor_tinymce_px']) ? '1' : '0';
+			$options_editor['default_editor_fontsize_type'] = isset($_POST['default_editor_fontsize_type']) ? $_POST['default_editor_fontsize_type'] : 'pt';
+			$options_editor['default_editor_fontsize_values'] = isset($_POST['default_editor_fontsize_values']) ? sanitize_text_field($_POST['default_editor_fontsize_values']) : '';
 			
 			update_option('wp_edit_editor', $options_editor);
 				
@@ -2286,21 +2307,33 @@ class wp_edit_class {
 	*/
 	public function wp_edit_tiny_mce_before_init($init) {
 		
-		// Init table ability
+		// Initialize table ability
 		$init['tools'] = 'inserttable';
 		
-		// Init editor font px or pt
+		// Get editor default fontsize type value
 		$opts_editor = get_option('wp_edit_editor');
-		$tinymce_px = (isset($opts_editor['editor_tinymce_px']) && $opts_editor['editor_tinymce_px'] === '1') ? '1' : '0';
-		if($tinymce_px === '1') {
+		$default_editor_fontsize_type = isset($opts_editor['default_editor_fontsize_type']) ? $opts_editor['default_editor_fontsize_type'] : 'pt';
+		
+		// Pass values to editor initialization
+		if($default_editor_fontsize_type === 'px') {
 			
-			$new_px = '6px 8px 9px 10px 11px 12px 13px 14px 15px 16px 18px 20px 22px 24px 28px 32px 48px 72px';
+			$new_px = isset($opts_editor['default_editor_fontsize_values']) && !empty($opts_editor['default_editor_fontsize_values']) ? $opts_editor['default_editor_fontsize_values'] : '6px 8px 9px 10px 11px 12px 13px 14px 15px 16px 18px 20px 22px 24px 28px 32px 48px 72px';
 			empty($init['fontsize_formats']) ? $init['fontsize_formats'] = $new_px : $init['fontsize_formats'] = $init['fontsize_formats'].' '.$new_px;
 		}
-		else {
+		else if($default_editor_fontsize_type === 'pt') {
 			
-			$new_pt = '6pt 8pt 10pt 12pt 14pt 16pt 18pt 20pt 22pt 24pt 26pt 28pt 30pt 32pt 34pt 36pt 48pt 72pt';
+			$new_pt = isset($opts_editor['default_editor_fontsize_values']) && !empty($opts_editor['default_editor_fontsize_values']) ? $opts_editor['default_editor_fontsize_values'] : '6pt 8pt 10pt 12pt 14pt 16pt 18pt 20pt 22pt 24pt 26pt 28pt 30pt 32pt 34pt 36pt 48pt 72pt';
 			empty($init['fontsize_formats']) ? $init['fontsize_formats'] = $new_pt : $init['fontsize_formats'] = $init['fontsize_formats'].' '.$new_pt;
+		}
+		else if($default_editor_fontsize_type === 'em') {
+			
+			$new_em = isset($opts_editor['default_editor_fontsize_values']) && !empty($opts_editor['default_editor_fontsize_values']) ? $opts_editor['default_editor_fontsize_values'] : '.8em 1em 1.2em 1.4em 1.6em 1.8em 2em';
+			empty($init['fontsize_formats']) ? $init['fontsize_formats'] = $new_em : $init['fontsize_formats'] = $init['fontsize_formats'].' '.$new_em;
+		}
+		else if($default_editor_fontsize_type === 'percent') {
+			
+			$new_percent = isset($opts_editor['default_editor_fontsize_values']) && !empty($opts_editor['default_editor_fontsize_values']) ? $opts_editor['default_editor_fontsize_values'] : '80% 90% 100% 110% 120%';
+			empty($init['fontsize_formats']) ? $init['fontsize_formats'] = $new_percent : $init['fontsize_formats'] = $init['fontsize_formats'].' '.$new_percent;
 		}
 		
 		/*
@@ -2404,6 +2437,12 @@ class wp_edit_class {
 		}
 		if(in_array('columnShortcodes', $final_options)) {
 			$plugins['columnShortcodes'] = plugins_url() . '/wp-edit/plugins/columnShortcodes/plugin.js';
+		}
+		if(in_array('nonbreaking', $final_options)) {
+			$plugins['nonbreaking'] = plugins_url() . '/wp-edit/plugins/nonbreaking/plugin.min.js';
+		}
+		if(in_array('eqneditor', $final_options)) {
+			$plugins['eqneditor'] = plugins_url() . '/wp-edit/plugins/eqneditor/plugin.min.js';
 		}
 		
 		//*** Tinymce filter if disable wpautop is true for the post ***//
@@ -2580,5 +2619,95 @@ Include functions for running predefined styles
 ****************************************************************
 */
 include 'includes/style_formats.php';
+
+
+/*
+****************************************************************
+Pointers Class
+****************************************************************	
+*/
+class wpe_admin_pointers {
+    
+    public function __construct() {
+        
+        add_action('admin_enqueue_scripts', array($this, 'custom_admin_pointers_header'));
+    }
+
+    public function custom_admin_pointers_header() {
+        
+       if ($this->custom_admin_pointers_check()) {
+           
+          add_action('admin_print_footer_scripts', array($this, 'custom_admin_pointers_footer'));
+
+          wp_enqueue_script('wp-pointer');
+          wp_enqueue_style('wp-pointer');
+       }
+    }
+
+    public function custom_admin_pointers_check() {
+        
+       $admin_pointers = $this->custom_admin_pointers();
+       foreach ( $admin_pointers as $pointer => $array ) {
+          if ( $array['active'] )
+             return true;
+       }
+    }
+
+    public function custom_admin_pointers_footer() {
+        
+       $admin_pointers = $this->custom_admin_pointers();
+       ?>
+        <script type="text/javascript">
+        /* <![CDATA[ */
+        ( function($) {
+           <?php
+           foreach ( $admin_pointers as $pointer => $array ) {
+              if ( $array['active'] ) {
+                 ?>
+                 $('<?php echo $array['anchor_id']; ?>').pointer({
+                    content: '<?php echo $array['content']; ?>',
+                    position: {
+                       edge: '<?php echo $array['edge']; ?>',
+                       align: '<?php echo $array['align']; ?>'
+                    },
+                    close: function() {
+                       $.post(ajaxurl, {
+                          pointer: '<?php echo $pointer; ?>',
+                          action: 'dismiss-wp-pointer'
+                       });
+                    }
+                 }).pointer('open');
+                 <?php
+              }
+           }
+           ?>
+        } )(jQuery);
+        /* ]]> */
+        </script>
+       <?php
+    }
+
+    public function custom_admin_pointers() {
+        
+       $dismissed = explode( ',', (string) get_user_meta( get_current_user_id(), 'dismissed_wp_pointers', true ) );
+       $version = '1_0'; // replace all periods in 1.0 with an underscore
+       $prefix = 'wpe_admin_pointers_' . $version . '_';
+
+       $new_pointer_content = '<h3>' . __( 'WP Edit Tip' ) . '</h3>';
+       $new_pointer_content .= '<p>' . __( 'If only one row of buttons is visible; try clicking the <a target="_blank" href="http://learn.wpeditpro.com/wordpress-tinymce-editor/#ipt_kb_toc_73_6">"Toolbar Toggle"</a> button to expand/collapse additional editor button rows.' ) . '</p>';
+
+       return array(
+          $prefix . 'toggle_toolbar' => array(
+             'content' => $new_pointer_content,
+             'anchor_id' => '#wp-content-editor-container',
+             'edge' => 'bottom',
+             'align' => 'top',
+             'active' => ( ! in_array( $prefix . 'toggle_toolbar', $dismissed ) )
+          )
+       );
+    }
+}
+//Initiate admin pointers
+$wpe_admin_pointers = new wpe_admin_pointers();
 
 ?>

@@ -1,8 +1,8 @@
 #!/bin/bash
 
-SERVERNAME=/home/web/iconeo.fr
+SERVERNAME=/var/www/iconeo.fr
 
-chown -R www-data.ftpgroup $SERVERNAME
+chown -R www-data.www-data $SERVERNAME
 chmod -R 755 $SERVERNAME
 chmod -R 755 $SERVERNAME/.htaccess
 chmod -R 777 $SERVERNAME/admin/FileUpload/server/php/files

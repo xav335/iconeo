@@ -1,4 +1,4 @@
-<?
+<?php
 	
 	function randomChar($val=12) {
 		$characts = 'abcdefghijklmnopqrstuvwxyz';

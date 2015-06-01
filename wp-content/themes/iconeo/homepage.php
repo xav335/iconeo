@@ -1,6 +1,6 @@
 <?php 
 require 'admin/classes/News.php';
-require 'admin/classes/utils.php';
+require_once 'admin/classes/utils.php';
 $news = new News();
 if (!empty($_GET)){
 	$result = $news->newsGet($_GET['id']);

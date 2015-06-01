@@ -2,33 +2,33 @@
 
 # Apache 2.2
 <IfModule !mod_authz_core.c>
-        Order Deny,Allow
-        Deny from all
+	Order Deny,Allow
+	Deny from all
 </IfModule>
 
 # Apache 2.4
 <IfModule mod_authz_core.c>
-        Require all denied
+	Require all denied
 </IfModule>
 
 # Akismet CSS and JS
 <FilesMatch "^(form|akismet)\.(css|js)$">
-        <IfModule !mod_authz_core.c>
-                Allow from all
-        </IfModule>
-
-        <IfModule mod_authz_core.c>
-                Require all granted
-        </IfModule>
+	<IfModule !mod_authz_core.c>
+		Allow from all
+	</IfModule>
+	
+	<IfModule mod_authz_core.c>
+		Require all granted
+	</IfModule>
 </FilesMatch>
 
 # Akismet images
 <FilesMatch "^(.+)\.(png|gif)$">
-        <IfModule !mod_authz_core.c>
-                Allow from all
-        </IfModule>
-
-        <IfModule mod_authz_core.c>
-                Require all granted
-        </IfModule>
+	<IfModule !mod_authz_core.c>
+		Allow from all
+	</IfModule>
+	
+	<IfModule mod_authz_core.c>
+		Require all granted
+	</IfModule>
 </FilesMatch>
