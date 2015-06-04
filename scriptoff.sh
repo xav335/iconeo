@@ -2,7 +2,7 @@
 
 SERVERNAME=/var/www/iconeo.fr
 
-chown -R www-data.ftpgroup $SERVERNAME
+chown -R www-data.www-data $SERVERNAME
 chmod -R 555 $SERVERNAME
 chmod -R 555 $SERVERNAME/.htaccess
 chmod -R 777 $SERVERNAME/admin/FileUpload/server/php/files

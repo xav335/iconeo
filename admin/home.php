@@ -25,7 +25,7 @@ if (!isset($_SESSION['accessGranted']) || !$_SESSION['accessGranted']) {
 	<div class="row">
 		<div class="col-md-10">
 			<h3>Statistiques</h3>
-			<iframe id="laframe" src="http://stats.iconeo.fr/awstats/awstats.pl?config=www.iconeo.fr&framename=mainright" style="width:720px;height:500px;" frameborder="1" ></iframe>
+			<iframe id="laframe" src="http://www.iconeo.fr/awstats/awstats.pl?config=www.iconeo.fr&framename=mainright" style="width:720px;height:500px;" frameborder="1" ></iframe>
 		</div>
 		
 	</div>	
