@@ -22,12 +22,13 @@ if (!empty($_GET)){
 				<iframe id="laframe" src="/admin/mailnewslettercore.php?id=<?php  echo $id ?>" style="width:720px;height:500px;" frameborder="1" ></iframe>
 			</div>
 			<div class="col-md-2">
-				<h4>Tester la news <br>(envoi limité à contact@iconeo.fr)</h4>
+				<h4>Tester la news <br>envoi limité à:</h4>
 				<form name="formulaire" class="form-horizontal" method="POST"  action="formprocess.php">
 					<input type="hidden" name="reference" value="newsletter">
 					<input type="hidden" name="action" id="action" value="envoi">
 					<input type="hidden" name="postaction" id="postaction" value="">
 					<input type="hidden" name="id" id="id" value="<?php echo $id ?>">
+					<input type="text" name="emailCusto" id="emailCusto" value="contact@iconeo.fr">
 		            <button class="btn btn-warning" type="submit" onclick="return validation('preview')"> Tester la newsletter </button>
 		            <br><br><br><br><br><br><br>
 		            <h4>Envoi Massif de la newsletter à tous les contacts :</h4>

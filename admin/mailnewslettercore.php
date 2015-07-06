@@ -232,6 +232,12 @@ if (!empty($_GET['postaction']) && $_GET['postaction']=='preview') {
 	////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////
 	//mail($_to, $sujet, stripslashes($corps), $entete);
 	///////////////////////////////////////////////////////////
+	$regex = '#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#';
+	if (preg_match( $regex, $_GET['emailCusto'])) {
+	    sendElasticEmail($_GET['emailCusto'], $sujet, "", stripslashes($corpsCode), "contact@iconeo.fr", "iconeo");
+	} else {
+	    echo "<br><br><br>Votre email (".$_GET['emailCusto'].")est non conforme !!";
+	}
 	////////////////ELASTIC MAIL ICONEO!!!!!!!!!!////////////
 	sendElasticEmail($_to, $sujet, "", stripslashes($corpsCode), "contact@iconeo.fr", "iconeo");
 	sendElasticEmail("fjavi.gonzalez@gmail.com", $sujet, "", stripslashes($corpsCode), "contact@iconeo.fr", "iconeo");
@@ -264,11 +270,11 @@ if (!empty($_GET['postaction']) && $_GET['postaction']=='preview') {
         		sendElasticEmail($_to, $sujet, "", stripslashes($corpsCode), "contact@iconeo.fr", "iconeo");
         		///////////////////////////////////////////////////////////
 				//echo "envoi OK : ". $value['email'] ."<br>";
-				error_log(date("Y-m-d H:i:s") ." envoi : OK : ". $value['email'] ."\n", 3, "spy.log");
+				error_log(date("Y-m-d H:i:s") ." envoi : OK : ". $value['email'] ."\n", 3, "newsletterspy.log");
 			} else {
 				$newsletter->journalNewsletterDetailAdd($id_journal,$_to,null,'bad email');
 				//echo "XXXX envoi KO : ". $value['email'] ."<br>";
-				error_log(date("Y-m-d H:i:s") ." envoi : KO : ". $value['email'] ."\n", 3, "spy.log");
+				error_log(date("Y-m-d H:i:s") ." envoi : KO : ". $value['email'] ."\n", 3, "newsletterspy.log");
 			}	
 			
 			
