@@ -35,6 +35,15 @@ ee.lang["fr"].teasertext = "<h1>Email Marketing</h1>";
 ee.init("mycontainer", true);
 ee.api.path = "https://api.elasticemail.com";
 </script>
+
+<script>
+			
+			$(document).ready(function() {
+				$('#eusername').val("jgonzalez@iconeo.fr");
+				$('#epassword').val("iconeo33");					
+			});
+		</script>
+
 		
 </body>
 </html>
