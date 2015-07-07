@@ -34,6 +34,7 @@
 					            	<li><a href="newsletter-list.php">Modif / Suppr / Envoi</a></li>
 					            	<li class="divider"></li>
 					            	<li><a href="journalnewsletter-list.php">Journal des envoi</a></li>
+					            	<li><a href="elastic.php">ElasticMail</a></li>
 					          	</ul>
 					        </li>
 	                    </ul>
