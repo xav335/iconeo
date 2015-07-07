@@ -29,8 +29,8 @@ if (!empty($_GET)){ //Modif
 	{
 		$res = "";
 	
-		$data = "username=".urlencode("691f06a3-f0d1-41b6-87c1-b8a769c5c1f1");
-		$data .= "&api_key=".urlencode("691f06a3-f0d1-41b6-87c1-b8a769c5c1f1");
+		$data = "username=".urlencode("eb203c8b-6939-4147-913c-9bf6ba902159");
+		$data .= "&api_key=".urlencode("eb203c8b-6939-4147-913c-9bf6ba902159");
 		$data .= "&from=".urlencode($from);
 		$data .= "&from_name=".urlencode($fromName);
 		$data .= "&to=".urlencode($to);
