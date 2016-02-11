@@ -29,6 +29,13 @@
         </tr>
         <tr>
         	<td>
+    		<label id="advlink_title_label" for="advlink_title" title="Enter a title for this link.">Title</label>
+            </td><td>
+            <input type="text" id="advlink_title" />
+            </td>
+        </tr>
+        <tr>
+        	<td>
     		<label id="advlink_id_label" for="advlink_id" title="Enter an ID for this link.">ID</label>
             </td><td>
             <input type="text" id="advlink_id" />

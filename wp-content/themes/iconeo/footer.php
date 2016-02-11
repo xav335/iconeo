@@ -1,4 +1,4 @@
-<?php
+<?php /* <!-- Begin WordPress Cache (DO NOT MODIFY) --> *//* <!-- End WordPress Cache --> */ ?><?php
 /**
  * The template for displaying the footer
  *
@@ -73,7 +73,7 @@
 	</section> 
 	<section class="large-4 medium-4 small-12">
 		<p class="coordonnees">
-			<span class="bleu">06 95 93 48 00 - contact@iconeo.fr</span><br />
+			<span class="bleu">contact@iconeo.fr</span><br />
 				36 route de Bordeaux - 33360 Latresne
 		</p>
 	</section> 

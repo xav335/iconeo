@@ -3,10 +3,12 @@
  * Plugin Name: WP Edit
  * Plugin URI: https://wpeditpro.com
  * Description: Ultimate WordPress Content Editing.
- * Version: 3.1
+ * Version: 3.7
  * Author: Josh Lobe
  * Author URI: https://wpeditpro.com
  * License: GPL2
+ * Text Domain: wp-edit
+ * Domain Path: /langs
 */
 
 /*
@@ -48,8 +50,7 @@ class wp_edit_class {
 		'shortcodes_in_excerpts' => '0',
 		'post_excerpt_editor' => '0',
 		'page_excerpt_editor' => '0',
-		'profile_editor' => '0',
-		'php_widgets' => '0'
+		'profile_editor' => '0'
 	);
 	public $global_options_posts = array(
 		'post_title_field' => 'Enter title here',
@@ -83,6 +84,9 @@ class wp_edit_class {
 		'future_highlight' => '#FFFFFF',
 		'private_highlight' => '#FFFFFF'
 	);
+	
+	// Prepare global settings array (for future use)
+	public $wpedit_options_array = array();
 	
 	/*
 	****************************************************************
@@ -164,7 +168,7 @@ class wp_edit_class {
 	*/
 	public function wp_edit_load_translation() {
 		
-		load_plugin_textdomain( 'wp_edit_langs', false, dirname( plugin_basename( __FILE__ ) ) . '/langs/' );
+		load_plugin_textdomain( 'wp-edit' );
 	}
 	
 	/*
@@ -174,8 +178,8 @@ class wp_edit_class {
 	*/
 	public function plugin_settings_link($links) {
 		
-		$settings_link = '<a href="admin.php?page=wp_edit_options">'.__('Settings', 'wp_edit_langs').'</a>';
-		$settings_link2 = '<a target="_blank" href="https://wpeditpro.com">'.__('Go Pro!', 'wp_edit_langs').'</a>';
+		$settings_link = '<a href="admin.php?page=wp_edit_options">'.__('Settings', 'wp-edit').'</a>';
+		$settings_link2 = '<a target="_blank" href="https://wpeditpro.com">'.__('Go Pro!', 'wp-edit').'</a>';
   		array_push( $links, $settings_link, $settings_link2 );
   		return $links;
 	}
@@ -312,7 +316,7 @@ class wp_edit_class {
 	*/
 	public function add_page() {
 		
-		$wp_edit_page = add_menu_page(__('WP Edit', 'wp_edit_langs'), __('WP Edit', 'wp_edit_langs'), 'manage_options', 'wp_edit_options', array($this, 'options_do_page'));
+		$wp_edit_page = add_menu_page(__('WP Edit', 'wp-edit'), __('WP Edit', 'wp-edit'), 'manage_options', 'wp_edit_options', array($this, 'options_do_page'));
 		add_action('admin_print_scripts-'.$wp_edit_page, array($this, 'admin_scripts'));
 		add_action('admin_print_styles-'.$wp_edit_page, array($this, 'admin_styles'));
 		add_action('load-'.$wp_edit_page, array($this, 'load_page'));
@@ -341,7 +345,7 @@ class wp_edit_class {
 		wp_enqueue_style( 'wp-color-picker' );
 		wp_enqueue_style('dashicons');
 		
-		?><link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/<?php echo $select_theme; ?>/jquery-ui.css"><?php
+		?><link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/<?php echo $select_theme; ?>/jquery-ui.css"><?php
 		?><link rel="stylesheet" href="<?php echo includes_url().'js/tinymce/skins/lightgray/skin.min.css' ?>"><?php
 		
 		wp_register_style('wp_edit_css', plugin_dir_url( __FILE__ ) . ('css/admin.css'), array());  // css for admin panel presentation
@@ -360,7 +364,7 @@ class wp_edit_class {
         <div class="wrap">
         
         	<div id="icon-themes" class="icon32"></div>
-        	<h2><?php _e('WP Edit Settings', 'wp_edit_langs'); ?></h2>
+        	<h2><?php _e('WP Edit Settings', 'wp-edit'); ?></h2>
             
             <?php 
 			settings_errors(); 
@@ -368,15 +372,15 @@ class wp_edit_class {
 			?>
             
             <h2 class="nav-tab-wrapper">  
-                <a href="?page=wp_edit_options&tab=buttons" class="nav-tab <?php echo $active_tab == 'buttons' ? 'nav-tab-active' : ''; ?>"><?php _e('Buttons', 'wp_edit_langs'); ?></a>
-                <a href="?page=wp_edit_options&tab=global" class="nav-tab <?php echo $active_tab == 'global' ? 'nav-tab-active' : ''; ?>"><?php _e('Global', 'wp_edit_langs'); ?></a>
-                <a href="?page=wp_edit_options&tab=general" class="nav-tab <?php echo $active_tab == 'general' ? 'nav-tab-active' : ''; ?>"><?php _e('General', 'wp_edit_langs'); ?></a>
-                <a href="?page=wp_edit_options&tab=posts" class="nav-tab <?php echo $active_tab == 'posts' ? 'nav-tab-active' : ''; ?>"><?php _e('Posts/Pages', 'wp_edit_langs'); ?></a>
-                <a href="?page=wp_edit_options&tab=editor" class="nav-tab <?php echo $active_tab == 'editor' ? 'nav-tab-active' : ''; ?>"><?php _e('Editor', 'wp_edit_langs'); ?></a>
-                <a href="?page=wp_edit_options&tab=extras" class="nav-tab <?php echo $active_tab == 'extras' ? 'nav-tab-active' : ''; ?>"><?php _e('Extras', 'wp_edit_langs'); ?></a>
-                <a href="?page=wp_edit_options&tab=user_specific" class="nav-tab <?php echo $active_tab == 'user_specific' ? 'nav-tab-active' : ''; ?>"><?php _e('User Specific', 'wp_edit_langs'); ?></a>
-                <a href="?page=wp_edit_options&tab=database" class="nav-tab <?php echo $active_tab == 'database' ? 'nav-tab-active' : ''; ?>"><?php _e('Database', 'wp_edit_langs'); ?></a>
-        		<a href="?page=wp_edit_options&tab=about" class="nav-tab <?php echo $active_tab == 'about' ? 'nav-tab-active' : ''; ?>"><?php _e('About', 'wp_edit_langs'); ?></a>
+                <a href="?page=wp_edit_options&tab=buttons" class="nav-tab <?php echo $active_tab == 'buttons' ? 'nav-tab-active' : ''; ?>"><?php _e('Buttons', 'wp-edit'); ?></a>
+                <a href="?page=wp_edit_options&tab=global" class="nav-tab <?php echo $active_tab == 'global' ? 'nav-tab-active' : ''; ?>"><?php _e('Global', 'wp-edit'); ?></a>
+                <a href="?page=wp_edit_options&tab=general" class="nav-tab <?php echo $active_tab == 'general' ? 'nav-tab-active' : ''; ?>"><?php _e('General', 'wp-edit'); ?></a>
+                <a href="?page=wp_edit_options&tab=posts" class="nav-tab <?php echo $active_tab == 'posts' ? 'nav-tab-active' : ''; ?>"><?php _e('Posts/Pages', 'wp-edit'); ?></a>
+                <a href="?page=wp_edit_options&tab=editor" class="nav-tab <?php echo $active_tab == 'editor' ? 'nav-tab-active' : ''; ?>"><?php _e('Editor', 'wp-edit'); ?></a>
+                <a href="?page=wp_edit_options&tab=extras" class="nav-tab <?php echo $active_tab == 'extras' ? 'nav-tab-active' : ''; ?>"><?php _e('Extras', 'wp-edit'); ?></a>
+                <a href="?page=wp_edit_options&tab=user_specific" class="nav-tab <?php echo $active_tab == 'user_specific' ? 'nav-tab-active' : ''; ?>"><?php _e('User Specific', 'wp-edit'); ?></a>
+                <a href="?page=wp_edit_options&tab=database" class="nav-tab <?php echo $active_tab == 'database' ? 'nav-tab-active' : ''; ?>"><?php _e('Database', 'wp-edit'); ?></a>
+        		<a href="?page=wp_edit_options&tab=about" class="nav-tab <?php echo $active_tab == 'about' ? 'nav-tab-active' : ''; ?>"><?php _e('About', 'wp-edit'); ?></a>
             </h2>  
             
 			<?php 
@@ -394,7 +398,7 @@ class wp_edit_class {
 					echo '<div id="main_buttons_container" class="main_buttons_container_float">';
 					
 						echo '<h3>';
-							_e('WP Edit Buttons', 'wp_edit_langs');
+							_e('WP Edit Buttons', 'wp-edit');
 						echo '</h3>';
 						?>
 						
@@ -402,7 +406,7 @@ class wp_edit_class {
 							<div class="postbox">
 								
 								<div class="inside wpep_act_button_area" id="inside_button_hover">
-									<h3 style="margin-left:-13px;"><?php _e('Button Rows', 'wp_edit_langs'); ?></h3>
+									<h3 style="margin-left:-13px;"><?php _e('Button Rows', 'wp-edit'); ?></h3>
 							
 									<?php
 									$no_tooltips = false;
@@ -417,7 +421,7 @@ class wp_edit_class {
 									foreach ($options_buttons as $toolbar => $icons) {
 										
 										if($toolbar === 'tmce_container') {
-											?><h3 style="margin-left:-13px;"><?php _e('Button Container', 'wp_edit_langs'); ?></h3><?php
+											?><h3 style="margin-left:-13px;"><?php _e('Button Container', 'wp-edit'); ?></h3><?php
 										}
 										
 										// Disregard rows 3 and 4
@@ -860,11 +864,11 @@ class wp_edit_class {
 						echo '<input type="hidden" class="get_sorted_array" name="get_sorted_array_results" value="" />';
 							
 						// Submit save buttons
-						echo '<input type="submit" value="'.__('Save Buttons', 'wp_edit_langs').'" name="wpep_save_buttons" class="button-primary" />';
+						echo '<input type="submit" value="'.__('Save Buttons', 'wp-edit').'" name="wpep_save_buttons" class="button-primary" />';
 						
 						// Submit reset buttons
 						echo '<span style="margin-left:10px;"></span>';
-						echo '<input type="button" value="'.__('Reset Buttons', 'wp_edit_langs').'" class="button-primary reset_dd_buttons" />';
+						echo '<input type="button" value="'.__('Reset Buttons', 'wp-edit').'" class="button-primary reset_dd_buttons" />';
 						echo '<input type="submit" name="wpep_reset_buttons" class="button-primary wpep_reset_buttons" style="display:none;" />';
 						
 					echo '</form>';
@@ -873,7 +877,7 @@ class wp_edit_class {
 				echo '<div class="main_container">';
 				
 					echo '<h3>';
-						_e('Buttons Tips', 'wp_edit_langs');
+						_e('Buttons Tips', 'wp-edit');
 					echo '</h3>';
 					?>
 					
@@ -884,24 +888,24 @@ class wp_edit_class {
 								<div id="button_help_tabs">
 								
 									<ul>
-									<li><a href="#dragdrop"><?php _e('Drag/Drop', 'wp_edit_langs'); ?></a></li>
-									<li><a href="#multiselect"><?php _e('Multi Select', 'wp_edit_langs'); ?></a></li>
-									<li><a href="#reset"><?php _e('Reset', 'wp_edit_langs'); ?></a></li>
+									<li><a href="#dragdrop"><?php _e('Drag/Drop', 'wp-edit'); ?></a></li>
+									<li><a href="#multiselect"><?php _e('Multi Select', 'wp-edit'); ?></a></li>
+									<li><a href="#reset"><?php _e('Reset', 'wp-edit'); ?></a></li>
 									</ul>
 									
 									<div id="dragdrop">
-										<p><?php _e('Buttons can be dragged and dropped into desired button rows.', 'wp_edit_langs'); ?></p>
-										<p><?php _e('The "Button Container" is a placeholder for buttons not used in the editor; these buttons will not appear when editing a post or page.', 'wp_edit_langs'); ?></p>
+										<p><?php _e('Buttons can be dragged and dropped into desired button rows.', 'wp-edit'); ?></p>
+										<p><?php _e('The "Button Container" is a placeholder for buttons not used in the editor; these buttons will not appear when editing a post or page.', 'wp-edit'); ?></p>
 									</div>
 									<div id="multiselect">
-										<p><?php _e('Buttons may also be selected in quantities; or multiple selections, before being moved.', 'wp_edit_langs'); ?></p>
-										<p><?php _e('Clicking a button will set it as "active"; a yellowish highlight color. Multiple buttons can be clicked and set as "active".', 'wp_edit_langs'); ?></p>
-										<p><?php _e('Clicking and dragging one of the "active" buttons will move the entire "active" selection.', 'wp_edit_langs'); ?></p>
-										<p><?php _e('Clicking outside the button area will remove all currently active button selections.', 'wp_edit_langs'); ?></p>
+										<p><?php _e('Buttons may also be selected in quantities; or multiple selections, before being moved.', 'wp-edit'); ?></p>
+										<p><?php _e('Clicking a button will set it as "active"; a yellowish highlight color. Multiple buttons can be clicked and set as "active".', 'wp-edit'); ?></p>
+										<p><?php _e('Clicking and dragging one of the "active" buttons will move the entire "active" selection.', 'wp-edit'); ?></p>
+										<p><?php _e('Clicking outside the button area will remove all currently active button selections.', 'wp-edit'); ?></p>
 									</div>
 									<div id="reset">
-										<p><?php _e('Clicking "Reset Buttons" will restore the editor buttons to their original default values.', 'wp_edit_langs'); ?></p>
-										<p><?php _e('All button rows will get the default WordPress button arrangements; and the extra buttons will be added to the "Button Container".', 'wp_edit_langs'); ?></p>
+										<p><?php _e('Clicking "Reset Buttons" will restore the editor buttons to their original default values.', 'wp-edit'); ?></p>
+										<p><?php _e('All button rows will get the default WordPress button arrangements; and the extra buttons will be added to the "Button Container".', 'wp-edit'); ?></p>
 									</div>
 								</div>
 							</div>
@@ -920,7 +924,7 @@ class wp_edit_class {
 				echo '<div class="main_container">';
 				
 					?>
-                    <h3><?php _e('Global Options', 'wp_edit_langs'); ?></h3>
+                    <h3><?php _e('Global Options', 'wp-edit'); ?></h3>
                     <form method="post" action="">
                     <div class="metabox-holder"> 
 						<div class="postbox">
@@ -935,7 +939,7 @@ class wp_edit_class {
                                 
                                 <table cellpadding="10">
                                 <tbody>
-                                <tr><td><?php _e('jQuery Theme', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('jQuery Theme', 'wp-edit'); ?></td>
                                     <td>
                                     
                                     <select id="jquery_theme" name="jquery_theme"/>
@@ -948,19 +952,19 @@ class wp_edit_class {
                                     }
                                     ?>
                                     </select>
-                                    <label for="jquery_theme"> <?php _e('Selects the jQuery theme for plugin alerts and notices.', 'wp_edit_langs'); ?></label>
+                                    <label for="jquery_theme"> <?php _e('Selects the jQuery theme for plugin alerts and notices.', 'wp-edit'); ?></label>
                                     </td>
                                 </tr>
-                                <tr><td><?php _e('Disable Admin Links', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('Disable Admin Links', 'wp-edit'); ?></td>
                                     <td>
                                     <input id="disable_admin_links" type="checkbox" value="1" name="disable_admin_links" <?php echo $disable_admin_links; ?> />
-                                    <label for="disable_admin_links"><?php _e('Disables the WP Edit top admin bar links.', 'wp_edit_langs'); ?></label>
+                                    <label for="disable_admin_links"><?php _e('Disables the WP Edit top admin bar links.', 'wp-edit'); ?></label>
                                     </td>
                                 </tr>
-                                <tr><td><?php _e('Disable Fancy Tooltips', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('Disable Fancy Tooltips', 'wp-edit'); ?></td>
                                     <td>
                                     <input id="disable_fancy_tooltips" type="checkbox" value="1" name="disable_fancy_tooltips" <?php echo $disable_fancy_tooltips; ?> />
-                                    <label for="disable_fancy_tooltips"><?php _e('Disables the fancy tooltips used on button hover.', 'wp_edit_langs'); ?></label>
+                                    <label for="disable_fancy_tooltips"><?php _e('Disables the fancy tooltips used on button hover.', 'wp-edit'); ?></label>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -968,7 +972,7 @@ class wp_edit_class {
                             </div>
                         </div>
                     </div>
-					<input type="submit" value="<?php _e('Save Global Options', 'wp_edit_langs'); ?>" class="button button-primary" id="submit_global" name="submit_global">
+					<input type="submit" value="<?php _e('Save Global Options', 'wp-edit'); ?>" class="button button-primary" id="submit_global" name="submit_global">
 					</form>
 					<?php
 				echo '</div>';
@@ -983,7 +987,7 @@ class wp_edit_class {
 				echo '<div class="main_container">';
 				
 					?>
-                    <h3><?php _e('General Options', 'wp_edit_langs'); ?></h3>
+                    <h3><?php _e('General Options', 'wp-edit'); ?></h3>
                     <form method="post" action="">
                     <div class="metabox-holder"> 
 						<div class="postbox">
@@ -997,51 +1001,44 @@ class wp_edit_class {
                                 $post_excerpt_editor = isset($options_general['post_excerpt_editor']) && $options_general['post_excerpt_editor'] === '1' ? 'checked="checked"' : '';
                                 $page_excerpt_editor = isset($options_general['page_excerpt_editor']) && $options_general['page_excerpt_editor'] === '1' ? 'checked="checked"' : '';
                                 $profile_editor = isset($options_general['profile_editor']) && $options_general['profile_editor'] === '1' ? 'checked="checked"' : '';
-                                $php_widgets = isset($options_general['php_widgets']) && $options_general['php_widgets'] === '1' ? 'checked="checked"' : '';
                                 ?>
                                 
                                 <table cellpadding="8">
                                 <tbody>
-                                <tr><td><?php _e('Linebreak Shortcode', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('Linebreak Shortcode', 'wp-edit'); ?></td>
                                     <td>
                                     <input id="linebreak_shortcode" type="checkbox" value="1" name="linebreak_shortcode" <?php echo $linebreak_shortcode; ?> />
-                                    <label for="linebreak_shortcode"><?php _e('Use the [break] shortcode to insert linebreaks in the editor.', 'wp_edit_langs'); ?></label>
+                                    <label for="linebreak_shortcode"><?php _e('Use the [break] shortcode to insert linebreaks in the editor.', 'wp-edit'); ?></label>
                                     </td>
                                 </tr>
-                                <tr><td><?php _e('Shortcodes in Widgets', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('Shortcodes in Widgets', 'wp-edit'); ?></td>
                                     <td>
                                     <input id="shortcodes_in_widgets" type="checkbox" value="1" name="shortcodes_in_widgets" <?php echo $shortcodes_in_widgets; ?> />
-                                    <label for="shortcodes_in_widgets"><?php _e('Use shortcodes in widget areas.', 'wp_edit_langs'); ?></label>
+                                    <label for="shortcodes_in_widgets"><?php _e('Use shortcodes in widget areas.', 'wp-edit'); ?></label>
                                     </td>
                                 </tr>
-                                <tr><td><?php _e('Shortcodes in Excerpts', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('Shortcodes in Excerpts', 'wp-edit'); ?></td>
                                     <td>
                                     <input id="shortcodes_in_excerpts" type="checkbox" value="1" name="shortcodes_in_excerpts" <?php echo $shortcodes_in_excerpts; ?> />
-                                    <label for="shortcodes_in_excerpts"><?php _e('Use shortcodes in excerpt areas.', 'wp_edit_langs'); ?></label>
+                                    <label for="shortcodes_in_excerpts"><?php _e('Use shortcodes in excerpt areas.', 'wp-edit'); ?></label>
                                     </td>
                                 </tr>
-                                <tr><td><?php _e('WP Edit Post Excerpt', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('WP Edit Post Excerpt', 'wp-edit'); ?></td>
                                     <td>
                                     <input id="post_excerpt_editor" type="checkbox" value="1" name="post_excerpt_editor" <?php echo $post_excerpt_editor; ?> />
-                                    <label for="post_excerpt_editor"><?php _e('Add the WP Edit editor to the Post Excerpt area.', 'wp_edit_langs'); ?></label>
+                                    <label for="post_excerpt_editor"><?php _e('Add the WP Edit editor to the Post Excerpt area.', 'wp-edit'); ?></label>
                                     </td>
                                 </tr>
-                                <tr><td><?php _e('WP Edit Page Excerpt', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('WP Edit Page Excerpt', 'wp-edit'); ?></td>
                                     <td>
                                     <input id="page_excerpt_editor" type="checkbox" value="1" name="page_excerpt_editor" <?php echo $page_excerpt_editor; ?> />
-                                    <label for="page_excerpt_editor"><?php _e('Add the WP Edit editor to the Page Excerpt area.', 'wp_edit_langs'); ?></label>
+                                    <label for="page_excerpt_editor"><?php _e('Add the WP Edit editor to the Page Excerpt area.', 'wp-edit'); ?></label>
                                     </td>
                                 </tr>
-                                <tr><td><?php _e('Profile Editor', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('Profile Editor', 'wp-edit'); ?></td>
                                     <td class="jwl_user_cell">
                                         <input id="profile_editor" type="checkbox" value="1" name="profile_editor" <?php echo $profile_editor; ?> />
-                                        <label for="profile_editor"><?php _e('Use modified editor in profile biography field.', 'wp_edit_langs'); ?></label>
-                                    </td>
-                                </tr>
-                                <tr><td><?php _e('PHP Widgets', 'wp_edit_langs'); ?></td>
-                                    <td>
-                                    <input id="php_widgets" type="checkbox" value="1" name="php_widgets" <?php echo $php_widgets; ?> />
-                                    <label for="php_widgets"><?php _e('Adds a new widget for PHP code.', 'wp_edit_langs'); ?></label>
+                                        <label for="profile_editor"><?php _e('Use modified editor in profile biography field.', 'wp-edit'); ?></label>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -1050,7 +1047,7 @@ class wp_edit_class {
                         </div>
                     </div>
                             
-					<input type="submit" value="<?php _e('Save General Options', 'wp_edit_langs'); ?>" class="button button-primary" id="submit_general" name="submit_general">
+					<input type="submit" value="<?php _e('Save General Options', 'wp-edit'); ?>" class="button button-primary" id="submit_general" name="submit_general">
 					</form>
 					<?php
 				echo '</div>';
@@ -1077,29 +1074,29 @@ class wp_edit_class {
 				echo '<div class="main_container">';
 				
 					?>
-                    <h3><?php _e('Posts/pages Options', 'wp_edit_langs'); ?></h3>
+                    <h3><?php _e('Posts/pages Options', 'wp-edit'); ?></h3>
                     <form method="post" action="">
                     <div class="metabox-holder"> 
 						<div class="postbox">
 							<div class="inside">
                                 <table cellpadding="8">
                                 <tbody>
-                                <tr><td><?php _e('Post/Page Default Title', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('Post/Page Default Title', 'wp-edit'); ?></td>
                                     <td>
                                     <input type="text" name="post_title_field" value="<?php echo $post_title_field ?>" />
-                                    <label for="post_title_field"><?php _e('Change the default "add new" post/page title field.', 'wp_edit_langs'); ?></label>
+                                    <label for="post_title_field"><?php _e('Change the default "add new" post/page title field.', 'wp-edit'); ?></label>
                                     </td>
                                 </tr>
-                                <tr><td><?php _e('Column Shortcodes', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('Column Shortcodes', 'wp-edit'); ?></td>
                                     <td>
                                     <input id="column_shortcodes" type="checkbox" value="1" name="column_shortcodes" <?php echo $column_shortcodes; ?> />
-                                    <label for="column_shortcodes"><?php _e('Enable the column shortcodes functionality.', 'wp_edit_langs'); ?></label>
+                                    <label for="column_shortcodes"><?php _e('Enable the column shortcodes functionality.', 'wp-edit'); ?></label>
                                     </td>
                                 </tr>
-                                <tr><td><?php _e('Disable wpautop()', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('Disable wpautop()', 'wp-edit'); ?></td>
                                     <td>
                                     <input id="disable_wpautop" type="checkbox" value="1" name="disable_wpautop" <?php echo $disable_wpautop; ?> />
-                                    <label for="disable_wpautop"><?php _e('Disable the filter responsible for removing p and br tags.', 'wp_edit_langs'); ?></label>
+                                    <label for="disable_wpautop"><?php _e('Disable the filter responsible for removing p and br tags.', 'wp-edit'); ?></label>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -1108,31 +1105,31 @@ class wp_edit_class {
                         </div>
                     </div>
 					
-                    <h3><?php _e('Page Revisions', 'wp_edit_langs'); ?></h3>
+                    <h3><?php _e('Page Revisions', 'wp-edit'); ?></h3>
                     <div class="metabox-holder"> 
 						<div class="postbox">
 							<div class="inside">
                                 <table cellpadding="8">
                                 <tbody>
-                                <tr><td><?php _e('Max Post Revisions', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('Max Post Revisions', 'wp-edit'); ?></td>
                                     <td>
                                     <input type="text" name="max_post_revisions" value="<?php echo $max_post_revisions ?>" />
-                                    <label for="max_post_revisions"><?php _e('Set max number of Post Revisions to store in database. (empty = unlimited)', 'wp_edit_langs'); ?></label>
+                                    <label for="max_post_revisions"><?php _e('Set max number of Post Revisions to store in database. (empty = unlimited)', 'wp-edit'); ?></label>
                                     </td>
                                 </tr>
-                                <tr><td><?php _e('Max Page Revisions', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('Max Page Revisions', 'wp-edit'); ?></td>
                                     <td>
                                     <input type="text" name="max_page_revisions" value="<?php echo $max_page_revisions ?>" />
-                                    <label for="max_page_revisions"><?php _e('Set max number of Page Revisions to store in database. (empty = unlimited)', 'wp_edit_langs'); ?></label>
+                                    <label for="max_page_revisions"><?php _e('Set max number of Page Revisions to store in database. (empty = unlimited)', 'wp-edit'); ?></label>
                                     </td>
                                 </tr>
-                                <tr><td><?php _e('Delete Revisions', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('Delete Revisions', 'wp-edit'); ?></td>
                                     <td>
                                     <input id="delete_revisions" type="checkbox" value="1" name="delete_revisions" />
-                                    <label for="delete_revisions"><?php _e('Delete all database revisions.', 'wp_edit_langs'); ?></label>
+                                    <label for="delete_revisions"><?php _e('Delete all database revisions.', 'wp-edit'); ?></label>
                                     </td>
                                 </tr>
-                                <tr><td><?php _e('Revisions DB Size', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('Revisions DB Size', 'wp-edit'); ?></td>
                                     <td>
                                         <?php
                                         global $wpdb;
@@ -1141,7 +1138,7 @@ class wp_edit_class {
                                         foreach ($query as $row) {
                                             $lengths += strlen($row['post_content']);
                                         }
-                                        _e('Current size of revisions stored in database:', 'wp_edit_langs');
+                                        _e('Current size of revisions stored in database:', 'wp-edit');
                                         echo ' <strong>'.number_format($lengths/(1024*1024),3).' mb</strong>';
                                         ?>
                                     </td>
@@ -1152,22 +1149,22 @@ class wp_edit_class {
                         </div>
                     </div>
 					
-                    <h3><?php _e('Hide Posts and Pages', 'wp_edit_langs'); ?></h3>
+                    <h3><?php _e('Hide Posts and Pages', 'wp-edit'); ?></h3>
                     <div class="metabox-holder"> 
 						<div class="postbox">
 							<div class="inside">
                                 <table cellpadding="8">
                                 <tbody>
-                                <tr><td><?php _e('Hide Admin Posts', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('Hide Admin Posts', 'wp-edit'); ?></td>
                                     <td>
                                     <input type="text" name="hide_admin_posts" value="<?php echo $hide_admin_posts ?>" />
-                                    <label for="hide_admin_posts"><?php _e('Hide selected posts from admin view. ID comma separated (1,5,14,256)', 'wp_edit_langs'); ?></label>
+                                    <label for="hide_admin_posts"><?php _e('Hide selected posts from admin view. ID comma separated (1,5,14,256)', 'wp-edit'); ?></label>
                                     </td>
                                 </tr>
-                                <tr><td><?php _e('Hide Admin Pages', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('Hide Admin Pages', 'wp-edit'); ?></td>
                                     <td>
                                     <input type="text" name="hide_admin_pages" value="<?php echo $hide_admin_pages ?>" />
-                                    <label for="hide_admin_pages"><?php _e('Hide selected pages from admin view. ID comma separated (1,5,14,256)', 'wp_edit_langs'); ?></label>
+                                    <label for="hide_admin_pages"><?php _e('Hide selected pages from admin view. ID comma separated (1,5,14,256)', 'wp-edit'); ?></label>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -1175,7 +1172,7 @@ class wp_edit_class {
                             </div>
                         </div>
                     </div>
-                    <input type="submit" value="<?php _e('Save Posts/Pages Options', 'wp_edit_langs'); ?>" class="button button-primary" id="submit_posts" name="submit_posts">
+                    <input type="submit" value="<?php _e('Save Posts/Pages Options', 'wp-edit'); ?>" class="button button-primary" id="submit_posts" name="submit_posts">
 					</form>
 					<?php
 				echo '</div>';
@@ -1191,12 +1188,12 @@ class wp_edit_class {
                 <form method="post" action="">
                 <div class="main_container">
                 
-                	<h3><?php _e('Styles Options', 'wp_edit_langs'); ?></h3>
+                	<h3><?php _e('Styles Options', 'wp-edit'); ?></h3>
                     <div class="metabox-holder"> 
                         <div class="postbox">
                             <div class="inside">
-                                <p style="margin-left:10px;"><?php _e('Adds predefined styles; which can be applied to editor content.', 'wp_edit_langs'); ?><br />
-                                <?php _e('Please be sure the "Formats" button is active in the editor.', 'wp_edit_langs'); ?></p>
+                                <p style="margin-left:10px;"><?php _e('Adds predefined styles; which can be applied to editor content.', 'wp-edit'); ?><br />
+                                <?php _e('Please be sure the "Formats" button is active in the editor.', 'wp-edit'); ?></p>
                                 
                                 <?php
                                 $options_editor = get_option('wp_edit_editor');
@@ -1207,10 +1204,10 @@ class wp_edit_class {
                                 
                                 <table cellpadding="8">
                                 <tbody>
-                                <tr><td><?php _e('Add Pre-defined Styles', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('Add Pre-defined Styles', 'wp-edit'); ?></td>
                                     <td>
                                     <input id="editor_add_pre_styles" type="checkbox" value="1" name="editor_add_pre_styles" <?php echo $editor_add_pre_styles; ?> />
-                                    <label for="editor_add_pre_styles"><?php _e('Adds predefined styles to the "Formats" dropdown button.', 'wp_edit_langs'); ?></label>
+                                    <label for="editor_add_pre_styles"><?php _e('Adds predefined styles to the "Formats" dropdown button.', 'wp-edit'); ?></label>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -1219,30 +1216,30 @@ class wp_edit_class {
                         </div>
                     </div>
                     
-                    <h3><?php _e('TinyMCE Options', 'wp_edit_langs'); ?></h3>
+                    <h3><?php _e('TinyMCE Options', 'wp-edit'); ?></h3>
                     <div class="metabox-holder"> 
                         <div class="postbox">
                             <div class="inside">
-                                <p style="margin-left:10px;"><?php _e('These options will adjust various parts of the TinyMCE initialization process.', 'wp_edit_langs'); ?></p>
+                                <p style="margin-left:10px;"><?php _e('These options will adjust various parts of the TinyMCE initialization process.', 'wp-edit'); ?></p>
                                 
                                 <table cellpadding="8">
                                 <tbody>
-                                <tr><td><?php _e('Dropdown Editor Font-Size Type', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('Dropdown Editor Font-Size Type', 'wp-edit'); ?></td>
                                     <td>
-                                    <input type="radio" name="default_editor_fontsize_type" value="px" <?php if($default_editor_fontsize_type === 'px') echo 'checked="checked"'; ?> /> <?php _e('px', 'wp_edit_langs'); ?><span style="margin-left:10px;"></span>
-                                    <input type="radio" name="default_editor_fontsize_type" value="pt" <?php if($default_editor_fontsize_type === 'pt') echo 'checked="checked"'; ?> /> <?php _e('pt', 'wp_edit_langs'); ?><span style="margin-left:10px;"></span>
-                                    <input type="radio" name="default_editor_fontsize_type" value="em" <?php if($default_editor_fontsize_type === 'em') echo 'checked="checked"'; ?> /> <?php _e('em', 'wp_edit_langs'); ?><span style="margin-left:10px;"></span>
-                                    <input type="radio" name="default_editor_fontsize_type" value="percent" <?php if($default_editor_fontsize_type === 'percent') echo 'checked="checked"'; ?> /> <?php _e('%', 'wp_edit_langs'); ?><br />
+                                    <input type="radio" name="default_editor_fontsize_type" value="px" <?php if($default_editor_fontsize_type === 'px') echo 'checked="checked"'; ?> /> <?php _e('px', 'wp-edit'); ?><span style="margin-left:10px;"></span>
+                                    <input type="radio" name="default_editor_fontsize_type" value="pt" <?php if($default_editor_fontsize_type === 'pt') echo 'checked="checked"'; ?> /> <?php _e('pt', 'wp-edit'); ?><span style="margin-left:10px;"></span>
+                                    <input type="radio" name="default_editor_fontsize_type" value="em" <?php if($default_editor_fontsize_type === 'em') echo 'checked="checked"'; ?> /> <?php _e('em', 'wp-edit'); ?><span style="margin-left:10px;"></span>
+                                    <input type="radio" name="default_editor_fontsize_type" value="percent" <?php if($default_editor_fontsize_type === 'percent') echo 'checked="checked"'; ?> /> <?php _e('%', 'wp-edit'); ?><br />
                                     	
-                                    <?php _e('Select the editor font size type displayed in the "Font Size" button dropdown menu.', 'wp_edit_langs'); ?>
+                                    <?php _e('Select the editor font size type displayed in the "Font Size" button dropdown menu.', 'wp-edit'); ?>
                                     </td>
                                 </tr>
-                                <tr><td style="vertical-align:top;"><?php _e('Dropdown Editor Font-Size Type Values', 'wp_edit_langs'); ?></td>
+                                <tr><td style="vertical-align:top;"><?php _e('Dropdown Editor Font-Size Type Values', 'wp-edit'); ?></td>
                                     <td>
                                     <input type="text" name="default_editor_fontsize_values" value="<?php echo $default_editor_fontsize_values; ?>" /><br />
-                                    <?php _e('Define available font-size values for Font Size dropdown box.', 'wp_edit_langs'); ?><br />
-                                    <?php _e('Values should be space separated; and end with the chosen font size type (selected above).', 'wp_edit_langs'); ?><br />
-                                    <?php _e('For Example: If <strong>em</strong> is selected; possible values could be <strong>1em 1.1em 1.2em</strong> etc.', 'wp_edit_langs'); ?>
+                                    <?php _e('Define available font-size values for Font Size dropdown box.', 'wp-edit'); ?><br />
+                                    <?php _e('Values should be space separated; and end with the chosen font size type (selected above).', 'wp-edit'); ?><br />
+                                    <?php _e('For Example: If <strong>em</strong> is selected; possible values could be <strong>1em 1.1em 1.2em</strong> etc.', 'wp-edit'); ?>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -1250,7 +1247,7 @@ class wp_edit_class {
                             </div>
                         </div>
                     </div>
-                    <input type="submit" value="<?php _e('Save Editor Options', 'wp_edit_langs'); ?>" class="button button-primary" id="submit_editor" name="submit_editor">
+                    <input type="submit" value="<?php _e('Save Editor Options', 'wp-edit'); ?>" class="button button-primary" id="submit_editor" name="submit_editor">
                 </div>
                 </form>
                 <?php
@@ -1266,14 +1263,14 @@ class wp_edit_class {
                 <form method="post" action="">
                 <div class="main_container">
                 
-                    <h3><?php _e('Extra Options', 'wp_edit_langs'); ?></h3>
+                    <h3><?php _e('Extra Options', 'wp-edit'); ?></h3>
                     
                     <div class="metabox-holder"> 
                         <div class="postbox">
                             <div class="inside">
                             
-                                <h3><?php _e('Signoff Text', 'wp_edit_langs'); ?></h3>
-                                <p style="margin-left:10px;"><?php _e('Use the editor below to create a content chunk that can be inserted anywhere using the', 'wp_edit_langs'); ?> <strong>[signoff]</strong> <?php _e('shortcode.', 'wp_edit_langs'); ?></p>
+                                <h3><?php _e('Signoff Text', 'wp-edit'); ?></h3>
+                                <p style="margin-left:10px;"><?php _e('Use the editor below to create a content chunk that can be inserted anywhere using the', 'wp-edit'); ?> <strong>[signoff]</strong> <?php _e('shortcode.', 'wp-edit'); ?></p>
                                 
                                 <table cellpadding="8" width="100%">
                                 <tbody>
@@ -1324,43 +1321,43 @@ class wp_edit_class {
                 <form method="post" action="">
                 <div class="main_container">
                 
-                    <h3><?php _e('User Specific Options', 'wp_edit_langs'); ?></h3>
+                    <h3><?php _e('User Specific Options', 'wp-edit'); ?></h3>
                     <div class="metabox-holder"> 
                         <div class="postbox">
                             <div class="inside">
                                 
-                                <p style="margin-left:10px;"><?php _e('These options are stored in individual user meta; meaning each user can set these options independently from one another.', 'wp_edit_langs'); ?></p>
+                                <p style="margin-left:10px;"><?php _e('These options are stored in individual user meta; meaning each user can set these options independently from one another.', 'wp-edit'); ?></p>
                                 
                                 <table cellpadding="8">
                                 <tbody>
-                                <tr><td><?php _e('ID Column', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('ID Column', 'wp-edit'); ?></td>
                                     <td>
                                     <input id="id_column" type="checkbox" value="1" name="wp_edit_user_specific[id_column]" <?php echo $id_column; ?> />
-                                    <label for="id_column"><?php _e('Adds a column to post/page list view for displaying the post/page ID.', 'wp_edit_langs'); ?></label>
+                                    <label for="id_column"><?php _e('Adds a column to post/page list view for displaying the post/page ID.', 'wp-edit'); ?></label>
                                     </td>
                                 </tr>
-                                <tr><td><?php _e('Thumbnail Column', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('Thumbnail Column', 'wp-edit'); ?></td>
                                     <td>
                                     <input id="thumbnail_column" type="checkbox" value="1" name="wp_edit_user_specific[thumbnail_column]" <?php echo $thumbnail_column; ?> />
-                                    <label for="thumbnail_column"><?php _e('Adds a column to post/page list view for displaying thumbnails.', 'wp_edit_langs'); ?></label>
+                                    <label for="thumbnail_column"><?php _e('Adds a column to post/page list view for displaying thumbnails.', 'wp-edit'); ?></label>
                                     </td>
                                 </tr>
-                                <tr><td><?php _e('Hide TEXT Tab', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('Hide TEXT Tab', 'wp-edit'); ?></td>
                                     <td>
                                     <input id="hide_text_tab" type="checkbox" value="1" name="wp_edit_user_specific[hide_text_tab]" <?php echo $hide_text_tab; ?> />
-                                    <label for="hide_text_tab"><?php _e('Hide the editor TEXT tab from view.', 'wp_edit_langs'); ?></label>
+                                    <label for="hide_text_tab"><?php _e('Hide the editor TEXT tab from view.', 'wp-edit'); ?></label>
                                     </td>
                                 </tr>
-                                <tr><td><?php _e('Default VISUAL Tab', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('Default VISUAL Tab', 'wp-edit'); ?></td>
                                     <td>
                                     <input id="default_visual_tab" type="checkbox" value="1" name="wp_edit_user_specific[default_visual_tab]" <?php echo $default_visual_tab; ?> />
-                                    <label for="default_visual_tab"><?php _e('Always display VISUAL tab when editor loads.', 'wp_edit_langs'); ?></label>
+                                    <label for="default_visual_tab"><?php _e('Always display VISUAL tab when editor loads.', 'wp-edit'); ?></label>
                                     </td>
                                 </tr>
-                                <tr><td><?php _e('Disable Dashboard Widget', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('Disable Dashboard Widget', 'wp-edit'); ?></td>
                                     <td>
                                     <input id="dashboard_widget" type="checkbox" value="1" name="wp_edit_user_specific[dashboard_widget]" <?php echo $dashboard_widget; ?> />
-                                    <label for="dashboard_widget"><?php _e('Disables WP Edit Pro News Feed dashboard widget.', 'wp_edit_langs'); ?></label>
+                                    <label for="dashboard_widget"><?php _e('Disables WP Edit Pro News Feed dashboard widget.', 'wp-edit'); ?></label>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -1369,43 +1366,43 @@ class wp_edit_class {
                         </div>
                     </div>
                     
-                    <h3><?php _e('Post/Page Highlight Colors', 'wp_edit_langs'); ?></h3>
+                    <h3><?php _e('Post/Page Highlight Colors', 'wp-edit'); ?></h3>
                     <div class="metabox-holder"> 
                         <div class="postbox">
                             <div class="inside">
                             
-                                <p style="margin-left:10px;"><?php _e('These options will allow each user to customize highlight colors for each post/page status.', 'wp_edit_langs'); ?><br />
-                                <?php _e('Meaning.. saved posts can be yellow, published posts can be blue, etc.', 'wp_edit_langs'); ?></p>
+                                <p style="margin-left:10px;"><?php _e('These options will allow each user to customize highlight colors for each post/page status.', 'wp-edit'); ?><br />
+                                <?php _e('Meaning.. saved posts can be yellow, published posts can be blue, etc.', 'wp-edit'); ?></p>
                                 
                                 <table cellpadding="8">
                                 <tbody>
-                                <tr><td><?php _e('Enable Highlights', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('Enable Highlights', 'wp-edit'); ?></td>
                                     <td>
                                     <input id="enable_highlights" type="checkbox" value="1" name="wp_edit_user_specific[enable_highlights]" <?php echo $enable_highlights; ?> />
-                                    <label for="enable_highlights"><?php _e('Enable the Highlight Options below.', 'wp_edit_langs'); ?></label>
+                                    <label for="enable_highlights"><?php _e('Enable the Highlight Options below.', 'wp-edit'); ?></label>
                                     </td>
                                 </tr>
-                                <tr><td><?php _e('Draft Highlight', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('Draft Highlight', 'wp-edit'); ?></td>
                                     <td class="jwl_user_cell">
                                     <input id="draft_highlight" type="text" name="wp_edit_user_specific[draft_highlight]" class="color_field" value="<?php echo $draft_highlight; ?>" />
                                     </td>
                                 </tr>
-                                <tr><td><?php _e('Pending Highlight', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('Pending Highlight', 'wp-edit'); ?></td>
                                     <td class="jwl_user_cell">
                                     <input id="pending_highlight" type="text" name="wp_edit_user_specific[pending_highlight]" class="color_field" value="<?php echo $pending_highlight; ?>" />
                                     </td>
                                 </tr>
-                                <tr><td><?php _e('Published Highlight', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('Published Highlight', 'wp-edit'); ?></td>
                                     <td class="jwl_user_cell">
                                     <input id="published_highlight" type="text" name="wp_edit_user_specific[published_highlight]" class="color_field" value="<?php echo $published_highlight; ?>" />
                                     </td>
                                 </tr>
-                                <tr><td><?php _e('Future Highlight', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('Future Highlight', 'wp-edit'); ?></td>
                                     <td class="jwl_user_cell">
                                     <input id="future_highlight" type="text" name="wp_edit_user_specific[future_highlight]" class="color_field" value="<?php echo $future_highlight; ?>" />
                                     </td>
                                 </tr>
-                                <tr><td><?php _e('Private Highlight', 'wp_edit_langs'); ?></td>
+                                <tr><td><?php _e('Private Highlight', 'wp-edit'); ?></td>
                                     <td class="jwl_user_cell">
                                     <input id="private_highlight" type="text" name="wp_edit_user_specific[private_highlight]" class="color_field" value="<?php echo $private_highlight; ?>" />
                                     </td>
@@ -1416,7 +1413,7 @@ class wp_edit_class {
                         </div>
                     </div>
                
-                	<input type="submit" value="<?php _e('Save User Specific Options', 'wp_edit_langs'); ?>" class="button button-primary" id="submit_user_specific" name="submit_user_specific">
+                	<input type="submit" value="<?php _e('Save User Specific Options', 'wp-edit'); ?>" class="button button-primary" id="submit_user_specific" name="submit_user_specific">
                 </div>
                 </form><?php
             }
@@ -1429,64 +1426,64 @@ class wp_edit_class {
 				?>
                 <div class="main_container">
                 
-                    <h3><?php _e('Database Options', 'wp_edit_langs'); ?></h3>
+                    <h3><?php _e('Database Options', 'wp-edit'); ?></h3>
                     
                     <div class="metabox-holder">
                     
                         <div class="postbox">
-                            <h3><span><?php _e('Export WP Edit Options', 'wp_edit_langs'); ?></span></h3>
+                            <h3><span><?php _e('Export WP Edit Options', 'wp-edit'); ?></span></h3>
                             <div class="inside">
-                                <p><?php _e('Export the plugin settings for this site as a .json file. This allows you to easily import the configuration into another site.', 'wp_edit_langs'); ?></p>
+                                <p><?php _e('Export the plugin settings for this site as a .json file. This allows you to easily import the configuration into another site.', 'wp-edit'); ?></p>
                                 <form method="post" action="">
                                     <p><input type="hidden" name="database_action" value="export_settings" /></p>
                                     <p>
                                     <?php wp_nonce_field( 'database_action_export_nonce', 'database_action_export_nonce' ); ?>
-                                    <?php submit_button( __('Export', 'wp_edit_langs'), 'primary', 'submit', false ); ?>
+                                    <?php submit_button( __('Export', 'wp-edit'), 'primary', 'submit', false ); ?>
                                     </p>
                                 </form>
                             </div><!-- .inside -->
                         </div><!-- .postbox -->
                                      
                         <div class="postbox">
-                            <h3><span><?php _e('Import WP Edit Options', 'wp_edit_langs'); ?></span></h3>
+                            <h3><span><?php _e('Import WP Edit Options', 'wp-edit'); ?></span></h3>
                             <div class="inside">
-                                <p><?php _e('Import the plugin settings from a .json file. This file can be obtained by exporting the settings on another site using the form above.', 'wp_edit_langs'); ?></p>
+                                <p><?php _e('Import the plugin settings from a .json file. This file can be obtained by exporting the settings on another site using the form above.', 'wp-edit'); ?></p>
                                 <form method="post" enctype="multipart/form-data">
                                     <p><input type="file" name="import_file"/></p>
                                     <p>
                                     <input type="hidden" name="database_action" value="import_settings" />
                                     <?php wp_nonce_field( 'database_action_import_nonce', 'database_action_import_nonce' ); ?>
-                                    <?php submit_button( __('Import', 'wp_edit_langs'), 'primary', 'submit', false ); ?>
+                                    <?php submit_button( __('Import', 'wp-edit'), 'primary', 'submit', false ); ?>
                                     </p>
                                 </form>
                             </div><!-- .inside -->
                         </div><!-- .postbox -->
                                      
                         <div class="postbox">
-                            <h3><span><?php _e('Reset WP Edit Options', 'wp_edit_langs'); ?></span></h3>
+                            <h3><span><?php _e('Reset WP Edit Options', 'wp-edit'); ?></span></h3>
                             <div class="inside">
-                                <p><?php _e('Reset all plugin settings to their original default states.', 'wp_edit_langs'); ?></p>
+                                <p><?php _e('Reset all plugin settings to their original default states.', 'wp-edit'); ?></p>
                                 <form method="post" action="">
                                     <?php wp_nonce_field( 'reset_db_values_nonce', 'reset_db_values_nonce' ); ?>
                                     <input class="button-primary reset_db_values" name="reset_db_values" type="submit" style="display:none;" />
-                                    <input class="button-primary reset_db_values_confirm" name="reset_db_values_confirm" type="button" value="<?php _e('Reset', 'wp_edit_langs'); ?>" />
+                                    <input class="button-primary reset_db_values_confirm" name="reset_db_values_confirm" type="button" value="<?php _e('Reset', 'wp-edit'); ?>" />
                                     </p>
                                 </form>
                             </div><!-- .inside -->
                         </div><!-- .postbox -->
                         
                         <div class="postbox">
-                            <h3><span><?php _e('Uninstall WP Edit (Completely)', 'wp_edit_langs'); ?></span></h3>
+                            <h3><span><?php _e('Uninstall WP Edit (Completely)', 'wp-edit'); ?></span></h3>
                             <div class="inside">
-                                <p><?php _e('Designed by intention, this plugin will not delete the associated database tables when activating and deactivating.', 'wp_edit_langs'); ?><br />
-                                   <?php _e('This ensures the data is kept safe when troubleshooting other WordPress conflicts.', 'wp_edit_langs'); ?><br />
-                                   <?php _e('In order to completely uninstall the plugin, AND remove all associated database tables, please use the option below.', 'wp_edit_langs'); ?><br />
+                                <p><?php _e('Designed by intention, this plugin will not delete the associated database tables when activating and deactivating.', 'wp-edit'); ?><br />
+                                   <?php _e('This ensures the data is kept safe when troubleshooting other WordPress conflicts.', 'wp-edit'); ?><br />
+                                   <?php _e('In order to completely uninstall the plugin, AND remove all associated database tables, please use the option below.', 'wp-edit'); ?><br />
                                 </p>
                                 <form method="post" action="">
                                     <?php wp_nonce_field('wp_edit_uninstall_nonce_check','wp_edit_uninstall_nonce'); ?>
                                     <input id="plugin" name="plugin" type="hidden" value="wp-edit/main.php" />
-                                    <input name="uninstall_confirm" id="uninstall_confirm" type="checkbox" value="1" /><label for="uninstall_confirm"></label> <strong><?php _e('Please confirm before proceeding','wp_edit_langs'); ?><br /><br /></strong>
-                                    <input class="button-primary" name="uninstall" type="submit" value="<?php _e('Uninstall','wp_edit_langs'); ?>" />
+                                    <input name="uninstall_confirm" id="uninstall_confirm" type="checkbox" value="1" /><label for="uninstall_confirm"></label> <strong><?php _e('Please confirm before proceeding','wp-edit'); ?><br /><br /></strong>
+                                    <input class="button-primary" name="uninstall" type="submit" value="<?php _e('Uninstall','wp-edit'); ?>" />
                                 </form>
                             </div><!-- .inside -->
                         </div><!-- .postbox -->
@@ -1520,42 +1517,42 @@ class wp_edit_class {
 				echo '<div class="main_container">';
 					
 					?>
-					<h3><?php _e('Information','wp_edit_langs'); ?></h3>
+					<h3><?php _e('Information','wp-edit'); ?></h3>
 					
 					<div class="metabox-holder">
 						<div class="postbox">
 							<div class="inside">
 							
-								<p><?php _e('Plugin and server version information.', 'wp_edit_langs'); ?></p>
+								<p><?php _e('Plugin and server version information.', 'wp-edit'); ?></p>
 							
 								<table class="table table-bordered" cellpadding="3" style="width:50%;">
 								<tbody>
-								<tr><td><?php _e('WP Edit Pro Version:','wp_edit_langs'); ?></td>
+								<tr><td><?php _e('WP Edit Pro Version:','wp-edit'); ?></td>
 									<td>
 									<?php echo $plugin_data['Version']; ?>
 									</td>
 								</tr>
-								<tr><td><?php _e('WordPress Version:','wp_edit_langs'); ?></td>
+								<tr><td><?php _e('WordPress Version:','wp-edit'); ?></td>
 									<td>
 									<?php echo $wp_version; ?>
 									</td>
 								</tr>
-								<tr><td><?php _e('PHP Version:','wp_edit_langs'); ?></td>
+								<tr><td><?php _e('PHP Version:','wp-edit'); ?></td>
 									<td>
 									<?php echo phpversion(); ?>
 									</td>
 								</tr>
-								<tr><td><?php _e('HTML Version:','wp_edit_langs'); ?></td>
+								<tr><td><?php _e('HTML Version:','wp-edit'); ?></td>
 									<td>
 									<span class="wpep_html_version"></span>
 									</td>
 								</tr>
-								<tr><td><?php _e('MySql Version:','wp_edit_langs'); ?></td>
+								<tr><td><?php _e('MySql Version:','wp-edit'); ?></td>
 									<td>
 									<?php echo $sql_version; ?>
 									</td>
 								</tr>
-								<tr><td><?php _e('jQuery Version:','wp_edit_langs'); ?></td>
+								<tr><td><?php _e('jQuery Version:','wp-edit'); ?></td>
 									<td>
 									<?php echo $GLOBALS['wp_scripts']->registered['jquery-core']->ver; ?>
 									</td>
@@ -1566,23 +1563,23 @@ class wp_edit_class {
 						</div>
 					</div>
 					
-					<h3><?php _e('Support','wp_edit_langs'); ?></h3>
+					<h3><?php _e('Support','wp-edit'); ?></h3>
 					<div class="metabox-holder">
 						<div class="postbox">
 							<div class="inside">
 							
-								<p><?php _e('Please use the following helpful links for plugin support.', 'wp_edit_langs'); ?></p>
+								<p><?php _e('Please use the following helpful links for plugin support.', 'wp-edit'); ?></p>
 							
 								<table class="table table-bordered" cellpadding="3" style="width:30%;">
 								<tbody>
-								<tr><td><?php _e('Support Forum:','wp_edit_langs'); ?></td>
+								<tr><td><?php _e('Support Forum:','wp-edit'); ?></td>
 									<td>
-									<?php echo '<a target="_blank" href="http://forum.wpeditpro.com">'.__('Support Forum', 'wp_edit_langs').'</a>'; ?>
+									<?php echo '<a target="_blank" href="http://forum.wpeditpro.com">'.__('Support Forum', 'wp-edit').'</a>'; ?>
 									</td>
 								</tr>
-								<tr><td><?php _e('Knowledge Base:','wp_edit_langs'); ?></td>
+								<tr><td><?php _e('Knowledge Base:','wp-edit'); ?></td>
 									<td>
-									<?php echo '<a target="_blank" href="http://learn.wpeditpro.com">'.__('Knowledge Base', 'wp_edit_langs').'</a>'; ?>
+									<?php echo '<a target="_blank" href="http://learn.wpeditpro.com">'.__('Knowledge Base', 'wp-edit').'</a>'; ?>
 									</td>
 								</tr>
 								</tbody>
@@ -1591,13 +1588,13 @@ class wp_edit_class {
 						</div>
 					</div>
 					
-					<h3><?php _e('Documentation','wp_edit_langs'); ?></h3>
+					<h3><?php _e('Documentation','wp-edit'); ?></h3>
 					<div class="metabox-holder">
 						<div class="postbox">
 							<div class="inside">
 							
-								<p><?php _e('Remember, complete plugin documentation can be found on our <a target="_blank" href="http://learn.wpeditpro.com">Knowledge Base</a>.', 'wp_edit_langs'); ?></p>
-								<p><?php _e('Visit the <a target="_blank" href="http://learn.wpeditpro.com/category/plugin-options/">Knowledge Base Plugin Options</a> page to get started.','wp_edit_langs'); ?></p>
+								<p><?php _e('Remember, complete plugin documentation can be found on our <a target="_blank" href="http://learn.wpeditpro.com">Knowledge Base</a>.', 'wp-edit'); ?></p>
+								<p><?php _e('Visit the <a target="_blank" href="http://learn.wpeditpro.com/category/plugin-options/">Knowledge Base Plugin Options</a> page to get started.','wp-edit'); ?></p>
 							</div>
 						</div>
 					</div>
@@ -1610,32 +1607,34 @@ class wp_edit_class {
         <div id="right_column_metaboxes">
         
         	<div class="main_container">
-            	<h3><?php _e('WP Edit Pro', 'wp_edit_langs'); ?></h3>
+            	<h3><?php _e('WP Edit Pro', 'wp-edit'); ?></h3>
                 <div class="metabox-holder"> 
                     <div class="postbox">
                         <div class="inside">
                         
-                            <p><?php _e('Upgrade to WP Edit Pro today; and enjoy additional options such as:', 'wp_edit_langs'); ?></p>
-                            <ul>
-                                <li><span class="dashicons dashicons-yes"></span><?php _e('4 customizable buttons rows instead of only 2.', 'wp_edit_langs'); ?></li>
-                                <li><span class="dashicons dashicons-yes"></span><?php _e('Over a dozen additional editor buttons.', 'wp_edit_langs'); ?></li>
-                                <li><span class="dashicons dashicons-yes"></span><?php _e('More control and flexibility.', 'wp_edit_langs'); ?></li>
-                                <li><span class="dashicons dashicons-yes"></span><?php _e('Create multiple button arrangements and assign them to individual users.', 'wp_edit_langs'); ?></li>
+                            <p><?php _e('Upgrade to WP Edit Pro today; and enjoy additional options such as:', 'wp-edit'); ?></p>
+                            <ul class="wpep_pro_upgrade_list">
+                                <li><span class="dashicons dashicons-yes"></span><?php _e('4 customizable button rows instead of only 2.', 'wp-edit'); ?></li>
+                                <li><span class="dashicons dashicons-yes"></span><?php _e('Create multiple button arrangements.', 'wp-edit'); ?></li>
+                                <li><span class="dashicons dashicons-yes"></span><?php _e('Limit users over what buttons they can access.', 'wp-edit'); ?></li>
+                                <li><span class="dashicons dashicons-yes"></span><?php _e('Powerful "Snidget" Builder.', 'wp-edit'); ?></li>
+                                <li><span class="dashicons dashicons-yes"></span><?php _e('Over 30 additional options and settings.', 'wp-edit'); ?></li>
+                                <li><span class="dashicons dashicons-yes"></span><?php _e('Over a dozen additional editor buttons (Image maps, YouTube Videos, and many more!).', 'wp-edit'); ?></li>
                             </ul>
-                            <a href="https://wpeditpro.com" target="_blank" class="button-primary"><?php _e('WP Edit Pro', 'wp_edit_langs'); ?></a>
+                            <a href="https://wpeditpro.com" target="_blank" class="button-primary"><?php _e('WP Edit Pro', 'wp-edit'); ?></a>
                         </div>
                     </div>
                 </div> 
             </div>   
             
             <div class="main_container">
-            	<h3><?php _e('Like this Plugin?', 'wp_edit_langs'); ?></h3>
+            	<h3><?php _e('Like this Plugin?', 'wp-edit'); ?></h3>
                 <div class="metabox-holder"> 
                     <div class="postbox">
                         <div class="inside">
                         
-                            <p><?php _e('Please take a moment to rate and review this plugin on the WordPress Plugin Repository.', 'wp_edit_langs'); ?></p>
-                            <p><a href="https://wordpress.org/plugins/wp-edit/" target="_blank" class="button-primary"><?php _e('Rate Plugin', 'wp_edit_langs'); ?></a></p>
+                            <p><?php _e('Please take a moment to rate and review this plugin on the WordPress Plugin Repository.', 'wp-edit'); ?></p>
+                            <p><a href="https://wordpress.org/plugins/wp-edit/" target="_blank" class="button-primary"><?php _e('Rate Plugin', 'wp-edit'); ?></a></p>
                         </div>
                     </div>
                 </div> 
@@ -1662,7 +1661,7 @@ class wp_edit_class {
 		if(isset($_GET['import']) && $_GET['import'] === 'true') {
 			
 			echo '<div id="message" class="updated"><p>';
-			_e('Plugin settings have been successfully imported.' ,'wp_edit_langs');
+			_e('Plugin settings have been successfully imported.' ,'wp-edit');
 			echo '</p></div>';
 		}
 	
@@ -1684,7 +1683,7 @@ class wp_edit_class {
 				
 				echo '<div class="updated">';
 					echo '<p>';
-						_e('Buttons have been reset successfully.','wp_edit_langs');
+						_e('Buttons have been reset successfully.','wp-edit');
 					echo '</p>';
 				echo '</div>';
 			}
@@ -1728,7 +1727,7 @@ class wp_edit_class {
 					
 					echo '<div class="updated">';
 						echo '<p>';
-							_e('Buttons have been saved successfully.','wp_edit_langs');
+							_e('Buttons have been saved successfully.','wp-edit');
 						echo '</p>';
 					echo '</div>';
 				}
@@ -1809,7 +1808,7 @@ class wp_edit_class {
 					
 					global $each_button_trim;
 					echo '<div id="message" class="updated"><p>';
-					_e('New buttons were discovered. The following buttons have been added to the Button Container:','wp_edit_langs');
+					_e('New buttons were discovered. The following buttons have been added to the Button Container:','wp-edit');
 					echo '<br /><strong>'.$each_button_trim.'</strong>';
 					echo '</p></div>';
 				}
@@ -1872,7 +1871,7 @@ class wp_edit_class {
 							global $tot_array;
 							echo '<div class="updated"><p>';
 								$tot_array = implode(', ', $tot_array);
-								_e('The following buttons have been removed from WP Edit Pro:', 'wp_edit_langs');
+								_e('The following buttons have been removed from WP Edit Pro:', 'wp-edit');
 								echo '<br />';
 								echo '<strong>'.$tot_array.'</strong>';
 							echo '</p></div>';
@@ -1901,7 +1900,7 @@ class wp_edit_class {
 			function global_saved_notice(){
 				
 				echo '<div class="updated"><p>';
-				_e('Global options successfully saved.', 'wp_edit_langs');
+				_e('Global options successfully saved.', 'wp-edit');
 				echo '</p></div>';
 			}
 			add_action('admin_notices', 'global_saved_notice');
@@ -1921,14 +1920,13 @@ class wp_edit_class {
 			$options_general['post_excerpt_editor'] = isset($_POST['post_excerpt_editor']) ? '1' : '0';
 			$options_general['page_excerpt_editor'] = isset($_POST['page_excerpt_editor']) ? '1' : '0';
 			$options_general['profile_editor'] = isset($_POST['profile_editor']) ? '1' : '0';
-			$options_general['php_widgets'] = isset($_POST['php_widgets']) ? '1' : '0';
 			
 			update_option('wp_edit_general', $options_general);
 			
 			function general_saved_notice(){
 				
 				echo '<div class="updated"><p>';
-				_e('General options successfully saved.', 'wp_edit_langs');
+				_e('General options successfully saved.', 'wp-edit');
 				echo '</p></div>';
 			}
 			add_action('admin_notices', 'general_saved_notice');
@@ -1961,9 +1959,9 @@ class wp_edit_class {
 					$query3_raw = "DELETE FROM wp_posts WHERE post_type = 'revision'";
 					$query3 = $wpdb->query($query3_raw);
 					if ($query3) {
-						$deleted_rows = __('Revisions successfully deleted', 'wp_edit_langs');
+						$deleted_rows = __('Revisions successfully deleted', 'wp-edit');
 					} else {
-						$deleted_rows = __('No POST revisions were found to delete', 'wp_edit_langs');
+						$deleted_rows = __('No POST revisions were found to delete', 'wp-edit');
 					}
 					
 					// Get post DB size
@@ -1976,15 +1974,15 @@ class wp_edit_class {
 					$mbytes2 = number_format($size2/(1024*1024),$decimals2); 
 					
 					echo '<div class="updated"><p>';
-					_e('Message: ', 'wp_edit_langs');
+					_e('Message: ', 'wp-edit');
 					echo '<strong>'.$deleted_rows.'</strong>.</p><p>';
-					_e('Database size before deletions: ', 'wp_edit_langs');
+					_e('Database size before deletions: ', 'wp-edit');
 					echo '<strong>'.$mbytes.'</strong> ';
-					_e('megabytes.', 'wp_edit_langs');
+					_e('megabytes.', 'wp-edit');
 					echo '</p><p>';
-					_e('Database Size after deletions: ', 'wp_edit_langs');
+					_e('Database Size after deletions: ', 'wp-edit');
 					echo '<strong>'.$mbytes2.'</strong> ';
-					_e('megabytes.', 'wp_edit_langs');
+					_e('megabytes.', 'wp-edit');
 					echo '</p></div>';
 				}
 				add_action('admin_notices', 'wp_edit_delete_revisions_admin_notice');
@@ -2007,7 +2005,7 @@ class wp_edit_class {
 			function posts_saved_notice(){
 				
 				echo '<div class="updated"><p>';
-				_e('Posts/Pages options successfully saved.', 'wp_edit_langs');
+				_e('Posts/Pages options successfully saved.', 'wp-edit');
 				echo '</p></div>';
 			}
 			add_action('admin_notices', 'posts_saved_notice');
@@ -2031,7 +2029,7 @@ class wp_edit_class {
 			function editor_saved_notice(){
 				
 				echo '<div class="updated"><p>';
-				_e('Editor options successfully saved.', 'wp_edit_langs');
+				_e('Editor options successfully saved.', 'wp-edit');
 				echo '</p></div>';
 			}
 			add_action('admin_notices', 'editor_saved_notice');
@@ -2052,7 +2050,7 @@ class wp_edit_class {
 			function extras_saved_notice(){
 				
 				echo '<div class="updated"><p>';
-				_e('Extra options saved.', 'wp_edit_langs');
+				_e('Extra options saved.', 'wp-edit');
 				echo '</p></div>';
 			}
 			add_action('admin_notices', 'extras_saved_notice');
@@ -2089,7 +2087,7 @@ class wp_edit_class {
 			function user_specific_saved_notice(){
 				
 				echo '<div class="updated"><p>';
-				_e('User specific options saved.', 'wp_edit_langs');
+				_e('User specific options saved.', 'wp-edit');
 				echo '</p></div>';
 			}
 			add_action('admin_notices', 'user_specific_saved_notice');
@@ -2104,7 +2102,7 @@ class wp_edit_class {
 			
 			if ( !isset($_POST['reset_db_values_nonce'])) {  // Verify nonce
 					
-				print __('Sorry, your nonce did not verify.', 'wp_edit_langs');
+				print __('Sorry, your nonce did not verify.', 'wp-edit');
 				exit;
 			}
 			else {
@@ -2122,7 +2120,7 @@ class wp_edit_class {
 				update_user_meta($current_user->ID, 'aaa_wp_edit_user_meta', $this->global_options_user_specific);
 		
 				echo '<div id="message" class="updated"><p>';
-				_e('Plugin settings have been restored to defaults.', 'wp_edit_langs');
+				_e('Plugin settings have been restored to defaults.', 'wp-edit');
 				echo '</p></div>';
 			}
 		}
@@ -2136,7 +2134,7 @@ class wp_edit_class {
 		if (isset($_POST['uninstall'] ) && !isset($_POST['uninstall_confirm'])) {
 			
 			echo '<div id="message" class="error"><p>';
-			_e('You must also check the confirm box before options will be uninstalled and deleted.','wp_edit_langs');
+			_e('You must also check the confirm box before options will be uninstalled and deleted.','wp-edit');
 			echo '</p></div>';
 		}
 		// Uninstall plugin
@@ -2144,7 +2142,7 @@ class wp_edit_class {
 			
 			if ( !isset($_POST['wp_edit_uninstall_nonce']) || !wp_verify_nonce($_POST['wp_edit_uninstall_nonce'],'wp_edit_uninstall_nonce_check') ) {  // Verify nonce
 					
-				print __('Sorry, your nonce did not verify.', 'wp_edit_langs');
+				print __('Sorry, your nonce did not verify.', 'wp-edit');
 				exit;
 			}
 			else {
@@ -2255,13 +2253,13 @@ class wp_edit_class {
 		$extension = end( explode( '.', $_FILES['import_file']['name'] ) );
 		 
 		if( $extension != 'json' ) {
-			wp_die( __('Please upload a valid .json file', 'wp_edit_langs' ) );
+			wp_die( __('Please upload a valid .json file', 'wp-edit' ) );
 		}
 		 
 		$import_file = $_FILES['import_file']['tmp_name'];
 		 
 		if( empty( $import_file ) ) {
-			wp_die( __('Please upload a file to import', 'wp_edit_langs') );
+			wp_die( __('Please upload a file to import', 'wp-edit') );
 		}
 		
 		global $current_user;
@@ -2308,7 +2306,11 @@ class wp_edit_class {
 	public function wp_edit_tiny_mce_before_init($init) {
 		
 		// Initialize table ability
-		$init['tools'] = 'inserttable';
+		if (isset($init['tools'])) {
+			$init['tools'] = $init['tools'].',inserttable';
+		} else {
+			$init['tools'] = 'inserttable';
+		}
 		
 		// Get editor default fontsize type value
 		$opts_editor = get_option('wp_edit_editor');
@@ -2318,22 +2320,42 @@ class wp_edit_class {
 		if($default_editor_fontsize_type === 'px') {
 			
 			$new_px = isset($opts_editor['default_editor_fontsize_values']) && !empty($opts_editor['default_editor_fontsize_values']) ? $opts_editor['default_editor_fontsize_values'] : '6px 8px 9px 10px 11px 12px 13px 14px 15px 16px 18px 20px 22px 24px 28px 32px 48px 72px';
-			empty($init['fontsize_formats']) ? $init['fontsize_formats'] = $new_px : $init['fontsize_formats'] = $init['fontsize_formats'].' '.$new_px;
+			
+			if(isset($init['fontsize_formats'])) {
+				$init['fontsize_formats'] = $init['fontsize_formats'].' '.$new_px;
+			} else {
+				$init['fontsize_formats'] = $new_px;
+			}
 		}
 		else if($default_editor_fontsize_type === 'pt') {
 			
 			$new_pt = isset($opts_editor['default_editor_fontsize_values']) && !empty($opts_editor['default_editor_fontsize_values']) ? $opts_editor['default_editor_fontsize_values'] : '6pt 8pt 10pt 12pt 14pt 16pt 18pt 20pt 22pt 24pt 26pt 28pt 30pt 32pt 34pt 36pt 48pt 72pt';
-			empty($init['fontsize_formats']) ? $init['fontsize_formats'] = $new_pt : $init['fontsize_formats'] = $init['fontsize_formats'].' '.$new_pt;
+			
+			if(isset($init['fontsize_formats'])) {
+				$init['fontsize_formats'] = $init['fontsize_formats'].' '.$new_pt;
+			} else {
+				$init['fontsize_formats'] = $new_pt;
+			}
 		}
 		else if($default_editor_fontsize_type === 'em') {
 			
 			$new_em = isset($opts_editor['default_editor_fontsize_values']) && !empty($opts_editor['default_editor_fontsize_values']) ? $opts_editor['default_editor_fontsize_values'] : '.8em 1em 1.2em 1.4em 1.6em 1.8em 2em';
-			empty($init['fontsize_formats']) ? $init['fontsize_formats'] = $new_em : $init['fontsize_formats'] = $init['fontsize_formats'].' '.$new_em;
+			
+			if(isset($init['fontsize_formats'])) {
+				$init['fontsize_formats'] = $init['fontsize_formats'].' '.$new_em;
+			} else {
+				$init['fontsize_formats'] = $new_em;
+			} 
 		}
 		else if($default_editor_fontsize_type === 'percent') {
 			
 			$new_percent = isset($opts_editor['default_editor_fontsize_values']) && !empty($opts_editor['default_editor_fontsize_values']) ? $opts_editor['default_editor_fontsize_values'] : '80% 90% 100% 110% 120%';
-			empty($init['fontsize_formats']) ? $init['fontsize_formats'] = $new_percent : $init['fontsize_formats'] = $init['fontsize_formats'].' '.$new_percent;
+			
+			if(isset($init['fontsize_formats'])) {
+				$init['fontsize_formats'] = $init['fontsize_formats'].' '.$new_percent;
+			} else {
+				$init['fontsize_formats'] = $new_percent;
+			}
 		}
 		
 		/*
@@ -2559,24 +2581,18 @@ class wp_edit_class {
 		$admin_email = get_option('admin_email');
 		
 		echo '<br /><br />';
-		echo '<div style="border:1px solid black;">';
+		echo '<div style="border:1px solid black;border-radius:10px;">';
 		
 			echo '<div style="width:30%;padding:10px;float:left;">';
-			echo '<h3>';
-			_e('Stay Informed', 'wp_edit_langs');
-			echo '</h3>';
-			_e('Please signup to our free <a target="_blank" href="http://www.feedblitz.com/f/?Sub=950320">Feedblitz</a> service; to receive important plugin news, updates and free offers.', 'wp_edit_langs');
-			echo '<br /><br />';
-			echo 'Enter your Email:<br /><input id="wpedit_feedblitz_signup_email" name="EMAIL" type="text" value="'.$admin_email.'" style="width:50%;" /><br><input id="wpedit_feedblitz_signup" type="button" value="Subscribe me! &raquo;" />';
+				echo '<h3>'; _e('Stay Informed', 'wp-edit'); echo '</h3>';
+				_e('Signup to our free <a target="_blank" href="http://www.feedblitz.com/f/?Sub=950320">Feedblitz</a> service; to receive important plugin news, updates and discount offers for our Pro version.', 'wp-edit');
+				echo '<br /><br />';
+				echo 'Email:<br /><input id="wpedit_feedblitz_signup_email" name="EMAIL" type="text" value="'.$admin_email.'" style="width:50%;margin-right:10px;" /><input id="wpedit_feedblitz_signup" type="button" value="Subscribe me! &raquo;" class="button-primary" />';
 			echo '</div>';
 			
 			echo '<div style="width:30%;padding:10px;float:left;margin-left:20px;">';
-			echo '<h3>';
-			_e('Other Plugin News', 'wp_edit_langs');
-			echo '</h3>';
-			_e('* A stable version of WP Edit will soon be available on our <a target="_blank" href="https://wpeditpro.com">Website</a>. The stable version will contain some options not available in the free version.', 'wp_edit_langs');
-			echo '<br /><br />';
-			_e('* Plugin documentation is being added to our <a target="_blank" href="http://learn.wpeditpro.com">Knowledge Base</a>. Check back frequently for more tutorial articles.', 'wp_edit_langs');
+				echo '<h3>'; _e('Other Plugin News', 'wp-edit'); echo '</h3>';
+				_e('* Plugin documentation is being added to our <a target="_blank" href="http://learn.wpeditpro.com">Knowledge Base</a>. Check back frequently for more tutorial articles.', 'wp-edit');
 			echo '</div>';
 			
 			echo '<div style="clear:both;"></div>';

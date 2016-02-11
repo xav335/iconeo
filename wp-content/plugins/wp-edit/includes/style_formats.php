@@ -4,8 +4,6 @@
 add_filter( 'tiny_mce_before_init', 'wp_edit_style_formats_mce_before_init' );
 function wp_edit_style_formats_mce_before_init( $settings ) {
 	
-	
-	
 	//*************************************
 	// Predefined Styles - if user selected
 	//************************************/
@@ -904,35 +902,33 @@ function wp_edit_style_formats_mce_before_init( $settings ) {
 				)
 			)
 		);
-	}
-	
-	//*************************************
-	// END Predefined Styles
-	//************************************/
-	
-	
-	//**********************************************
-	// FINALLY... let's put it all back together
-	//*********************************************/
-	// First we have to check for empty arrays (perhaps if user didn't enable a certain option)
-	$style_formats_predefined = isset($style_formats_predefined) ? $style_formats_predefined : array();
-	
-	$isset_settings = isset($settings['style_formats']);
-	
-	if($isset_settings === false) {
+		//*************************************
+		// END Predefined Styles
+		//************************************/
 		
-		$settings['style_formats'] = json_encode($style_formats_predefined);
-	}
-	else {
 		
-		$json_decode_orig_settings = json_decode($settings['style_formats'], true);
+		//**********************************************
+		// FINALLY... let's put it all back together
+		//*********************************************/
+		if(isset($settings['style_formats'])) {
+			
+			$new_array = array();
+			$json_decode_orig_settings = json_decode($settings['style_formats'], true);
+			
+			// Check to make sure incoming 'style_formats' is an array
+			if(is_array($json_decode_orig_settings)) {
+				
+				$new_array = json_encode(array_merge($json_decode_orig_settings, $style_formats_predefined));
+				$settings['style_formats'] = $new_array;
+			}
+		} else {
+			
+			$settings['style_formats'] = json_encode($style_formats_predefined);
+		}
 		
-		$new_string = json_encode(array_merge($json_decode_orig_settings, $style_formats_predefined));
-		$settings['style_formats'] = $new_string;
+		// Merge new styles to original styles
+		isset($settings['style_formats_merge']) ? $settings['style_formats_merge'] = true : $settings['style_formats_merge'] = true;
 	}
-	
-	// Merge new styles to original styles
-	$settings['style_formats_merge'] = true;
 	
 	return $settings;
 }

@@ -80,6 +80,13 @@ Main container
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#d9dee0',GradientType=0 );
 }
 
+/* Pro Upgrade List */
+.dashicons-yes { 
+	color: deepskyblue;
+}
+ul.wpep_pro_upgrade_list {
+	
+}
 
 /* 
 Sortable rows

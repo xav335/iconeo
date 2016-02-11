@@ -21,6 +21,7 @@ jQuery(document).ready(function($) {
 		jq_node = $(get_node);
 		// Extract attributes
 		jq_link = jq_node.attr('href');
+		jq_title = jq_node.attr('title');
 		jq_id = jq_node.attr('id');
 		jq_classes = jq_node.attr('class');
 		jq_style = jq_node.attr('style');
@@ -30,6 +31,9 @@ jQuery(document).ready(function($) {
 		// Populate attributes
 		if(jq_link != 'undefined') {
 			$('#advlink_link').val(jq_link);
+		}
+		if(jq_title != 'undefined') {
+			$('#advlink_title').val(jq_title);
 		}
 		if(jq_id != 'undefined') {
 			$('#advlink_id').val(jq_id);
@@ -59,6 +63,7 @@ jQuery(document).ready(function($) {
 		
 		// Get values from window
 		this_link = $('#advlink_link').val();
+		this_title = $('#advlink_title').val();
 		this_id = $('#advlink_id').val();
 		this_classes = $('#advlink_classes').val();
 		this_style = $('#advlink_style').val();
@@ -71,7 +76,7 @@ jQuery(document).ready(function($) {
 		var get_selection = this_advlink_window.selection.getContent({format : 'text'});
 		
 		// Add appropriate options if user selected
-		if(this_link == '' && this_id == '' && this_classes == '' && this_style == '' && this_target == 'select' && this_nofollow == false) {
+		if(this_link == '' && this_title == '' && this_id == '' && this_classes == '' && this_style == '' && this_target == 'select' && this_nofollow == false) {
 			alert('Nothing has been changed, so nothing will be modified in the content editor.');
 			return false;
 		}
@@ -83,6 +88,10 @@ jQuery(document).ready(function($) {
 		// Check link url
 		if(this_link != '') {
 			final_link += ' href="'+this_link+'"';
+		}
+		// Check Title
+		if(this_title != '') {
+			final_link += ' title="'+this_title+'"';
 		}
 		// Check ID
 		if(this_id != '') {

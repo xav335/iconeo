@@ -66,7 +66,7 @@ jQuery(document).ready(function($) {
 					
 				title: 'Insert/Edit Advanced Link',
 				width: winW*.2,
-				height: winH*.35,
+				height: winH*.4,
 				url: url+'/advlink.php'
 			})
 		}

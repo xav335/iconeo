@@ -26,7 +26,7 @@ if($plugin_options_global['disable_admin_links'] != 1) {
 		global $wp_admin_bar;
 		$path = admin_url();
 		$wp_admin_bar->add_menu( array( 
-			'title' => __('WP Edit','wp_edit_langs'), 
+			'title' => __('WP Edit','wp-edit'), 
 			'id' => 'jwl_links', 
 			'href' => $path . 'admin.php?page=wp_edit_options&tab=buttons' 
 		));
@@ -34,82 +34,82 @@ if($plugin_options_global['disable_admin_links'] != 1) {
 		$wp_admin_bar->add_menu( array(
 			'id'    => 'jwl_admin_buttons',
 			'parent' => 'jwl_links',
-			'title' => __('Buttons','wp_edit_langs'),
+			'title' => __('Buttons','wp-edit'),
 			'href'  => $path.'admin.php?page=wp_edit_options&tab=buttons',
 			'meta'  => array(
-				'title' => __('Buttons','wp_edit_langs')
+				'title' => __('Buttons','wp-edit')
 			),
 		));
 		$wp_admin_bar->add_menu( array(
 			'id'    => 'jwl_admin_global',
 			'parent' => 'jwl_links',
-			'title' => __('Global','wp_edit_langs'),
+			'title' => __('Global','wp-edit'),
 			'href'  => $path.'admin.php?page=wp_edit_options&tab=global',
 			'meta'  => array(
-				'title' => __('Global','wp_edit_langs')
+				'title' => __('Global','wp-edit')
 			),
 		));
 		$wp_admin_bar->add_menu( array(
 			'id'    => 'jwl_admin_general',
 			'parent' => 'jwl_links',
-			'title' => __('General','wp_edit_langs'),
+			'title' => __('General','wp-edit'),
 			'href'  => $path.'admin.php?page=wp_edit_options&tab=general',
 			'meta'  => array(
-				'title' => __('General','wp_edit_langs')
+				'title' => __('General','wp-edit')
 			),
 		));
 		$wp_admin_bar->add_menu( array(
 			'id'    => 'jwl_admin_posts',
 			'parent' => 'jwl_links',
-			'title' => __('Posts/Pages','wp_edit_langs'),
+			'title' => __('Posts/Pages','wp-edit'),
 			'href'  => $path.'admin.php?page=wp_edit_options&tab=posts',
 			'meta'  => array(
-				'title' => __('Posts/Pages','wp_edit_langs')
+				'title' => __('Posts/Pages','wp-edit')
 			),
 		));
 		$wp_admin_bar->add_menu( array(
 			'id'    => 'jwl_admin_editor',
 			'parent' => 'jwl_links',
-			'title' => __('Editor','wp_edit_langs'),
+			'title' => __('Editor','wp-edit'),
 			'href'  => $path.'admin.php?page=wp_edit_options&tab=editor',
 			'meta'  => array(
-				'title' => __('Editor','wp_edit_langs')
+				'title' => __('Editor','wp-edit')
 			),
 		));
 		$wp_admin_bar->add_menu( array(
 			'id'    => 'jwl_admin_extras',
 			'parent' => 'jwl_links',
-			'title' => __('Extras','wp_edit_langs'),
+			'title' => __('Extras','wp-edit'),
 			'href'  => $path.'admin.php?page=wp_edit_options&tab=extras',
 			'meta'  => array(
-				'title' => __('Extras','wp_edit_langs')
+				'title' => __('Extras','wp-edit')
 			),
 		));
 		$wp_admin_bar->add_menu( array(
 			'id'    => 'jwl_admin_user_specific',
 			'parent' => 'jwl_links',
-			'title' => __('User Specific','wp_edit_langs'),
+			'title' => __('User Specific','wp-edit'),
 			'href'  => $path.'admin.php?page=wp_edit_options&tab=user_specific',
 			'meta'  => array(
-				'title' => __('User Specific','wp_edit_langs')
+				'title' => __('User Specific','wp-edit')
 			),
 		));
 		$wp_admin_bar->add_menu( array(
 			'id'    => 'jwl_admin_database',
 			'parent' => 'jwl_links',
-			'title' => __('Database','wp_edit_langs'),
+			'title' => __('Database','wp-edit'),
 			'href'  => $path.'admin.php?page=wp_edit_options&tab=database',
 			'meta'  => array(
-				'title' => __('Database','wp_edit_langs')
+				'title' => __('Database','wp-edit')
 			),
 		));
 		$wp_admin_bar->add_menu( array(
 			'id'    => 'jwl_admin_about',
 			'parent' => 'jwl_links',
-			'title' => __('About','wp_edit_langs'),
+			'title' => __('About','wp-edit'),
 			'href'  => $path.'admin.php?page=wp_edit_options&tab=about',
 			'meta'  => array(
-				'title' => __('About','wp_edit_langs')
+				'title' => __('About','wp-edit')
 			),
 		));
 	}
@@ -148,7 +148,7 @@ if($plugin_options_general['post_excerpt_editor'] == 1) {
 	
 	function wp_edit_change_post_excerpt() {
 		remove_meta_box('postexcerpt', 'post', 'normal');
-		add_meta_box('postexcerpt', __('WP Edit Excerpt', 'wp_edit_langs'), 'wp_edit_post_excerpt_meta_box', 'post', 'normal');
+		add_meta_box('postexcerpt', __('WP Edit Excerpt', 'wp-edit'), 'wp_edit_post_excerpt_meta_box', 'post', 'normal');
 	}
 	add_action( 'admin_init', 'wp_edit_change_post_excerpt' );
 	
@@ -180,7 +180,7 @@ if($plugin_options_general['page_excerpt_editor'] == 1) {
 	add_action( 'admin_init', 'wp_edit_change_page_excerpt' );
 	function wp_edit_change_page_excerpt() {
 		remove_meta_box('postexcerpt', 'page', 'normal');
-		add_meta_box('postexcerpt', __('Wp Edit Excerpt', 'wp_edit_langs'), 'wp_edit_page_excerpt_meta_box', 'page', 'normal');
+		add_meta_box('postexcerpt', __('Wp Edit Excerpt', 'wp-edit'), 'wp_edit_page_excerpt_meta_box', 'page', 'normal');
 	}
 	
 	function wp_edit_page_excerpt_meta_box() {
@@ -210,15 +210,15 @@ if($plugin_options_general['profile_editor'] == 1) {
 			return;
 		?>
 		<table class="form-table">
-			<tr id="wp_edit_biographical_editor">
-				<th><label for="description"><?php _e('Biographical Info', 'wp_edit_langs'); ?></label></th>
+			<tr id="wp_edit_biographical_editor" class="user-description-wrap">
+				<th><label for="description"><?php _e('Biographical Info', 'wp-edit'); ?></label></th>
 				<td>
 					<?php 
 					$description = get_user_meta( $user->ID, 'description', true);
 					$args = array('textarea_rows' => 5);
 					wp_editor( $description, 'description', $args ); 
 					?>
-					<p class="description"><?php _e('Share a little biographical information to fill out your profile. This may be shown publicly.', 'wp_edit_langs'); ?></p>
+					<p class="description"><?php _e('Share a little biographical information to fill out your profile. This may be shown publicly.', 'wp-edit'); ?></p>
 				</td>
 			</tr>
 		</table>
@@ -234,74 +234,19 @@ if($plugin_options_general['profile_editor'] == 1) {
 			
 			?>
             <script type="text/javascript">
-			jQuery(document).ready(function($) {
-				// Remove the textarea before displaying visual editor
-				$('#description').parents('tr').remove();
-				
-				field = $('#wp_edit_biographical_editor').remove();
-				parent = $('#password').closest('tr');
-				field.insertBefore(parent);
-			});
+			
+				jQuery(document).ready(function($) {
+					
+					// Remove the textarea before displaying visual editor
+					$('.user-description-wrap').first().replaceWith($('#wp_edit_biographical_editor'));
+					// Expand text editor width
+					$('.wp-editor-area').css('width', '100%');
+				});
 			</script>
 			<?php
 		}
 	}
 	add_action( 'admin_head', 'wp_edit_editor_biography_js', 10, 1 );
-}
-
-// PHP Widgets
-if($plugin_options_general['php_widgets'] == 1) {
-	
-	class wp_edit_PHP_Code_Widget extends WP_Widget {
-
-		function wp_edit_PHP_Code_Widget() {
-			$widget_ops = array('classname' => 'widget_execphp', 'description' => __('Arbitrary text, HTML, or PHP Code', 'wp_edit_langs'));
-			$control_ops = array('width' => 400, 'height' => 350);
-			$this->WP_Widget('execphp', __('WP Edit PHP Widget', 'wp_edit_langs'), $widget_ops, $control_ops);
-		}
-	
-		function widget( $args, $instance ) {
-			extract($args);
-			$title = apply_filters( 'widget_title', empty($instance['title']) ? '' : $instance['title'], $instance );
-			$text = apply_filters( 'widget_execphp', $instance['text'], $instance );
-			echo $before_widget;
-			if ( !empty( $title ) ) { echo $before_title . $title . $after_title; } 
-				ob_start();
-				eval('?>'.$text);
-				$text = ob_get_contents();
-				ob_end_clean();
-				?>			
-				<div class="execphpwidget"><?php echo $instance['filter'] ? wpautop($text) : $text; ?></div>
-			<?php
-			echo $after_widget;
-		}
-	
-		function update( $new_instance, $old_instance ) {
-			$instance = $old_instance;
-			$instance['title'] = strip_tags($new_instance['title']);
-			if ( current_user_can('unfiltered_html') )
-				$instance['text'] =  $new_instance['text'];
-			else
-				$instance['text'] = stripslashes( wp_filter_post_kses( $new_instance['text'] ) );
-			$instance['filter'] = isset($new_instance['filter']);
-			return $instance;
-		}
-	
-		function form( $instance ) {
-			$instance = wp_parse_args( (array) $instance, array( 'title' => '', 'text' => '' ) );
-			$title = strip_tags($instance['title']);
-			$text = format_to_edit($instance['text']);
-	?>
-			<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" /></p>
-	
-			<textarea class="widefat" rows="16" cols="20" id="<?php echo $this->get_field_id('text'); ?>" name="<?php echo $this->get_field_name('text'); ?>"><?php echo $text; ?></textarea>
-	
-			<p><input id="<?php echo $this->get_field_id('filter'); ?>" name="<?php echo $this->get_field_name('filter'); ?>" type="checkbox" <?php checked(isset($instance['filter']) ? $instance['filter'] : 0); ?> />&nbsp;<label for="<?php echo $this->get_field_id('filter'); ?>"><?php _e('Automatically add paragraphs.', 'wp_edit_langs'); ?></label></p>
-	<?php
-		}
-	}
-	add_action('widgets_init', create_function('', 'return register_widget("wp_edit_PHP_Code_Widget");'));
 }
 
 /*
@@ -373,7 +318,7 @@ if($plugin_options_posts['column_shortcodes'] == 1) {
 
 	function wp_edit_column_stylesheet() {
 	
-		wp_register_style('wp_edit_column-styles', WP_PLUGIN_URL.'/wp-edit/css/column-style.css');
+		wp_register_style('wp_edit_column-styles', plugins_url().'/wp-edit/css/column-style.css');
 		wp_enqueue_style('wp_edit_column-styles');
 	}
 	add_action('wp_print_styles', 'wp_edit_column_stylesheet');
@@ -432,7 +377,7 @@ if(!empty($plugin_options_posts['disable_wpautop']) && $plugin_options_posts['di
 				register_setting( 'jwl_toggle_wpautop_settings', 'jwl_toggle_wpautop_settings', array( $this, 'sanitize_settings' ) );
 	
 				//add a section for the plugin's settings on the writing page
-				add_settings_section( 'jwl_toggle_wpautop_settings_section', __('Toggle wpautop', 'wp_edit_langs'), array( $this, 'settings_section_text' ), 'writing' );
+				add_settings_section( 'jwl_toggle_wpautop_settings_section', __('Toggle wpautop', 'wp-edit'), array( $this, 'settings_section_text' ), 'writing' );
 	
 				//For each post type add a settings field, excluding revisions and nav menu items
 				if ( $post_types = get_post_types() ) {
@@ -450,7 +395,7 @@ if(!empty($plugin_options_posts['disable_wpautop']) && $plugin_options_posts['di
 			/*** Display our settings section */
 			function settings_section_text() {
 				echo '<p>';
-				_e('Select which post types have the option to disable the wpautop filter.','wp_edit_langs');
+				_e('Select which post types have the option to disable the wpautop filter.','wp-edit');
 				echo '</p>';
 				settings_fields( 'jwl_toggle_wpautop_settings' );
 			}
@@ -691,7 +636,7 @@ function wp_edit_user_specific_init() {
 			 
 			function wp_edit_AddThumbColumn($cols) {
 				  
-				$cols['thumbnail'] = __('Thumbnail', 'wp_edit_langs');  
+				$cols['thumbnail'] = __('Thumbnail', 'wp-edit');  
 				return $cols;  
 			}  
 		  
@@ -702,7 +647,7 @@ function wp_edit_user_specific_init() {
 				$thumb = get_the_post_thumbnail($post_id, array(100,70));
 				  
 				if ( isset($thumb) && $thumb ) { echo $thumb; }
-				else { echo __('None','wp_edit_langs'); }
+				else { echo __('None','wp-edit'); }
 			}
 		}  
 		  
@@ -739,50 +684,63 @@ function wp_edit_user_specific_init() {
 		
 		add_action('wp_dashboard_setup', 'wp_edit_user_custom_dashboard_widgets');
 		function wp_edit_user_custom_dashboard_widgets() {
+			
 			global $wp_meta_boxes;
-			wp_add_dashboard_widget('jwl_user_tinymce_dashboard_widget', __('WP Edit Pro RSS Feed', 'wp_edit_langs'), 'wp_edit_user_tinymce_widget', 'wp_edit_user_configure_widget');
+			wp_add_dashboard_widget('jwl_user_tinymce_dashboard_widget', __('WP Edit Pro RSS Feed', 'wp-edit'), 'wp_edit_user_tinymce_widget', 'wp_edit_user_configure_widget');
 		}	
 		function wp_edit_user_tinymce_widget() {
+			
 			$jwl_widgets = get_option( 'wp_edit_user_dashboard_options' ); // Get the dashboard widget options
 			$jwl_widget_id = 'jwl_user_tinymce_dashboard_widget'; // This must be the same ID we set in wp_add_dashboard_widget
+			
 			/* Check whether we have set the post count through the controls. If we didn't, set the default to 5 */
 			$jwl_total_items = isset( $jwl_widgets[$jwl_widget_id] ) && isset( $jwl_widgets[$jwl_widget_id]['items'] ) ? absint( $jwl_widgets[$jwl_widget_id]['items'] ) : 5;
+			
+			$protocol = is_ssl() === true ? 'https:' : 'http:';
+			
 			// Echo the output of the RSS Feed.
-			echo '<p><a href="http://www.feedblitz.com/f/?Sub=950320"><img title="Subscribe to get updates by email and more!" border="0" src="http://assets.feedblitz.com/chicklets/email/i/25/950320.bmp"></a><br />News updates for WP Edit Pro and Stable versions.</p>';
+			echo '<p><a href="//www.feedblitz.com/f/?Sub=950320"><img title="Subscribe to get updates by email and more!" border="0" src="//assets.feedblitz.com/chicklets/email/i/25/950320.bmp"></a><br />News updates for WP Edit Pro and Stable versions.</p>';
 			echo '<p style="border-bottom:#000 1px solid;">Showing ('.$jwl_total_items.') Posts</p>';
 			echo '<div class="rss-widget">';
 				wp_widget_rss_output(array(
-					'url' => 'http://feeds.feedblitz.com/wpeditpro&x=1',
+					'url' => $protocol . '//feeds.feedblitz.com/wpeditpro&x=1',
 					'title' => '',
 					'items' => $jwl_total_items,
 					'show_author' => 0,
 					'show_date' => 1
 				));
 			echo "</div>";
-			echo '<p style="text-align:center;border-top: #000 1px solid;padding:5px;"><a href="http://www.wpeditpro.com/">WP Edit Pro</a> - Visual Wordpress Editor</p>';
+			echo '<p style="text-align:center;border-top: #000 1px solid;padding:5px;"><a target="_blank" href="https://wpeditpro.com/">WP Edit Pro</a> - Visual Wordpress Editor</p>';
 		}
 		function wp_edit_user_configure_widget() {
+			
 			$jwl_widget_id = 'jwl_user_tinymce_dashboard_widget'; // This must be the same ID we set in wp_add_dashboard_widget
 			$jwl_form_id = 'jwl-user-dashboard-control'; // Set this to whatever you want
+			
 			// Checks whether there are already dashboard widget options in the database
 			if ( !$jwl_widget_options = get_option( 'wp_edit_user_dashboard_options' ) ) {
 				$jwl_widget_options = array(); // If not, we create a new array
 			}
+			
 			// Check whether we have information for this form
 			if ( !isset($jwl_widget_options[$jwl_widget_id]) ) {
 				$jwl_widget_options[$jwl_widget_id] = array(); // If not, we create a new array
 			}
+			
 			// Check whether our form was just submitted
 			if ( 'POST' == $_SERVER['REQUEST_METHOD'] && isset($_POST[$jwl_form_id]) ) {
+				
 				/* Get the value. In this case ['items'] is from the input field with the name of '.$form_id.'[items] */
 				$jwl_number = absint( $_POST[$jwl_form_id]['items'] );
 				$jwl_widget_options[$jwl_widget_id]['items'] = $jwl_number; // Set the number of items
 				update_option( 'wp_edit_user_dashboard_options', $jwl_widget_options ); // Update our dashboard widget options so we can access later
 			}
+			
 			// Check if we have set the number of posts previously. If we didn't, then we just set it as empty. This value is used when we create the input field
 			$jwl_number = isset( $jwl_widget_options[$jwl_widget_id]['items'] ) ? (int) $jwl_widget_options[$jwl_widget_id]['items'] : '';
+			
 			// Create our form fields. Pay very close attention to the name part of the input field.
-			echo '<p><label for="jwl_user_tinymce_dashboard_widget-number">' . __('Number of posts to show:', 'wp_edit_langs') . '</label>';
+			echo '<p><label for="jwl_user_tinymce_dashboard_widget-number">' . __('Number of posts to show:', 'wp-edit') . '</label>';
 			echo '<input id="jwl_user_tinymce_dashboard_widget-number" name="'.$jwl_form_id.'[items]" type="text" value="' . $jwl_number . '" size="3" /></p>';
 		}
 	}

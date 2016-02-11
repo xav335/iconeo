@@ -3,8 +3,8 @@ Contributors: josh401
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=A9E5VNRBMVBCS
 Tags: wpedit, wp edit, editor, buttons, button, add, font, font style, font select, table, tables, visual editor, search, replace, colors, color, anchor, advance, advanced, links, link, popup, javascript, upgrade, update, admin, image, images, citations, preview, html, custom css, borders, pages, posts, colorful, php, php widget, shortcode, shortcodes, style, styles, plugin, login, excerpt, id, post, page, youtube, tinymce
 Requires at least: 3.9
-Tested up to: 4.2 Alpha
-Stable tag: 3.1
+Tested up to: 4.5 Alpha
+Stable tag: 3.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -96,6 +96,40 @@ OR...
 3. Eight tabs packed with options.
 
 == Changelog ==
+
+= 3.7 =
+* 01/11-16
+
+* Fixed Feedblitz image loading insecure over https.
+* Fixed WP_PLUGIN_URL constant; switched to using plugins_url() function.
+* Fixed profile biography editor.
+* Updated compatibility version.
+
+= 3.6 = 
+* 12/16/15
+* Update to be stable with WordPress 4.4.
+
+= 3.5 =
+* 10/02/15
+* Updated plugin translation code to handle new WordPress language packs.
+* Fixed call to jquery theme only loading over http.  Will now load over https when applicable.
+
+= 3.4 =
+* 08/21/15
+* Removed PHP Widget option for two reasons:
+* 1 - It presented a potential security risk.  It is recommended to use a plugin dedicated to this functionality.
+* 2 - It used the older PHP construct method.  I could have updated the class; but I think it's better to remove the option entirely.
+
+= 3.3 =
+* 08/10/15
+* Minor code enhancements to prepare for the WordPress 4.3 release.
+
+= 3.2 =
+
+* 06/12/15
+* Fixed issue with OptimizePress theme.
+* Added "title" attribute to "Insert/Edit Advanced Link" button.
+* Made minor changes to plugin update message and styling.
 
 = 3.1 =
 
