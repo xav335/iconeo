@@ -74,7 +74,7 @@
 	<section class="large-4 medium-4 small-12">
 		<p class="coordonnees">
 			<span class="bleu">contact@iconeo.fr</span><br />
-				36 route de Bordeaux - 33360 Latresne
+				12 route de Bordeaux - 33360 Latresne
 		</p>
 	</section> 
 	<span class="cleaner"></span>
