@@ -147,7 +147,7 @@ if (!empty($_GET['postaction']) && $_GET['postaction']=='preview') {
 				$corpsCode = str_replace('XwXwXwXw', $codeRandom, $corps);
 				$newsletter->journalNewsletterDetailAdd($id_journal,$_to,$codeRandom,null);
 				////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!////////////
-				//mail($_to, $sujet, stripslashes($corpsCode), $entete);
+				mail($_to, $sujet, stripslashes($corpsCode), $entete);
 				///////////////////////////////////////////////////////////
 				echo "envoi OK : ". $value['email'] ."<br>";
 			} else {
