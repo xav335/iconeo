@@ -23,6 +23,7 @@
 define( 'WPCACHEHOME', '/home/web/iconeo.fr/wp-content/plugins/wp-super-cache/' ); //Added by WP-Cache Manager
 define('DB_NAME', 'iconeo');
 
+define('DISABLE_WP_CRON', true);
 
 /** Utilisateur de la base de données MySQL. */
 define('DB_USER', 'iconeo');
